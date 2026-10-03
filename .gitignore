@@ -11,6 +11,8 @@ mlartifacts/
 # Environments and secrets
 .venv/
 .env
+kaggle.json
+access_token
 
 # Python / tooling
 __pycache__/
@@ -21,3 +23,4 @@ __pycache__/
 .ipynb_checkpoints/
 build/
 dist/
+logs/

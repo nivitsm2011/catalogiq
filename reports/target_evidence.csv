@@ -1,0 +1,8 @@
+target,n_classes,majority_share,pct_missing,twin_groups,twin_disagreement
+masterCategory,4,0.4896,0.0,1478,0.0054
+subCategory,25,0.3619,0.0,1478,0.0379
+articleType,55,0.1673,0.0,1478,0.1204
+baseColour,15,0.225,0.0,1478,0.4398
+gender,5,0.514,0.0,1478,0.0792
+season,4,0.4859,0.047,1478,0.1806
+usage,6,0.7768,0.002,1478,0.0988

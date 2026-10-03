@@ -1,0 +1,108 @@
+[
+  {
+    "step": "drop duplicate ids",
+    "rows_before": 44446,
+    "rows_after": 44446
+  },
+  {
+    "step": "drop missing/unreadable images",
+    "rows_before": 44446,
+    "rows_after": 44441
+  },
+  {
+    "step": "drop rows missing core taxonomy",
+    "rows_before": 44441,
+    "rows_after": 44441
+  },
+  {
+    "step": "rare classes: masterCategory (drop, round 1)",
+    "rows_before": 44441,
+    "rows_after": 44415,
+    "rare_classes": 2,
+    "rows_affected": 26
+  },
+  {
+    "step": "rare classes: articleType (drop, round 1)",
+    "rows_before": 44415,
+    "rows_after": 42269,
+    "rare_classes": 84,
+    "rows_affected": 2146
+  },
+  {
+    "step": "rare classes: gender (drop, round 1)",
+    "rows_before": 42269,
+    "rows_after": 42269,
+    "rare_classes": 0,
+    "rows_affected": 0
+  },
+  {
+    "step": "rare classes: masterCategory (drop, round 2)",
+    "rows_before": 42269,
+    "rows_after": 42257,
+    "rare_classes": 1,
+    "rows_affected": 12
+  },
+  {
+    "step": "rare classes: articleType (drop, round 2)",
+    "rows_before": 42257,
+    "rows_after": 42257,
+    "rare_classes": 0,
+    "rows_affected": 0
+  },
+  {
+    "step": "rare classes: gender (drop, round 2)",
+    "rows_before": 42257,
+    "rows_after": 42257,
+    "rare_classes": 0,
+    "rows_affected": 0
+  },
+  {
+    "step": "rare classes: masterCategory (drop, round 3)",
+    "rows_before": 42257,
+    "rows_after": 42257,
+    "rare_classes": 0,
+    "rows_affected": 0
+  },
+  {
+    "step": "rare classes: articleType (drop, round 3)",
+    "rows_before": 42257,
+    "rows_after": 42257,
+    "rare_classes": 0,
+    "rows_affected": 0
+  },
+  {
+    "step": "rare classes: gender (drop, round 3)",
+    "rows_before": 42257,
+    "rows_after": 42257,
+    "rare_classes": 0,
+    "rows_affected": 0
+  },
+  {
+    "step": "rare classes: subCategory (other)",
+    "rows_before": 42257,
+    "rows_after": 42257,
+    "rare_classes": 3,
+    "rows_affected": 108
+  },
+  {
+    "step": "rare classes: baseColour (other)",
+    "rows_before": 42257,
+    "rows_after": 42257,
+    "rare_classes": 1,
+    "rows_affected": 56
+  },
+  {
+    "step": "rare classes: season (other)",
+    "rows_before": 42257,
+    "rows_after": 42257,
+    "rare_classes": 0,
+    "rows_affected": 0
+  },
+  {
+    "step": "rare classes: usage (other)",
+    "rows_before": 42257,
+    "rows_after": 42257,
+    "rare_classes": 3,
+    "rows_affected": 112
+  }
+]

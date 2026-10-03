@@ -1,4 +1,4 @@
-# CatalogIQ base configuration. Paths are relative to the project root.
+﻿# CatalogIQ base configuration. Paths are relative to the project root.
 project:
   name: catalogiq
   seed: 42
@@ -18,13 +18,50 @@ data:
     raw_dir: data/raw/fashion
     styles_csv: data/raw/fashion/styles.csv
     images_dir: data/raw/fashion/images
+    colour_map: configs/colour_map.yaml
+    audit_parquet: data/interim/fashion_audit.parquet
+    audit_summary_json: reports/fashion_audit.json
+    clean_parquet: data/processed/fashion_clean.parquet
+    splits_dir: data/processed
+    taxonomy: [masterCategory, subCategory, articleType, baseColour, gender, season, usage]
   reviews:
     hf_dataset: McAuley-Lab/Amazon-Reviews-2023
     category: Amazon_Fashion
+    reviews_file: hf://datasets/McAuley-Lab/Amazon-Reviews-2023/raw/review_categories/Amazon_Fashion.jsonl
+    meta_file: hf://datasets/McAuley-Lab/Amazon-Reviews-2023/raw/meta_categories/meta_Amazon_Fashion.jsonl
     raw_dir: data/raw/reviews
+    counts_json: data/interim/review_counts.json
+    reviews_parquet: data/processed/amazon_reviews.parquet
+    meta_parquet: data/processed/amazon_items.parquet
     max_processed_mb: 300
-    sample_reviews: 200000
-    sample_items: 20000
+    n_items: 800
+    min_reviews_per_item: 20
+    max_reviews_per_item: 300
+    min_review_chars: 30
+
+fashion_cleaning:
+  # Perceptual-hash Hamming distance at or below which two images are "the same photo".
+  phash_hamming_threshold: 1
+  min_image_side: 20
+  split_fractions: {train: 0.70, val: 0.15, test: 0.15}
+  split_folds: 20
+  # Per target: classes with fewer rows than min_count are dropped or merged into "Other".
+  rare:
+    masterCategory: {min_count: 50, policy: drop}
+    subCategory: {min_count: 100, policy: other}
+    articleType: {min_count: 100, policy: drop}
+    baseColour: {min_count: 100, policy: other}
+    gender: {min_count: 100, policy: drop}
+    season: {min_count: 100, policy: other}
+    usage: {min_count: 100, policy: other}
+
+listing_quality:
+  # Weighted-rating prior strength: items with fewer ratings are pulled toward the catalog mean.
+  prior_strength: 50
+  exemplar_min_ratings: 50
+  exemplar_min_score: 0.85
+  exemplar_min_title_chars: 20
+  exemplar_min_features: 3
 
 images:
   size: 224

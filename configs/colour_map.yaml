@@ -1,0 +1,18 @@
+# Retail colour palette. Raw Kaggle baseColour -> shopper-facing colour family.
+# Rule of thumb: a shopper filtering for "Blue" expects navy and turquoise to appear;
+# a seller choosing a colour in a listing form picks from ~14 families, not 46 shades.
+Black: [Black, Charcoal]
+White: [White, Off White]
+Grey: [Grey, Grey Melange, Silver, Steel]
+Blue: [Blue, Navy Blue, Turquoise Blue, Teal]
+Green: [Green, Olive, Sea Green, Lime Green, Fluorescent Green]
+Red: [Red, Maroon, Burgundy, Rust]
+Pink: [Pink, Magenta, Rose, Peach]
+Purple: [Purple, Lavender, Mauve]
+Orange: [Orange]
+Yellow: [Yellow, Mustard]
+Brown: [Brown, Coffee Brown, Mushroom Brown, Tan, Taupe, Copper, Bronze]
+Beige: [Beige, Cream, Khaki, Skin, Nude]
+Gold: [Gold]
+Multi: [Multi]
+# Anything not listed here (e.g. Metallic) falls into "Other" and is logged.
