@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "catalogiq"
+version = "0.1.0"
+description = "AI copilot for e-commerce marketplaces: listing generation, visual search, review Q&A and catalog quality checks."
+readme = "README.md"
+requires-python = ">=3.11,<3.12"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["notebooks", ".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+extend-exclude = "\\.venv|notebooks"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

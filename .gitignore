@@ -1,0 +1,23 @@
+# Data, models, experiment logs (kept local; .gitkeep preserves folders)
+data/*
+!data/*/
+data/*/*
+!data/*/.gitkeep
+models/*
+!models/.gitkeep
+mlruns/
+mlartifacts/
+
+# Environments and secrets
+.venv/
+.env
+
+# Python / tooling
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+build/
+dist/

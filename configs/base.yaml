@@ -1,0 +1,73 @@
+# CatalogIQ base configuration. Paths are relative to the project root.
+project:
+  name: catalogiq
+  seed: 42
+
+paths:
+  data_raw: data/raw
+  data_interim: data/interim
+  data_processed: data/processed
+  models: models
+  reports_figures: reports/figures
+  docs: docs
+  mlflow_tracking_dir: mlruns
+
+data:
+  fashion:
+    kaggle_slug: paramaggarwal/fashion-product-images-small
+    raw_dir: data/raw/fashion
+    styles_csv: data/raw/fashion/styles.csv
+    images_dir: data/raw/fashion/images
+  reviews:
+    hf_dataset: McAuley-Lab/Amazon-Reviews-2023
+    category: Amazon_Fashion
+    raw_dir: data/raw/reviews
+    max_processed_mb: 300
+    sample_reviews: 200000
+    sample_items: 20000
+
+images:
+  size: 224
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+split:
+  test_size: 0.15
+  val_size: 0.15
+
+classifier:
+  targets: [masterCategory, subCategory, articleType, baseColour, gender, season, usage]
+  backbone: resnet18
+  batch_size: 64
+  epochs: 5
+  learning_rate: 0.001
+
+models:
+  clip:
+    name: ViT-B-32
+    pretrained: laion2b_s34b_b79k
+  text_embedder: sentence-transformers/all-MiniLM-L6-v2
+  llm:
+    provider: ollama
+    model: llama3.2:3b
+    fallback_model: qwen2.5:3b
+    host: http://localhost:11434
+    temperature: 0.2
+    timeout_s: 120
+
+retrieval:
+  top_k: 5
+  vector_store_dir: data/processed/chroma
+  faiss_index_path: models/faiss_index.bin
+  duplicate_similarity_threshold: 0.95
+
+quality:
+  blur_threshold: 100.0
+  brightness_min: 40
+  brightness_max: 220
+
+logging:
+  level: INFO
+
+mlflow:
+  experiment_name: catalogiq
