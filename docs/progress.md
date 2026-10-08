@@ -37,7 +37,7 @@
 - Colour labels are noisy (44% twin disagreement); evaluate colour on the 15-family palette.
 - x64 Python on ARM64 runs under emulation, so training will be slower than native.
 
-## Phase 2 - Product attribute classifier (complete, committed locally, not yet pushed)
+## Phase 2 - Product attribute classifier (complete, pushed)
 
 **Done**
 - Baselines (majority class, frozen MobileNetV3 + logistic regression, zero-shot CLIP), all logged to MLflow.
@@ -70,4 +70,3 @@
 - First training run was killed mid fine-tune (cause unknown); resumed from the heads-only checkpoint.
 - Test metrics come from one seed and one split; no confidence intervals.
 - Model weights live in `models/` (gitignored); they must be regenerated from the scripts on a new machine.
-- Phase 2 commit not yet pushed to GitHub (awaiting confirmation).
