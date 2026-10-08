@@ -5,7 +5,7 @@ All paths, seeds and model names live in ``configs/*.yaml``; code reads them her
 
 from __future__ import annotations
 
-from functools import lru_cache
+from functools import cache, lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -39,3 +39,9 @@ def resolve_path(relative: str | Path) -> Path:
     """Resolve a config-relative path against the project root."""
     path = Path(relative)
     return path if path.is_absolute() else PROJECT_ROOT / path
+
+
+@cache
+def get_vision_config() -> dict[str, Any]:
+    """Return the ``vision`` section of ``configs/vision.yaml`` (Phase 2 classifier settings)."""
+    return load_config(PROJECT_ROOT / "configs" / "vision.yaml")["vision"]

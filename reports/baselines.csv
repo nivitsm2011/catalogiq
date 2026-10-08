@@ -1,0 +1,22 @@
+model,target,accuracy,macro_f1,weighted_f1,top3_accuracy
+majority class,masterCategory,0.4901,0.1645,,
+frozen MobileNetV3 + logistic regression,masterCategory,0.982,0.9757,0.982,0.9997
+majority class,subCategory,0.3619,0.0213,,
+frozen MobileNetV3 + logistic regression,subCategory,0.9437,0.8959,0.944,0.9921
+majority class,articleType,0.1672,0.0052,,
+frozen MobileNetV3 + logistic regression,articleType,0.8203,0.7747,0.821,0.956
+majority class,baseColour,0.2292,0.0249,,
+frozen MobileNetV3 + logistic regression,baseColour,0.5996,0.4691,0.5963,0.858
+majority class,gender,0.5073,0.1346,,
+frozen MobileNetV3 + logistic regression,gender,0.8427,0.6609,0.8408,0.988
+majority class,season,0.4892,0.1642,,
+frozen MobileNetV3 + logistic regression,season,0.6821,0.679,0.6777,0.9825
+majority class,usage,0.7801,0.1461,,
+frozen MobileNetV3 + logistic regression,usage,0.8738,0.6223,0.871,0.9931
+zero-shot CLIP ViT-B/32,masterCategory,0.914,0.8833,0.9106,0.9891
+zero-shot CLIP ViT-B/32,subCategory,0.72,0.6682,0.7536,0.9492
+zero-shot CLIP ViT-B/32,articleType,0.6884,0.6828,0.714,0.8937
+zero-shot CLIP ViT-B/32,baseColour,0.6346,0.5612,0.6687,0.8449
+zero-shot CLIP ViT-B/32,gender,0.8575,0.5701,0.8459,0.974
+zero-shot CLIP ViT-B/32,season,0.2996,0.232,0.3207,0.7438
+zero-shot CLIP ViT-B/32,usage,0.5525,0.3868,0.604,0.8747

@@ -1,0 +1,5 @@
+class,precision,recall,f1,support
+Apparel,0.9948,0.9945,0.9947,3107
+Accessories,0.9817,0.9873,0.9845,1580
+Footwear,0.9956,0.9905,0.9931,1375
+Personal Care,0.9891,0.9856,0.9873,277

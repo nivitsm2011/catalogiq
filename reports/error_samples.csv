@@ -1,0 +1,41 @@
+n,id,true,predicted,confidence
+1,26934,Dresses,Tops,0.9128
+2,22197,Casual Shoes,Formal Shoes,0.8195
+3,32553,Casual Shoes,Formal Shoes,0.601
+4,18493,Sandals,Flip Flops,0.9555
+5,28450,Track Pants,Jeans,0.3679
+6,21574,Socks,Accessory Gift Set,0.9686
+7,29067,Handbags,Clutches,0.5321
+8,22223,Tshirts,Tops,0.5056
+9,21063,Casual Shoes,Formal Shoes,0.6288
+10,6912,Flats,Sandals,0.9767
+11,54082,Kurtis,Shirts,0.254
+12,39902,Flats,Flip Flops,0.5482
+13,18624,Sweaters,Tshirts,0.7898
+14,20441,Casual Shoes,Sports Shoes,0.6265
+15,39190,Flats,Heels,0.7658
+16,33208,Tunics,Tops,0.6935
+17,14281,Casual Shoes,Sports Shoes,0.9605
+18,2633,Heels,Casual Shoes,0.4605
+19,13255,Shorts,Shirts,0.398
+20,54939,Tshirts,Tops,0.7817
+21,20230,Sweaters,Tops,0.4365
+22,47534,Flats,Heels,0.6645
+23,19121,Flip Flops,Heels,0.498
+24,42040,Sports Shoes,Casual Shoes,0.7469
+25,57308,Heels,Flip Flops,0.6212
+26,15032,Sweaters,Tshirts,0.5403
+27,57216,Shorts,Skirts,0.5397
+28,14582,Sweaters,Tops,0.4084
+29,6351,Sandals,Caps,0.2713
+30,45973,Tops,Tshirts,0.5146
+31,20190,Tshirts,Sweaters,0.9111
+32,59963,Dresses,Nightdress,0.5306
+33,18963,Sweatshirts,Tops,0.6033
+34,25442,Sports Shoes,Casual Shoes,0.9299
+35,43091,Perfume and Body Mist,Deodorant,0.7767
+36,21882,Tunics,Kurtis,0.3886
+37,40649,Kurtas,Kurtis,0.449
+38,54086,Kurtis,Tunics,0.4458
+39,57946,Casual Shoes,Formal Shoes,0.9442
+40,19557,Tshirts,Tops,0.6636

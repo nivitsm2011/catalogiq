@@ -1,0 +1,5 @@
+stage,epoch,train_loss,val_macro_f1,seconds
+stage1,1,7.4162,0.6743,185.0
+stage1,2,5.1649,0.6994,180.0
+stage1,3,4.7732,0.7085,192.0
+stage1,4,4.6079,0.71,198.0

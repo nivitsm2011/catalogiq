@@ -1,0 +1,65 @@
+source,n,id,true,predicted,confidence,category
+top24_confident,1,24459,Sports Shoes,Briefs,0.9988,wrong_label
+top24_confident,2,58494,Dresses,Sarees,0.9976,wrong_label
+top24_confident,3,2694,Shirts,Tshirts,0.9941,ambiguous_boundary
+top24_confident,4,31241,Tshirts,Briefs,0.9914,wrong_label
+top24_confident,5,47401,Clutches,Handbags,0.9879,ambiguous_boundary
+top24_confident,6,55616,Casual Shoes,Formal Shoes,0.9879,ambiguous_boundary
+top24_confident,7,13796,Tshirts,Sweaters,0.9865,wrong_label
+top24_confident,8,52576,Clutches,Handbags,0.9865,ambiguous_boundary
+top24_confident,9,31418,Innerwear Vests,Tshirts,0.9857,wrong_label
+top24_confident,10,3487,Flats,Sandals,0.9852,wrong_label
+top24_confident,11,44760,Casual Shoes,Sports Shoes,0.9822,ambiguous_boundary
+top24_confident,12,9116,Casual Shoes,Sports Shoes,0.9808,ambiguous_boundary
+top24_confident,13,16115,Sandals,Flip Flops,0.98,wrong_label
+top24_confident,14,2667,Handbags,Clutches,0.9792,ambiguous_boundary
+top24_confident,15,15409,Sandals,Flip Flops,0.9788,wrong_label
+top24_confident,16,35467,Heels,Bra,0.9769,wrong_label
+top24_confident,17,6912,Flats,Sandals,0.9767,wrong_label
+top24_confident,18,3238,Sports Shoes,Casual Shoes,0.9763,ambiguous_boundary
+top24_confident,19,5578,Sports Shoes,Casual Shoes,0.9753,ambiguous_boundary
+top24_confident,20,57496,Casual Shoes,Formal Shoes,0.9751,image_problem
+top24_confident,21,41976,Capris,Shorts,0.9737,ambiguous_boundary
+top24_confident,22,40161,Capris,Shorts,0.9737,ambiguous_boundary
+top24_confident,23,41975,Capris,Shorts,0.9737,ambiguous_boundary
+top24_confident,24,56207,Pendant,Earrings,0.9725,ambiguous_boundary
+random40,1,26934,Dresses,Tops,0.9128,ambiguous_boundary
+random40,2,22197,Casual Shoes,Formal Shoes,0.8195,ambiguous_boundary
+random40,3,32553,Casual Shoes,Formal Shoes,0.601,ambiguous_boundary
+random40,4,18493,Sandals,Flip Flops,0.9555,wrong_label
+random40,5,28450,Track Pants,Jeans,0.3679,model_error
+random40,6,21574,Socks,Accessory Gift Set,0.9686,ambiguous_boundary
+random40,7,29067,Handbags,Clutches,0.5321,ambiguous_boundary
+random40,8,22223,Tshirts,Tops,0.5056,ambiguous_boundary
+random40,9,21063,Casual Shoes,Formal Shoes,0.6288,ambiguous_boundary
+random40,10,6912,Flats,Sandals,0.9767,wrong_label
+random40,11,54082,Kurtis,Shirts,0.254,model_error
+random40,12,39902,Flats,Flip Flops,0.5482,ambiguous_boundary
+random40,13,18624,Sweaters,Tshirts,0.7898,ambiguous_boundary
+random40,14,20441,Casual Shoes,Sports Shoes,0.6265,ambiguous_boundary
+random40,15,39190,Flats,Heels,0.7658,model_error
+random40,16,33208,Tunics,Tops,0.6935,ambiguous_boundary
+random40,17,14281,Casual Shoes,Sports Shoes,0.9605,ambiguous_boundary
+random40,18,2633,Heels,Casual Shoes,0.4605,wrong_label
+random40,19,13255,Shorts,Shirts,0.398,model_error
+random40,20,54939,Tshirts,Tops,0.7817,ambiguous_boundary
+random40,21,20230,Sweaters,Tops,0.4365,ambiguous_boundary
+random40,22,47534,Flats,Heels,0.6645,ambiguous_boundary
+random40,23,19121,Flip Flops,Heels,0.498,model_error
+random40,24,42040,Sports Shoes,Casual Shoes,0.7469,model_error
+random40,25,57308,Heels,Flip Flops,0.6212,wrong_label
+random40,26,15032,Sweaters,Tshirts,0.5403,model_error
+random40,27,57216,Shorts,Skirts,0.5397,model_error
+random40,28,14582,Sweaters,Tops,0.4084,ambiguous_boundary
+random40,29,6351,Sandals,Caps,0.2713,model_error
+random40,30,45973,Tops,Tshirts,0.5146,ambiguous_boundary
+random40,31,20190,Tshirts,Sweaters,0.9111,ambiguous_boundary
+random40,32,59963,Dresses,Nightdress,0.5306,ambiguous_boundary
+random40,33,18963,Sweatshirts,Tops,0.6033,ambiguous_boundary
+random40,34,25442,Sports Shoes,Casual Shoes,0.9299,ambiguous_boundary
+random40,35,43091,Perfume and Body Mist,Deodorant,0.7767,ambiguous_boundary
+random40,36,21882,Tunics,Kurtis,0.3886,ambiguous_boundary
+random40,37,40649,Kurtas,Kurtis,0.449,ambiguous_boundary
+random40,38,54086,Kurtis,Tunics,0.4458,ambiguous_boundary
+random40,39,57946,Casual Shoes,Formal Shoes,0.9442,ambiguous_boundary
+random40,40,19557,Tshirts,Tops,0.6636,ambiguous_boundary

@@ -32,6 +32,19 @@ def set_seed(seed: int) -> None:
         logger.debug("torch not installed; skipped torch seeding")
 
 
+def configure_cache_dirs() -> None:
+    """Keep pretrained-weight caches inside the project folder (``paths.cache``).
+
+    Must run before ``torch.hub``/``open_clip``/``huggingface_hub`` download anything.
+    """
+    from catalogiq.config import get_config, resolve_path
+
+    cache = resolve_path(get_config()["paths"]["cache"])
+    os.environ.setdefault("TORCH_HOME", str(cache / "torch"))
+    os.environ.setdefault("HF_HOME", str(cache / "huggingface"))
+    os.environ.setdefault("HF_HUB_DISABLE_SYMLINKS_WARNING", "1")
+
+
 def get_device() -> str:
     """Return ``"cuda"`` if a GPU is available, otherwise ``"cpu"``."""
     import torch

@@ -1,0 +1,61 @@
+# Phase 2: product attribute classifier. Merged under the `vision` key by catalogiq.config.
+vision:
+  targets: [masterCategory, subCategory, articleType, baseColour, gender, season, usage]
+  stored_hw: [80, 60]        # images are cached once at (height, width); native size is ~80x60
+  input_hw: [128, 96]        # network input (height, width); keeps the 4:3 aspect ratio
+  image_cache: data/interim/images_u8.npy
+  image_index: data/interim/images_index.parquet
+  label_maps: data/interim/label_maps.json
+  batch_size: 128
+  num_threads: 0             # 0 = let torch decide
+
+  backbone:
+    name: mobilenet_v3_large
+    weights: IMAGENET1K_V2
+    feature_dim: 960
+    unfreeze_from_block: 13  # torchvision `features[13:]` = last blocks + final 1x1 conv
+    head_dropout: 0.2
+
+  training:
+    stage1: {epochs: 6, lr: 0.001, weight_decay: 0.0001}              # heads only
+    stage2: {epochs: 10, lr_backbone: 0.0001, lr_heads: 0.0003, weight_decay: 0.0001}
+    early_stopping_patience: 3
+    class_weight_power: 0.5    # weight ~ (1 / class_frequency) ** power, normalised
+    label_smoothing: 0.0
+    subset_fraction: 1.0       # <1.0 = stratified subset for speed trials
+    checkpoint_dir: models/attribute_classifier
+
+  augmentation:
+    hflip_p: 0.5
+    rotation_deg: 10
+    scale: [0.9, 1.1]
+    translate: 0.05
+    brightness: 0.2
+    contrast: 0.2
+    saturation: 0.2
+    hue: 0.0                   # deliberately zero: hue shifts would change the colour label
+
+  baselines:
+    logreg: {C: 1.0, max_iter: 300}
+    embeddings_path: data/interim/emb_mobilenet.npz
+    clip_embeddings_path: data/interim/emb_clip_test.npz
+    clip_prompts:
+      masterCategory: "a product photo of {} for sale"
+      subCategory: "a product photo of {} for sale"
+      articleType: "a product photo of {}"
+      baseColour: "a product photo of a {} fashion item"
+      gender: "a product photo of a fashion item for {}"
+      season: "a product photo of a fashion item for {} season"
+      usage: "a product photo of a {} fashion item"
+
+  calibration:
+    n_bins: 15
+    target_precision: 0.90     # accepted predictions should be right at least this often
+    min_threshold: 0.0
+
+  inference:
+    model_dir: models/attribute_classifier
+    torchscript_file: model_ts.pt
+    thresholds_file: thresholds.json
+    labels_file: labels.json
+    latency_runs: 100

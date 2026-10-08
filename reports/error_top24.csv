@@ -1,0 +1,25 @@
+n,position,id,true,predicted,confidence
+1,3687,24459,Sports Shoes,Briefs,0.9988
+2,1027,58494,Dresses,Sarees,0.9976
+3,2891,2694,Shirts,Tshirts,0.9941
+4,5024,31241,Tshirts,Briefs,0.9914
+5,4829,47401,Clutches,Handbags,0.9879
+6,2413,55616,Casual Shoes,Formal Shoes,0.9879
+7,4523,13796,Tshirts,Sweaters,0.9865
+8,1925,52576,Clutches,Handbags,0.9865
+9,5369,31418,Innerwear Vests,Tshirts,0.9857
+10,4390,3487,Flats,Sandals,0.9852
+11,5782,44760,Casual Shoes,Sports Shoes,0.9822
+12,904,9116,Casual Shoes,Sports Shoes,0.9808
+13,2416,16115,Sandals,Flip Flops,0.98
+14,2941,2667,Handbags,Clutches,0.9792
+15,1258,15409,Sandals,Flip Flops,0.9788
+16,4712,35467,Heels,Bra,0.9769
+17,1599,6912,Flats,Sandals,0.9767
+18,5113,3238,Sports Shoes,Casual Shoes,0.9763
+19,1195,5578,Sports Shoes,Casual Shoes,0.9753
+20,5215,57496,Casual Shoes,Formal Shoes,0.9751
+21,1357,41976,Capris,Shorts,0.9737
+22,3118,40161,Capris,Shorts,0.9737
+23,4674,41975,Capris,Shorts,0.9737
+24,3038,56207,Pendant,Earrings,0.9725

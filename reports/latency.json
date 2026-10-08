@@ -1,0 +1,9 @@
+{
+  "runs": 100,
+  "mean_ms": 18.735823003808036,
+  "median_ms": 18.606350000482053,
+  "p95_ms": 22.239860042463988,
+  "threads": 8,
+  "torchscript_mb": 12.87,
+  "note": "single image, CPU, preprocessing included, x64 Python emulated on ARM64"
+}

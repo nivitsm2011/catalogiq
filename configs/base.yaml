@@ -1,4 +1,4 @@
-﻿# CatalogIQ base configuration. Paths are relative to the project root.
+# CatalogIQ base configuration. Paths are relative to the project root.
 project:
   name: catalogiq
   seed: 42
@@ -11,6 +11,7 @@ paths:
   reports_figures: reports/figures
   docs: docs
   mlflow_tracking_dir: mlruns
+  cache: models/cache
 
 data:
   fashion:
@@ -71,13 +72,6 @@ images:
 split:
   test_size: 0.15
   val_size: 0.15
-
-classifier:
-  targets: [masterCategory, subCategory, articleType, baseColour, gender, season, usage]
-  backbone: resnet18
-  batch_size: 64
-  epochs: 5
-  learning_rate: 0.001
 
 models:
   clip:
