@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Duplicate labelling</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1c2430;--muted:#5b6574;--line:#d9dee6;--accent:#2f6fb0;--ok:#1b7f3b;--no:#b3261e;--unsure:#8a6d00}
+@media (prefers-color-scheme:dark){:root{--bg:#14181f;--card:#1d232d;--ink:#e8ecf2;--muted:#9aa5b5;--line:#2c3542;--accent:#6fa8d6;--ok:#4cc27a;--no:#ff7b72;--unsure:#e0c04a}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:16px}
+h1{font-size:1.4rem;margin:.2rem 0}
+.help{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:12px 0}
+.bar{position:sticky;top:0;background:var(--bg);padding:8px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center;flex-wrap:wrap;z-index:2}
+.bar progress{flex:1;min-width:140px;height:14px}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:8px 14px;cursor:pointer}
+button.sel-1{background:var(--ok);color:#fff;border-color:var(--ok)}
+button.sel-0{background:var(--no);color:#fff;border-color:var(--no)}
+button.sel-u{background:var(--unsure);color:#fff;border-color:var(--unsure)}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pair{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:12px}
+.pair h2{font-size:1rem;margin:0 0 8px;color:var(--muted)}
+.imgs{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.imgs figure{margin:0;text-align:center}
+.imgs img{height:240px;width:auto;border:1px solid var(--line);background:#fff}
+.imgs figcaption{color:var(--muted);font-size:.85rem}
+.btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:10px}
+</style></head><body><main>
+<h1>Are these two listings duplicates?</h1>
+<div class="help"><b>Duplicate</b> = the <i>same product</i> listed twice: the same photo, or another photo of the identical item.<br>
+<b>Not a duplicate</b> = a different product, <i>including</i> the same style in another colour, another size, or just a similar-looking item.<br>
+<b>Unsure</b> = you cannot tell from the picture. Your answers are saved in this browser as you click; press <b>Download labels</b> at the end.</div>
+<div class="bar"><span id="count"></span><progress id="prog" max="100" value="0"></progress>
+<button class="primary" id="dl">Download labels (CSV)</button></div>
+<div id="list"></div>
+</main>
+<script>
+const PAIRS = __PAIRS__;
+const KEY = "catalogiq_dup_labels_v1";
+let labels = {};
+try { labels = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { labels = {}; }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(labels)); } catch (e) {} }
+function render(){
+  const list = document.getElementById("list"); list.innerHTML = "";
+  PAIRS.forEach(p => {
+    const d = document.createElement("div"); d.className = "pair";
+    const cur = labels[p.pair_id];
+    d.innerHTML = `<h2>Pair ${p.pair_id} of ${PAIRS.length}</h2>
+      <div class="imgs"><figure><img src="${p.img_a}" alt="item A"><figcaption>A (id ${p.id_a})</figcaption></figure>
+      <figure><img src="${p.img_b}" alt="item B"><figcaption>B (id ${p.id_b})</figcaption></figure></div>
+      <div class="btns">
+        <button data-v="1" class="${cur==="1"?"sel-1":""}">Duplicate</button>
+        <button data-v="0" class="${cur==="0"?"sel-0":""}">Not a duplicate</button>
+        <button data-v="unsure" class="${cur==="unsure"?"sel-u":""}">Unsure</button></div>`;
+    d.querySelectorAll("button").forEach(b => b.onclick = () => { labels[p.pair_id] = b.dataset.v; save(); render(); });
+    list.appendChild(d);
+  });
+  const n = Object.keys(labels).length;
+  document.getElementById("count").textContent = n + " / " + PAIRS.length + " labelled";
+  document.getElementById("prog").value = n;
+}
+document.getElementById("dl").onclick = () => {
+  const rows = ["pair_id,id_a,id_b,label"].concat(PAIRS.map(p => [p.pair_id, p.id_a, p.id_b, labels[p.pair_id] ?? ""].join(",")));
+  const blob = new Blob([rows.join("\n") + "\n"], {type: "text/csv"});
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "duplicate_labels.csv"; a.click();
+};
+render();
+</script></body></html>

@@ -1,0 +1,97 @@
+# Phase 3: visual search and duplicate detection. Merged under the `search` key.
+search:
+  clip:
+    # name/pretrained come from configs/base.yaml -> models.clip (ViT-B-32, laion2b_s34b_b79k, 605.2 MB)
+    image_size: 224
+    mean: [0.48145466, 0.4578275, 0.40821073]
+    std: [0.26862954, 0.26130258, 0.27577711]
+    pad_value: 1.0            # catalog photos have white backgrounds: pad to square instead of cropping
+    batch_size: 128
+    chunk_batches: 20         # save a chunk file every N batches so a crash loses little work
+
+  paths:
+    chunks_dir: data/interim/clip_chunks
+    image_emb: data/processed/clip_image_emb.npy
+    text_emb: data/processed/clip_text_emb.npy
+    id_map: data/processed/clip_ids.npy
+    classifier_emb: data/processed/clf_image_emb.npy
+    catalog: data/processed/search_catalog.parquet
+
+  # Text built from attributes (no free-text product name), used for the text embedding.
+  text_template: "a product photo of a {colour} {article_type} for {gender}, {usage} style, {season} season"
+
+  index:
+    hnsw: {M: 32, ef_construction: 200, ef_search: 64}
+    default_k: 10
+
+  evaluation:
+    k_values: [5, 10]
+    map_k: 10
+    n_queries: 2000           # image queries sampled from the test split (0 = all)
+    text_queries: 300         # attribute-combination text queries
+    text_min_relevant: 5      # a text query needs at least this many matching gallery images
+    latency_runs: 200
+
+  shop_the_look:
+    per_category: 3
+    weights: {pairing: 0.30, colour: 0.30, usage: 0.15, season: 0.10, style: 0.15}
+    require_label_verified: true   # candidate's catalog articleType must agree with the Phase 2 classifier
+    verify_min_confidence: 0.5
+    # Roles of each article type; complementary roles for each role are listed below.
+    role_complements:
+      top: [bottom, footwear, accessory, bag]
+      bottom: [top, footwear, accessory, bag]
+      dress: [footwear, accessory, bag]
+      footwear: [top, bottom, accessory, bag]
+      bag: [top, bottom, footwear, accessory]
+      accessory: [top, bottom, footwear, bag]
+    # articleType -> role. Anything not listed (underwear, beauty, perfume, gift sets, socks) is not
+    # part of an outfit and is never recommended or used as a query.
+    article_roles:
+      top: [Tshirts, Shirts, Kurtas, Tops, Sweatshirts, Sweaters, Jackets, Kurtis, Tunics]
+      bottom: [Jeans, Shorts, Trousers, Track Pants, Leggings, Capris, Skirts]
+      dress: [Dresses, Sarees]
+      footwear: [Casual Shoes, Sports Shoes, Heels, Flip Flops, Sandals, Formal Shoes, Flats]
+      bag: [Handbags, Backpacks, Clutches]
+      accessory: [Watches, Wallets, Sunglasses, Belts, Earrings, Pendant, Necklace and Chains, Ring, Caps, Ties, Scarves, Dupatta, Cufflinks]
+    # Style families per article type: two items pair if they share a style family (casual, formal, sporty,
+    # ethnic, party). Items that go with anything list all families they suit.
+    article_styles:
+      casual: [Tshirts, Tops, Sweatshirts, Sweaters, Jackets, Shirts, Jeans, Shorts, Track Pants, Capris, Leggings, Skirts, Dresses, Casual Shoes, Flip Flops, Sandals, Flats, Handbags, Backpacks, Wallets, Watches, Sunglasses, Belts, Caps, Scarves, Earrings, Pendant, Necklace and Chains, Ring]
+      formal: [Shirts, Jackets, Trousers, Formal Shoes, Heels, Flats, Handbags, Wallets, Watches, Belts, Ties, Cufflinks, Sunglasses, Earrings, Necklace and Chains, Pendant, Ring]
+      sporty: [Tshirts, Sweatshirts, Jackets, Track Pants, Shorts, Capris, Leggings, Sports Shoes, Casual Shoes, Backpacks, Watches, Sunglasses, Caps]
+      ethnic: [Kurtas, Kurtis, Tunics, Sarees, Dupatta, Leggings, Trousers, Jeans, Flats, Sandals, Heels, Clutches, Handbags, Earrings, Necklace and Chains, Pendant, Ring, Watches, Scarves]
+      party: [Dresses, Tops, Skirts, Jeans, Trousers, Heels, Flats, Sandals, Clutches, Handbags, Earrings, Necklace and Chains, Pendant, Ring, Watches, Sunglasses]
+    diverse_roles: [accessory, bag]   # at most one recommendation per article type in these roles
+    adjacent_seasons: [[Spring, Summer], [Summer, Fall], [Fall, Winter], [Winter, Spring]]
+    neutral_colours: [Black, White, Grey, Beige, Brown]
+    colour_pairs:               # non-neutral colours that look good together (symmetric)
+      - [Blue, White]
+      - [Blue, Beige]
+      - [Blue, Brown]
+      - [Blue, Grey]
+      - [Blue, Gold]
+      - [Green, Beige]
+      - [Green, Brown]
+      - [Green, White]
+      - [Red, Black]
+      - [Red, White]
+      - [Pink, Grey]
+      - [Pink, White]
+      - [Pink, Beige]
+      - [Purple, Grey]
+      - [Purple, White]
+      - [Orange, Blue]
+      - [Orange, White]
+      - [Yellow, Grey]
+      - [Yellow, Blue]
+      - [Gold, Black]
+
+  duplicates:
+    candidate_k: 6            # neighbours per item considered for duplicate candidates
+    phash_max_distance: 8     # pHash Hamming distance that confirms a candidate pair (of 64 bits)
+    labeled_pairs: 100
+    labels_csv: reports/duplicate_labels.csv
+    pairs_csv: reports/duplicate_pairs_to_label.csv
+    labeling_html: reports/duplicate_labeling.html
+    similarity_bins: [0.80, 0.90, 0.95, 0.98, 1.0001]

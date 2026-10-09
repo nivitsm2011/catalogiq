@@ -118,3 +118,7 @@ x64 Python on ARM64). Model files are in `models/` (gitignored); regenerate with
 - **Demographics/market:** Indian retailer catalogue, mostly men's and women's fashion; kids and other markets
   are under-represented. Gender here is a product-audience label, not a statement about people.
 - Single seed and single train/val/test split; no confidence intervals were computed for the test metrics.
+- **Residual train/test leakage (found in Phase 3):** the CLIP duplicate detector found 71 of the 6,339 test photos
+  (1.1%) with a re-shot duplicate in train/val, which the Phase 1 hash grouping missed. The classifier gets those 71
+  right 98.6% of the time. Excluding them, product-type accuracy is 85.5% instead of 85.7%, so the reported results
+  stand.

@@ -1,0 +1,8 @@
+{
+  "pairs_total": 100,
+  "duplicate": 38,
+  "not_duplicate": 58,
+  "unsure": 4,
+  "blank": 0,
+  "labels_file": "reports/duplicate_labels_ai_provisional.csv"
+}

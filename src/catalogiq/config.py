@@ -45,3 +45,9 @@ def resolve_path(relative: str | Path) -> Path:
 def get_vision_config() -> dict[str, Any]:
     """Return the ``vision`` section of ``configs/vision.yaml`` (Phase 2 classifier settings)."""
     return load_config(PROJECT_ROOT / "configs" / "vision.yaml")["vision"]
+
+
+@cache
+def get_search_config() -> dict[str, Any]:
+    """Return the ``search`` section of ``configs/search.yaml`` (Phase 3 settings)."""
+    return load_config(PROJECT_ROOT / "configs" / "search.yaml")["search"]

@@ -1,0 +1,24 @@
+{
+  "catalog_size": 42257,
+  "vector_search_flat_unfiltered": {
+    "mean_ms": 8.19,
+    "p95_ms": 9.71,
+    "n": 200
+  },
+  "vector_search_flat_filtered_gender_colour": {
+    "mean_ms": 13.86,
+    "p95_ms": 14.53,
+    "n": 100
+  },
+  "clip_encode_one_image": {
+    "mean_ms": 60.14,
+    "p95_ms": 68.09,
+    "n": 20
+  },
+  "clip_encode_one_text": {
+    "mean_ms": 39.88,
+    "p95_ms": 47.42,
+    "n": 20
+  },
+  "note": "CPU only, x64 Python emulated on ARM64; search_by_image = encode + vector search"
+}

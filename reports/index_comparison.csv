@@ -1,0 +1,13 @@
+catalog,index,build_s,single_ms_mean,single_ms_p95,batch_qps,recall@10_vs_flat,memory_mb
+"35,918 items (real)",IndexFlatIP (exact),0.09,5.133,7.061,6502.8,1.0,73.6
+"35,918 items (real)","IndexHNSWFlat (M=32, efSearch=16)",2.72,0.088,0.118,64779.4,0.9933,
+"35,918 items (real)","IndexHNSWFlat (M=32, efSearch=64)",2.68,0.178,0.228,28287.4,0.9989,
+"35,918 items (real)","IndexHNSWFlat (M=32, efSearch=256)",3.01,0.586,0.774,9822.1,0.999,
+"179,590 items (synthetic, real vectors + noise)",IndexFlatIP (exact),0.54,21.217,22.865,1232.5,1.0,367.8
+"179,590 items (synthetic, real vectors + noise)","IndexHNSWFlat (M=32, efSearch=16)",25.63,0.123,0.159,43319.7,0.9963,
+"179,590 items (synthetic, real vectors + noise)","IndexHNSWFlat (M=32, efSearch=64)",26.06,0.345,0.442,15264.0,0.9991,
+"179,590 items (synthetic, real vectors + noise)","IndexHNSWFlat (M=32, efSearch=256)",25.83,1.146,1.482,5809.0,0.9993,
+"718,360 items (synthetic, real vectors + noise)",IndexFlatIP (exact),2.57,87.221,91.944,308.6,1.0,1471.2
+"718,360 items (synthetic, real vectors + noise)","IndexHNSWFlat (M=32, efSearch=16)",179.82,0.159,0.211,26910.3,0.9896,
+"718,360 items (synthetic, real vectors + noise)","IndexHNSWFlat (M=32, efSearch=64)",251.9,0.57,0.833,5740.0,0.995,
+"718,360 items (synthetic, real vectors + noise)","IndexHNSWFlat (M=32, efSearch=256)",268.9,2.027,3.114,1535.2,0.9979,

@@ -1,0 +1,4 @@
+target,accuracy,macro_f1
+articleType,0.6812,0.6886
+baseColour,0.6384,0.568
+gender,0.8462,0.5333

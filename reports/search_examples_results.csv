@@ -1,0 +1,41 @@
+query_id,query_type,rank,result_id,result_type,result_colour,similarity,grade
+11740,Tshirts,1,20664,Tshirts,Grey,0.9367,same type + colour
+11740,Tshirts,2,7015,Tshirts,Grey,0.9345,same type + colour
+11740,Tshirts,3,24061,Tshirts,Brown,0.9324,same type
+11740,Tshirts,4,20666,Tshirts,Grey,0.9273,same type + colour
+11740,Tshirts,5,22331,Tshirts,Grey,0.9263,same type + colour
+56723,Casual Shoes,1,50778,Casual Shoes,Blue,0.8641,same type + colour
+56723,Casual Shoes,2,56722,Casual Shoes,Red,0.8461,same type
+56723,Casual Shoes,3,49497,Casual Shoes,Blue,0.8447,same type + colour
+56723,Casual Shoes,4,9122,Casual Shoes,Black,0.8363,same type
+56723,Casual Shoes,5,42276,Casual Shoes,Blue,0.834,same type + colour
+49913,Watches,1,53565,Watches,Black,0.8664,same type + colour
+49913,Watches,2,51532,Watches,Black,0.8399,same type + colour
+49913,Watches,3,36788,Watches,White,0.8375,same type
+49913,Watches,4,49847,Watches,Black,0.8347,same type + colour
+49913,Watches,5,56335,Watches,Black,0.827,same type + colour
+33434,Handbags,1,35918,Handbags,Black,0.8843,same type
+33434,Handbags,2,21540,Handbags,Blue,0.8668,same type + colour
+33434,Handbags,3,10199,Handbags,Black,0.8637,same type
+33434,Handbags,4,21539,Handbags,Black,0.8552,same type
+33434,Handbags,5,37435,Handbags,Black,0.8502,same type
+22743,Kurtas,1,22749,Kurtas,Blue,0.912,same type + colour
+22743,Kurtas,2,22070,Kurtas,Blue,0.8898,same type + colour
+22743,Kurtas,3,22745,Kurtas,Blue,0.8896,same type + colour
+22743,Kurtas,4,22081,Kurtas,Green,0.8873,same type
+22743,Kurtas,5,22761,Kurtas,Red,0.8831,same type
+28301,Sunglasses,1,8662,Sunglasses,Green,0.9315,same type
+28301,Sunglasses,2,30672,Sunglasses,Gold,0.9284,same type
+28301,Sunglasses,3,21331,Sunglasses,Black,0.9237,same type + colour
+28301,Sunglasses,4,21329,Sunglasses,Grey,0.9237,same type
+28301,Sunglasses,5,28340,Sunglasses,Black,0.9207,same type + colour
+17676,Heels,1,13559,Heels,Black,0.865,same type + colour
+17676,Heels,2,59023,Heels,Black,0.8554,same type + colour
+17676,Heels,3,45382,Flats,Black,0.847,different type
+17676,Heels,4,13539,Heels,Gold,0.8396,same type
+17676,Heels,5,59019,Flats,Black,0.8396,different type
+37937,Dresses,1,42555,Kurtas,Purple,0.8527,different type
+37937,Dresses,2,42216,Dresses,Black,0.8515,same type
+37937,Dresses,3,32211,Kurtas,Pink,0.8497,different type
+37937,Dresses,4,37936,Dresses,Orange,0.8472,same type
+37937,Dresses,5,37938,Dresses,Green,0.8456,same type

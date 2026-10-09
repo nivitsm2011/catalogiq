@@ -70,3 +70,42 @@
 - First training run was killed mid fine-tune (cause unknown); resumed from the heads-only checkpoint.
 - Test metrics come from one seed and one split; no confidence intervals.
 - Model weights live in `models/` (gitignored); they must be regenerated from the scripts on a new machine.
+
+## Phase 3 - Visual search and duplicate detection (complete except for the owner's own duplicate labels)
+
+**Done**
+- OpenCLIP ViT-B/32 (laion2b, 605.2 MB) embeddings for all 42,257 photos and attribute sentences, cached with an id map
+  (`data/processed/clip_*.npy`); Phase 2 classifier features cached as a baseline.
+- Exact (`IndexFlatIP`) vs HNSW comparison; `SearchEngine` with `search_by_image`, `search_by_text`, `search_by_id` and
+  exact attribute filters; `ShopTheLook` (style-family rules, colour/usage/season scoring, classifier label gate, reasons);
+  `DuplicateFinder` (CLIP similarity + pHash); retrieval metrics; click-to-label page for 100 duplicate pairs.
+- Notebook `03_visual_search.ipynb` (8 example queries, 2 explained failures, text search, outfits, duplicates, t-SNE map),
+  `docs/search_design.md`, 11 new decisions, 16 search tests (36 tests in total, all passing; ruff and black clean).
+
+**Metrics**
+| Image search (1,995 test queries vs 35,918-photo gallery; relevant = same type AND colour) | Recall@5 | Recall@10 | Precision@10 | mAP@10 |
+|---|---|---|---|---|
+| CLIP ViT-B/32 (zero-shot) | 0.823 | 0.890 | 0.418 | 0.309 |
+| Phase 2 fine-tuned classifier features | 0.772 | 0.854 | 0.412 | 0.312 |
+| Frozen ImageNet MobileNetV3 features | 0.698 | 0.796 | 0.319 | 0.223 |
+| Random vectors (floor) | 0.040 | 0.088 | 0.010 | 0.003 |
+
+- Text to image (300 attribute queries): Recall@10 0.887, Precision@10 0.451, mAP@10 0.372 (random: 0.017 / 0.002 / 0.0003).
+- Example grid (8 queries x top 5): 36 of 40 results are the right type, 19 also the right colour.
+- Index at 35,918 items: exact 5.1 ms/query; HNSW (efSearch 64) 0.18 ms at 99.9% of the exact top-10. Synthetic 718k items:
+  exact 87 ms vs HNSW 0.57 ms. Switch point on this CPU about 400k items (50 ms budget).
+- Latency over the 42k catalog: vector search 8.2 ms (13.9 ms filtered); CLIP encode 60 ms per image, 40 ms per text.
+- Duplicates (**provisional AI labels**, 38 duplicate / 58 not / 4 unsure): threshold 0.975 + pHash <= 8, all 27 sampled pairs
+  flagged are duplicates; weighted recall 0.22 (very uncertain); catalog-wide 1,833 pairs, 2,143 products (5.1%) in 875 groups.
+- Leakage check: 71 of 6,339 test photos (1.1%) have a re-shot twin in train/val; Phase 2 articleType accuracy 85.7% -> 85.5%
+  without them.
+- Footprint: data 1.7 GB, models 0.64 GB, venv about 1.7 GB: about 4.1 GB, under the 5 GB limit.
+
+**Open issues / risks**
+- The duplicate labels are the AI assistant's, not the owner's. Replace them: label `reports/duplicate_labeling.html`, save the
+  CSV as `reports/duplicate_labels.csv`, then run `python scripts/tune_duplicates.py` and re-execute notebook 03.
+- Duplicate recall below 0.95 similarity rests on 4 labelled duplicates standing for about 5,900 pairs: treat as unknown.
+- Cosmetics shade variants (lipstick, nail polish) can be flagged as duplicates; add a shade check before auto-merging.
+- Shop-the-look has no ground truth and untuned weights; the classifier gate rarely lets Tunics, Flats and Kurtis through.
+- CLIP embedding needed about 2 hours of CPU (and the laptop slept overnight); a catalog refresh should embed only new items.
+- Phase 3 commit not yet pushed to GitHub (awaiting confirmation).

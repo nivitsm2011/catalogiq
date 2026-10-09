@@ -1,0 +1,5 @@
+representation,queries,queries_without_relevant,recall@5,recall@10,precision@10,mAP@10,precision@10_articleType_only
+CLIP ViT-B/32 image embeddings,1995,5,0.8231,0.8897,0.4182,0.3092,0.8726
+Phase 2 fine-tuned classifier features,1995,5,0.7724,0.8536,0.4118,0.3118,0.8012
+Frozen ImageNet MobileNetV3 features,1995,5,0.6982,0.796,0.3192,0.2225,0.7409
+Random vectors (floor),1995,5,0.0401,0.0877,0.0099,0.0025,0.0554

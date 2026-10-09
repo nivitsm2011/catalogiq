@@ -1,0 +1,51 @@
+{
+  "recommended_threshold": 0.975,
+  "recommended_precision": 1.0,
+  "recommended_recall": 0.2192,
+  "rule": "lowest threshold with weighted precision >= 0.95 (similarity + pHash <= 8)",
+  "precision_target_met": true,
+  "f1_optimal_threshold": 0.935,
+  "f1_optimal_precision": 0.5796,
+  "f1_optimal_recall": 0.4187,
+  "phash_max_distance": 8,
+  "pHash_only": [
+    {
+      "pHash max distance": 0,
+      "precision": 0.9162,
+      "recall": 0.1896
+    },
+    {
+      "pHash max distance": 2,
+      "precision": 0.7595,
+      "recall": 0.2192
+    },
+    {
+      "pHash max distance": 4,
+      "precision": 0.3255,
+      "recall": 0.4014
+    },
+    {
+      "pHash max distance": 8,
+      "precision": 0.1323,
+      "recall": 0.4187
+    },
+    {
+      "pHash max distance": 12,
+      "precision": 0.0699,
+      "recall": 0.4707
+    },
+    {
+      "pHash max distance": 16,
+      "precision": 0.0856,
+      "recall": 0.8351
+    }
+  ],
+  "labels": {
+    "pairs_total": 100,
+    "duplicate": 38,
+    "not_duplicate": 58,
+    "unsure": 4,
+    "blank": 0,
+    "labels_file": "reports/duplicate_labels_ai_provisional.csv"
+  }
+}

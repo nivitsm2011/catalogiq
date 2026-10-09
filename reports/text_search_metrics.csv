@@ -1,0 +1,4 @@
+method,queries,recall@10,precision@10,mAP@10
+CLIP text -> image embeddings,300,0.8867,0.4513,0.3718
+Random gallery items (floor),300,0.0167,0.0017,0.0003
+"CLIP text -> attribute-sentence embeddings (reference, not image-based)",300,0.94,0.8433,0.9027
