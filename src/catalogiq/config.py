@@ -51,3 +51,9 @@ def get_vision_config() -> dict[str, Any]:
 def get_search_config() -> dict[str, Any]:
     """Return the ``search`` section of ``configs/search.yaml`` (Phase 3 settings)."""
     return load_config(PROJECT_ROOT / "configs" / "search.yaml")["search"]
+
+
+@cache
+def get_rag_config() -> dict[str, Any]:
+    """Return the ``rag`` section of ``configs/rag.yaml`` (Phase 4 settings)."""
+    return load_config(PROJECT_ROOT / "configs" / "rag.yaml")["rag"]

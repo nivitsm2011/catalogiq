@@ -1,0 +1,39 @@
+# Small retrieval test set for Phase 4. A listing is RELEVANT when its title + features text matches `relevant`
+# (case-insensitive regex). Relevance is therefore objective and was fixed before any ranker was run.
+#   lexical  : the query uses rare exact words/numbers that a keyword ranker should catch
+#   semantic : the query paraphrases (words differ from the listing text) so a meaning-based ranker should win
+#   mixed    : both kinds of signal
+queries:
+  # --- lexical -------------------------------------------------------------------------------
+  - {id: L01, kind: lexical, query: "UPF 50+ sun protection long sleeve shirt", relevant: 'upf'}
+  - {id: L02, kind: lexical, query: "925 sterling silver earrings", relevant: '925|sterling'}
+  - {id: L03, kind: lexical, query: "boxer brief 6-pack", relevant: 'boxer'}
+  - {id: L04, kind: lexical, query: "lambskin leather gloves touchscreen", relevant: 'glove'}
+  - {id: L05, kind: lexical, query: "wayfarer sunglasses matte black", relevant: 'wayfarer'}
+  - {id: L06, kind: lexical, query: "compression socks 15-20mmHg", relevant: 'compression'}
+  - {id: L07, kind: lexical, query: "reading glasses spring hinge +2.00", relevant: 'reading glass'}
+  - {id: L08, kind: lexical, query: "Casio digital watch", relevant: 'casio'}
+  - {id: L09, kind: lexical, query: "316L surgical steel piercing", relevant: '316l|surgical'}
+  - {id: L10, kind: lexical, query: "Russell Athletic Dri-Power", relevant: 'russell|dri-power'}
+  # --- semantic ------------------------------------------------------------------------------
+  - {id: S01, kind: semantic, query: "something warm to cover my hands in winter", relevant: 'glove|mitten'}
+  - {id: S02, kind: semantic, query: "footwear to wear at the beach or pool", relevant: 'sandal|flip|slipper|slide'}
+  - {id: S03, kind: semantic, query: "eye protection from bright sunlight", relevant: 'sunglass|shade|polariz|uv'}
+  - {id: S04, kind: semantic, query: "undergarments for men", relevant: 'boxer|brief|underwear|trunk|undershirt'}
+  - {id: S05, kind: semantic, query: "accessory to hold up trousers", relevant: 'belt|suspender'}
+  - {id: S06, kind: semantic, query: "jewelry worn around the neck", relevant: 'necklace|pendant|choker|chain'}
+  - {id: S07, kind: semantic, query: "dress up outfit for a fancy dress party", relevant: 'costume|mask|cosplay|halloween|wig'}
+  - {id: S08, kind: semantic, query: "clothing for exercise and gym", relevant: 'workout|athletic|gym|yoga|running|sport'}
+  - {id: S09, kind: semantic, query: "headwear that keeps the sun off", relevant: '\bhats?\b|\bcaps?\b|visor|beanie'}
+  - {id: S10, kind: semantic, query: "wrist accessory for timekeeping", relevant: 'watch'}
+  # --- mixed ---------------------------------------------------------------------------------
+  - {id: M01, kind: mixed, query: "women's summer maxi dress with pockets", relevant: 'dress'}
+  - {id: M02, kind: mixed, query: "men's casual cotton t-shirt", relevant: 't-?shirt|\btee'}
+  - {id: M03, kind: mixed, query: "leather wallet for men", relevant: 'wallet'}
+  - {id: M04, kind: mixed, query: "kids backpack for school", relevant: 'backpack|school bag'}
+  - {id: M05, kind: mixed, query: "women's yoga leggings high waist", relevant: 'legging'}
+  - {id: M06, kind: mixed, query: "silver charm bracelet for women", relevant: 'bracelet'}
+  - {id: M07, kind: mixed, query: "non slip socks for hospital or home", relevant: 'non.?slip|grip|anti.?slip|skid'}
+  - {id: M08, kind: mixed, query: "polarized sunglasses for driving and fishing", relevant: 'polariz'}
+  - {id: M09, kind: mixed, query: "warm winter hat beanie", relevant: 'beanie|winter hat|knit hat|\bhat\b'}
+  - {id: M10, kind: mixed, query: "stainless steel ring for men", relevant: '\bring'}

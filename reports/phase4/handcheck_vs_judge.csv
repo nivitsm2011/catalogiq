@@ -1,0 +1,11 @@
+item,mode,judge_c,judge_a,unsup,banned,style,human_c,human_a
+1,rag,2,3,0,0,3,5,3
+2,no_rag,3,3,0,0,4,4,3
+3,no_rag,4,3,0,0,4,4,3
+4,rag_fix,3,3,3,0,2,5,5
+5,rag,3,5,2,1,0,4,3
+6,rag,3,5,3,1,2,5,5
+7,rag,3,5,3,1,1,4,3
+8,rag_fix,3,3,0,0,2,3,1
+9,no_rag,3,3,0,0,1,5,3
+10,rag_fix,3,5,0,0,1,2,1

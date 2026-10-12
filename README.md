@@ -3,7 +3,7 @@
 An AI copilot for e-commerce marketplaces: it helps small sellers create better listings, helps shoppers
 get grounded answers, and helps catalog teams monitor quality. Runs fully locally on CPU.
 
-> Status: Phase 3 complete (visual search and duplicate detection). Full README coming as features land.
+> Status: Phase 4 complete (grounded listing generator). Full README coming as features land.
 
 See [CLAUDE.md](CLAUDE.md) for the project brief, [docs/progress.md](docs/progress.md) for status and
 [docs/decisions.md](docs/decisions.md) for design decisions.
@@ -67,3 +67,24 @@ engine.search_by_image(pil_image, k=5, filters={"gender": "Women"})
 
 Design, outfit rules and evaluation protocol: [docs/search_design.md](docs/search_design.md);
 results and failure cases: [notebooks/03_visual_search.ipynb](notebooks/03_visual_search.ipynb).
+
+## Grounded listing generator (Phase 4)
+
+```powershell
+.\.venv\Scripts\python.exe scripts/build_knowledge_base.py   # style guide, brand lexicon, ChromaDB (downloads MiniLM, about 90 MB)
+.\.venv\Scripts\python.exe scripts/evaluate_rag.py           # 50 products x 4 arms + judge (about 2 h on CPU, resumable; needs Ollama)
+.\.venv\Scripts\python.exe scripts/make_handcheck_sheet.py   # blind page to rate 10 listings
+```
+
+```python
+from catalogiq.llm.client import get_llm_client
+from catalogiq.rag.retrieval import HybridRetriever
+from catalogiq.rag.listing import ListingGenerator
+gen = ListingGenerator(get_llm_client(), HybridRetriever())
+result, attributes = gen.generate_from_image("photo.jpg", {"brand": "Puma"}, use_rag=True, self_correct=True)
+result.listing, result.report.to_dict()
+```
+
+Key finding: retrieved example listings improved style but made a 3B model copy unsupported facts (70% of listings), so the guardrails are
+essential. Details: [docs/model_card_listing_generator.md](docs/model_card_listing_generator.md),
+[docs/style_guide.md](docs/style_guide.md), [notebooks/04_listing_generator.ipynb](notebooks/04_listing_generator.ipynb).

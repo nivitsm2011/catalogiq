@@ -1,0 +1,185 @@
+# Phase 4: grounded listing generator (knowledge base, hybrid retrieval, LLM, guardrails, evaluation).
+rag:
+  seed: 42
+
+  paths:
+    chroma_dir: data/processed/chroma
+    collection_listings: amazon_listings
+    collection_style: style_guide
+    brand_lexicon: data/processed/brand_lexicon.json
+    llm_cache_dir: data/interim/llm_cache
+    style_guide_md: docs/style_guide.md
+    retrieval_queries: configs/retrieval_test_queries.yaml
+    eval_dir: reports/phase4
+    prompts_listing: configs/prompts/listing.yaml
+    prompts_judge: configs/prompts/judge.yaml
+
+  embedder:
+    # all-MiniLM-L6-v2: 22M parameters, 384 dims, about 90 MB, fast on CPU. Listings are short
+    # English texts and the corpus has only 800 documents, so a larger model (bge-small, 130 MB)
+    # would cost time without a measurable gain at this size.
+    name: sentence-transformers/all-MiniLM-L6-v2
+    batch_size: 64
+    max_chars: 1200            # characters of listing text embedded (title + features + description)
+
+  retrieval:
+    top_k: 3                    # examples placed in the prompt
+    candidate_k: 30             # candidates taken from each ranker before fusion
+    rrf_k: 60                   # reciprocal-rank-fusion constant (standard value)
+    quality_boost: 0.5          # final = rrf * (1 + boost * quality_score); 0 switches the boost off
+    min_group_size: 5           # category filter is skipped when the category has fewer listings
+    bm25: {k1: 1.5, b: 0.75}
+    example_max_features: 5     # features shown per retrieved example in the prompt
+    example_max_chars: 400
+
+  # Fashion categories. Amazon items have no usable category field, so they are assigned by the first
+  # matching keyword rule (order matters). Kaggle article types map to the same groups.
+  categories:
+    default_group: other
+    groups:
+      costume_novelty:
+        keywords: ['mask', 'costume', 'cosplay', 'halloween', 'wig\b', 'apron', 'vampire', 'fangs']
+        article_types: []
+        required_attributes: [articleType]
+        guidance: "Say clearly that this is a costume or novelty item and who it is sized for."
+      watches:
+        keywords: ['watch(es)?\b']
+        article_types: [Watches]
+        required_attributes: [gender, articleType, baseColour]
+        guidance: "Mention strap or band colour only if given. Never state water resistance or movement type unless the seller notes say so."
+      eyewear:
+        keywords: ['sunglass', 'eyeglass', 'reading glass', 'eyewear', 'spectacle', 'goggle', '\bglasses\b']
+        article_types: [Sunglasses]
+        required_attributes: [gender, articleType, baseColour]
+        guidance: "Never claim UV protection, polarisation or lens material unless the seller notes say so."
+      jewellery:
+        keywords: ['necklace', 'pendant', 'bracelet', 'earring', '\bring(s)?\b', 'charm', 'anklet', 'brooch', 'jewel', 'piercing', 'cufflink', 'bangle', 'choker']
+        article_types: [Earrings, Pendant, Ring, Necklace and Chains, Cufflinks]
+        required_attributes: [gender, articleType, baseColour]
+        guidance: "Never state metal, stone or plating (gold, silver, sterling, crystal, diamond) unless the seller notes say so."
+      innerwear_socks:
+        keywords: ['\bsocks?\b', 'hosiery', 'stocking', '\bbras?\b', '\bbriefs?\b', 'boxer', 'underwear', 'panty', 'panties', 'lingerie', 'undershirt', 'tights', 'nightgown', 'pajama', 'pyjama', 'sleepwear', '\brobes?\b']
+        article_types: [Socks, Bra, Briefs, Innerwear Vests, Trunk, Nightdress, Night suits]
+        required_attributes: [gender, articleType, baseColour]
+        guidance: "Fabric and fit claims (cotton, stretch, seamless, compression) only if the seller notes say so. State pack size only if given."
+      footwear:
+        keywords: ['\bshoes?\b', 'sneaker', 'sandal', 'slipper', '\bboots?\b', 'flip.?flop', 'loafer', '\bheels?\b', '\bclogs?\b', 'moccasin']
+        article_types: [Casual Shoes, Flip Flops, Sandals, Formal Shoes, Flats, Sports Shoes, Heels]
+        required_attributes: [gender, articleType, baseColour, usage]
+        guidance: "Sole, upper material, cushioning and waterproofing claims only if the seller notes say so. Mention size range if given."
+      bags_wallets:
+        keywords: ['wallet', 'handbag', '\bpurse', 'backpack', 'clutch', '\btote', '\bbags?\b', 'crossbody', 'satchel']
+        article_types: [Handbags, Backpacks, Wallets, Clutches]
+        required_attributes: [gender, articleType, baseColour]
+        guidance: "Capacity, compartments and material (leather, canvas) only if the seller notes say so."
+      dresses_ethnic:
+        keywords: ['\bdress(es)?\b(?!\s+(shirt|shoe|pant|sock|up|belt))', '\bgown', 'saree', '\bsari\b', 'kurta', 'kurti', 'lehenga', 'dupatta']
+        article_types: [Dresses, Sarees, Kurtas, Kurtis, Dupatta, Tunics]
+        required_attributes: [gender, articleType, baseColour, usage]
+        guidance: "Length, neckline, fabric and occasion only if known. Ethnic wear: mention the occasion (usage) when it is confident."
+      bottomwear:
+        keywords: ['\bpants?\b', 'jean', 'trouser', '\bshorts?\b', 'legging', 'skirt', 'jogger', 'capri', 'chino', 'sweatpant']
+        article_types: [Jeans, Track Pants, Shorts, Trousers, Capris, Skirts, Leggings]
+        required_attributes: [gender, articleType, baseColour, usage]
+        guidance: "Fit, rise and fabric only if the seller notes say so. Mention size range if given."
+      topwear:
+        keywords: ['\bshirts?\b', '\btees?\b', 't-shirt', '\btops?\b', '\btank', 'blouse', 'sweater', 'cardigan', 'hoodie', 'sweatshirt', 'jacket', '\bcoats?\b', '\bvest', 'polo', 'pullover', 'tunic', 'jersey', 'tracksuit']
+        article_types: [Tshirts, Shirts, Tops, Sweatshirts, Sweaters, Jackets]
+        required_attributes: [gender, articleType, baseColour, usage]
+        guidance: "Fit, sleeve length, neckline and fabric only if the seller notes say so. Mention size range if given."
+      accessories:
+        keywords: ['\bbelts?\b', '\bcaps?\b', '\bhats?\b', 'beanie', 'scarf', 'scarves', 'glove', '\bties?\b', 'bandana', 'headband', '\bhair\b', 'keychain', 'lanyard', 'suspender', 'mitten', 'earmuff']
+        article_types: [Belts, Caps, Scarves, Ties, Accessory Gift Set]
+        required_attributes: [gender, articleType, baseColour]
+        guidance: "Material (leather, wool, silk) and adjustability only if the seller notes say so."
+      beauty:
+        keywords: ['perfume', 'lipstick', 'nail polish', 'deodorant', 'lip gloss', 'eyeliner', 'kajal']
+        article_types: [Perfume and Body Mist, Deodorant, Lipstick, Nail Polish, Lip Gloss, Kajal and Eyeliner]
+        required_attributes: [articleType, baseColour]
+        guidance: "No skin, health or longevity claims (dermatologically tested, long-lasting, hypoallergenic) unless the seller notes say so."
+
+  # Words that count as "mentioning" an attribute value in the output (besides the value itself).
+  attribute_terms:
+    gender:
+      Men: ["men", "mens", "men's", "man's", "male", "gentlemen"]
+      Women: ["women", "womens", "women's", "ladies", "lady", "female"]
+      Boys: ["boys", "boy's", "boy", "kids", "children"]
+      Girls: ["girls", "girl's", "girl", "kids", "children"]
+      Unisex: ["unisex", "men and women", "women and men", "all genders", "men & women", "women & men"]
+    usage:
+      Casual: ["casual", "everyday", "daily wear"]
+      Sports: ["sport", "sports", "athletic", "gym", "workout", "training", "active"]
+      Formal: ["formal", "office", "business"]
+      Ethnic: ["ethnic", "traditional", "festive"]
+    season: {}
+    type_terms:               # extra words for article types whose last word is not enough
+      Tshirts: ["tshirt", "tee"]
+      "Necklace and Chains": ["necklace", "chain"]
+      "Perfume and Body Mist": ["perfume", "mist", "fragrance"]
+      "Innerwear Vests": ["vest", "innerwear"]
+      "Night suits": ["nightsuit", "pajama", "pyjama", "nightwear", "sleepwear"]
+      "Kajal and Eyeliner": ["kajal", "eyeliner"]
+      "Accessory Gift Set": ["gift set", "set"]
+      "Casual Shoes": ["shoe", "sneaker", "loafer"]
+      "Sports Shoes": ["shoe", "sneaker", "trainer"]
+      "Formal Shoes": ["shoe", "oxford", "loafer"]
+      Handbags: ["handbag", "bag", "purse"]
+      Backpacks: ["backpack", "rucksack", "bag"]
+      Kurtas: ["kurta", "kurti"]
+      Kurtis: ["kurti", "kurta"]
+      Tunics: ["tunic", "top"]
+      Briefs: ["brief", "underwear"]
+      Trunk: ["trunk", "boxer", "brief", "underwear"]
+      Bra: ["bra"]
+      Jeans: ["jean", "denim"]
+      Watches: ["watch"]
+      Sunglasses: ["sunglass", "shade"]
+
+  style:
+    title_template: "{Brand} {Gender} {Type}, {Key attribute}, {Colour}"
+    title_example: "Puma Men's T-Shirt, Casual, Black"
+    title_min_chars: 25
+    title_max_chars: 80
+    bullets: 5
+    bullet_max_chars: 160
+    description_min_words: 30
+    description_max_words: 120
+    tags_min: 5
+    tags_max: 12
+    # Substrings/regexes that must never appear anywhere in the output.
+    banned_words: ['\bbest\b', '\b#1\b', '\bnumber one\b', '\bperfect\b', '\bguarantee', '\bunbeatable\b', '\bcheapest\b', '\bamazing\b', '\bworld.?class\b', '\bunmatched\b', '\bpremium quality\b', '\bhighest quality\b', '\bbuy now\b', '\blimited time\b', '\bfree shipping\b', '\bsale\b']
+    # Health or unverifiable benefit claims.
+    banned_claims: ['\bcure[sd]?\b', '\bheal(s|ing)?\b', '\bmedical\b', '\bclinically\b', '\bdermatolog', '\bhypoallergenic\b', '\banti.?bacterial\b', '\banti.?microbial\b', '\brelieves?\b', '\btherapeutic\b', '\bpain\b', '\bimprove[sd]? circulation\b', '\bFDA\b', '\b100% (safe|natural|organic)\b']
+
+  # Hallucination check: a flagged item is in the output but not supported by the inputs
+  # (predicted attributes + seller notes). Retrieved examples are NOT a source of facts.
+  guardrails:
+    materials: ['cotton', 'polyester', 'leather', 'silk', 'wool', 'linen', 'denim', 'nylon', 'satin', 'velvet', 'rayon', 'viscose', 'suede', 'canvas', 'spandex', 'elastane', 'lycra', 'cashmere', 'acrylic', 'fleece', 'chiffon', 'georgette', 'jersey knit', 'mesh', 'rubber', 'plastic', 'gold', 'silver', 'sterling', 'stainless steel', 'brass', 'copper', 'titanium', 'crystal', 'diamond', 'pearl', 'bamboo', 'microfiber', 'terry', 'corduroy', 'tweed', 'faux', 'pu leather', 'metal', 'alloy', 'glass', 'resin', 'foam', 'wood']
+    claims: ['waterproof', 'water.?resistant', 'breathable', 'machine.?wash', 'hand.?wash', 'wrinkle.?free', 'quick.?dry', 'moisture.?wicking', 'anti.?slip', 'non.?slip', 'slip.?resistant', 'uv protection', 'uv400', 'polarized', 'polarised', 'eco.?friendly', 'sustainable', 'handmade', 'hand.?crafted', 'warranty', 'certified', 'genuine', 'authentic', 'original', 'durable', 'long.?lasting', 'scratch.?resistant', 'shockproof', 'stretchable', 'stretchy', 'adjustable', 'padded', 'insulated', 'fade.?resistant', 'shrink.?resistant', 'lined', 'pockets?\b', 'zipper', 'zip.?up', 'drawstring', 'cushion', 'orthopedic', 'memory foam', 'non.?toxic', 'lead.?free', 'nickel.?free', 'high.?quality', 'top.?quality', 'premium', 'superior', 'well.?made', 'quartz', 'chronograph', 'calendar', 'analog', 'luxur', 'lightweight', 'moisture', 'sweat', 'shock', 'tear.?resistant', 'abrasion', 'rubber sole', 'non.?marking']
+    # numbers with units are facts (pack sizes, dimensions, sizes) and must come from the notes
+    numeric_pattern: '\b\d+(\.\d+)?\s?(cm|mm|inch(es)?|in\b|"|pcs?|pieces?|pairs?|pack|packs|oz|g\b|kg|ml|mm|mah|atm|%|years?|months?)'
+    size_pattern: '\b(xx?s|xx?l|xxxl|one size)\b'
+    brand_lexicon_min_count: 15   # a leading word group seen in at least this many catalog names counts as a brand
+    brand_ignore: ['men', 'women', 'boys', 'girls', 'unisex', 'kids', 'solid', 'printed', 'black', 'white', 'blue', 'red', 'pink', 'green', 'grey', 'gray', 'brown', 'navy', 'casual', 'sports', 'formal', 'generic', 'amazon', 'visit', 'brand', 'store', 'set', 'pack', 'new', 'mens', 'womens', 'ladies', 'classic', 'the', 'fashion', 'sport', 'basic', 'sleeveless', 'stripes', 'checks', 'yellow', 'orange', 'purple', 'silver', 'gold', 'beige', 'cream', 'olive', 'maroon', 'teal', 'lavender', 'rust', 'peach', 'mustard', 'just', 'john', 'alma', 'diva', 'elle', 'boss', 'love', 'dream', 'ever', 'ocean', 'star', 'sun', 'life', 'magic', 'fresh', 'free', 'pure', 'gold', 'silver', 'bella', 'lady', 'baby', 'home', 'sweet', 'only', 'unknown', 'other', 'none', 'size', 'plus', 'best', 'real', 'true', 'light']
+
+  llm:
+    # provider/model/host/timeout come from base.yaml -> models.llm. Judge uses the same model (disclosed bias).
+    max_new_tokens: 600
+    seed: 42
+    repair_attempts: 1
+    cache: true
+    judge_temperature: 0.0
+
+  evaluation:
+    n_products: 50
+    split: test
+    min_classifier_conf_for_brand: 0.0
+    handcheck_n: 10
+    retrieval_ks: [3, 5]
+    seller_note_brand: true     # brand taken from the catalog product name as the "seller note"
+
+  generation:
+    # Attributes (Phase 2 targets) given to the writer, in this order.
+    prompt_attributes: [gender, articleType, baseColour, usage, season]
+    seller_note_keys: [brand, material, size_range, price]
+    max_title_retry_text: 300

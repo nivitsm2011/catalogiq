@@ -108,4 +108,42 @@
 - Cosmetics shade variants (lipstick, nail polish) can be flagged as duplicates; add a shade check before auto-merging.
 - Shop-the-look has no ground truth and untuned weights; the classifier gate rarely lets Tunics, Flats and Kurtis through.
 - CLIP embedding needed about 2 hours of CPU (and the laptop slept overnight); a catalog refresh should embed only new items.
-- Phase 3 commit not yet pushed to GitHub (awaiting confirmation).
+- Phase 3 commit is pushed to GitHub (`0d2fac8`).
+
+
+## Phase 4 - Grounded listing generator (RAG, guardrails, evaluation)
+
+**Done**
+- Knowledge base: 800 Amazon listings (one document each, category group derived from the title because the Amazon
+  `categories` field is empty) embedded with `all-MiniLM-L6-v2` into a persistent ChromaDB (`data/processed/chroma/`, 8.5 MB), plus
+  13 style-guide chunks. `docs/style_guide.md` is generated from `configs/rag.yaml`, so the document and the checks cannot drift.
+- Hybrid retrieval: in-house BM25 + vector search, reciprocal rank fusion, listing-quality boost, category filter.
+- `LLMClient` interface (Ollama default, disk cache, timeouts), prompts in `configs/prompts/`, pydantic-validated listing JSON with
+  one repair retry, guardrails (hallucination, banned words/claims, style, attribute coverage) and an optional guardrail-triggered rewrite.
+- Evaluation on 50 held-out Kaggle test products, four arms, LLM-as-judge, owner's hand-check of 10 listings,
+  `notebooks/04_listing_generator.ipynb`, `docs/model_card_listing_generator.md`. 20 new tests (LLM mocked); 56 tests in total, all passing.
+
+**Metrics** (50 products, llama3.2:3b on CPU; guardrail numbers re-scored with the final checks)
+| Arm | Unsupported-fact listings | Banned-word listings | Fully style-compliant | Judge clarity / accuracy | Sec per listing |
+|---|---|---|---|---|---|
+| no-RAG | 2% | 14% | 0% | 3.32 / 3.70 | 12.8 |
+| RAG | 70% | 70% | 2% | 2.86 / 4.26 | 43.8 |
+| no-RAG + rewrite | 0% | 2% | 0% | 3.44 / 3.68 | 35.9 |
+| RAG + rewrite | 40% | 32% | 16% | 2.84 / 4.14 | 100.6 |
+
+- Retrieval test (30 queries): precision@5 hybrid 0.78, vector 0.747, BM25 0.707; hit@3 vector 0.967, hybrid 0.933, BM25 0.90.
+  Hybrid is the best all-rounder, not a dramatic winner; the quality boost costs about 0.02 precision@5.
+- Retrieved examples hit the right category for 96% of products. Valid JSON 100% (repair used for 1 no-RAG listing).
+- Hand-check (10 listings): judge vs human accuracy exact agreement 50%, Spearman 0.00; clarity 20%, -0.33. Not reliable.
+- Footprint: embedder 90 MB (Hugging Face), Chroma 8.5 MB; project stays under 5 GB.
+
+**Open issues / risks**
+- **RAG with a 3B model copies facts from example listings** (leather, high-quality, breathable...). Next experiments: facts-stripped examples,
+  fixed title template, a larger or hosted model through `LLMClient`.
+- The 3B judge (same model as the writer) is not trustworthy on accuracy; the deterministic guardrails are the primary metric.
+- Design was iterated (two metric bug fixes, extra claim words, the rewrite arm) while looking at the same 50 products: numbers are slightly optimistic.
+- Hand-check is n=10; one item (6) rated 5 for accuracy contains three guardrail-flagged facts copied from an example.
+- Seller notes in the evaluation are only the brand (from the catalog name); materials, sizes and weights were not supplied.
+- Classifier colour is often unsure; 31 of 50 RAG titles still contain the unsure colour. The app should ask the seller to confirm attributes.
+- The 100 duplicate labels from Phase 3 are still AI-provisional.
+- Phase 4 commit is not yet pushed (awaiting confirmation).

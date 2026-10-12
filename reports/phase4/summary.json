@@ -1,0 +1,60 @@
+{
+  "no_rag": {
+    "n": 50,
+    "valid_json_rate": 1.0,
+    "repair_used_rate": 0.02,
+    "attribute_coverage": 1.0,
+    "hallucination_rate": 0.02,
+    "unsupported_per_listing": 0.02,
+    "style_compliance": 0.0,
+    "banned_rate": 0.14,
+    "latency_mean_s": 12.841827510015573,
+    "latency_median_s": 12.383817700028885,
+    "judge_clarity": 3.32,
+    "judge_accuracy": 3.7
+  },
+  "rag": {
+    "n": 50,
+    "valid_json_rate": 1.0,
+    "repair_used_rate": 0.0,
+    "attribute_coverage": 1.0,
+    "hallucination_rate": 0.7,
+    "unsupported_per_listing": 1.22,
+    "style_compliance": 0.02,
+    "banned_rate": 0.7,
+    "latency_mean_s": 43.83555043601198,
+    "latency_median_s": 43.28102390002459,
+    "judge_clarity": 2.86,
+    "judge_accuracy": 4.26,
+    "retrieval_hit_rate": 0.96
+  },
+  "no_rag_fix": {
+    "n": 50,
+    "valid_json_rate": 1.0,
+    "repair_used_rate": 0.02,
+    "attribute_coverage": 1.0,
+    "hallucination_rate": 0.0,
+    "unsupported_per_listing": 0.0,
+    "style_compliance": 0.0,
+    "banned_rate": 0.02,
+    "latency_mean_s": 35.867278205994516,
+    "latency_median_s": 35.06296560005285,
+    "judge_clarity": 3.44,
+    "judge_accuracy": 3.68
+  },
+  "rag_fix": {
+    "n": 50,
+    "valid_json_rate": 1.0,
+    "repair_used_rate": 0.0,
+    "attribute_coverage": 1.0,
+    "hallucination_rate": 0.4,
+    "unsupported_per_listing": 0.6,
+    "style_compliance": 0.16,
+    "banned_rate": 0.32,
+    "latency_mean_s": 100.59171750401147,
+    "latency_median_s": 102.67996035004035,
+    "judge_clarity": 2.84,
+    "judge_accuracy": 4.14,
+    "retrieval_hit_rate": 0.96
+  }
+}
