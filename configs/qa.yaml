@@ -1,0 +1,101 @@
+# Phase 5: shopper Q&A over reviews (index, aspects, answering, summaries, evaluation).
+qa:
+  seed: 42
+
+  paths:
+    chunks_parquet: data/processed/review_chunks.parquet
+    collection: amazon_reviews          # separate Chroma collection in data/processed/chroma
+    aspect_sample: reports/phase5/aspect_sample.csv
+    aspect_labels: reports/phase5/aspect_labels.csv
+    aspect_results: reports/phase5/aspect_comparison.json
+    aspect_tags: data/processed/review_aspects.parquet
+    questions: configs/qa_test_questions.yaml
+    eval_dir: reports/phase5
+    prompts_qa: configs/prompts/qa.yaml
+    prompts_summary: configs/prompts/summary.yaml
+    prompts_zeroshot: configs/prompts/aspect_zeroshot.yaml
+    prompts_faith: configs/prompts/faithfulness_judge.yaml
+    llm_cache_dir: data/interim/llm_cache_qa
+
+  chunking:
+    short_max_chars: 400        # reviews up to this length are kept whole (one chunk)
+    window_sentences: 3         # longer reviews: windows of this many sentences ...
+    stride_sentences: 2         # ... advancing by this many (so neighbours overlap by one sentence)
+    max_chunk_chars: 700        # hard cap per chunk
+    prepend_title: true         # first chunk of a review starts with the review title
+    embed_block: 4000           # chunks embedded + stored per resumable block
+
+  retrieval:
+    candidate_k: 40             # candidates per ranker (within one product)
+    rrf_k: 60
+    top_k: 5                    # chunks given to the LLM / used for recall@5
+    bm25: {k1: 1.5, b: 0.75}
+    # re-rank: final = rrf_norm * (1 + w_helpful * log1p(helpful_votes)/log1p(max) + w_verified * verified)
+    w_helpful: 0.3
+    w_verified: 0.2
+    # evidence gate: answer only if >= min_supporting chunks from DIFFERENT reviews score >= min_similarity
+    min_similarity: 0.30        # cosine of question vs chunk (tuned on the dev questions; see notebook 05)
+    min_supporting: 2
+
+  aspects:
+    names: [fit_size, fabric_material, colour_accuracy, quality_durability, comfort, delivery_packaging]
+    # Keyword rules (case-insensitive regexes). A chunk gets an aspect when any pattern matches.
+    rules:
+      fit_size: ['\bfit(s|ted|ting)?\b', '\bsize[sd]?\b', 'true to size', '\bruns? (small|large|big|tight|narrow|wide|short|long)', 'too (small|big|large|tight|loose|short|long|snug|narrow|wide)', '\b(snug|baggy|roomy|oversized)\b', '\b(xs|xl|xxl|xxxl|petite|plus.size)\b', '\b(waist|length|inseam|sleeves?)\b']
+      fabric_material: ['\bfabric\b', '\bmaterial\b', '\b(cotton|polyester|leather|silk|wool|linen|nylon|spandex|elastic|rayon|denim|fleece|velvet|satin|lace|mesh|suede|canvas|rubber|plastic|metal|stainless|alloy|silver|gold|plated|sterling|crystal|rhinestone)\b', '\b(thick|thin|sheer|stretchy|stretch|texture|lining|lined)\b']
+      colour_accuracy: ['\bcolou?rs?\b', '\bshade\b', '\bhue\b', 'as (pictured|shown|described|advertised)', '(matches?|looks?|same as|like) (the )?(pictures?|photos?|images?|pics?)', '\b(faded|vibrant|bright|dull|washed out)\b']
+      quality_durability: ['\bquality\b', '\bdurab', '\b(sturdy|flimsy|cheap|cheaply|junk|crap)\b', '\b(broke|broken|break|fell apart|falling apart|tore|torn|rip|ripped|ripping|snapped|cracked|rusted?|tarnish\w*|peel\w*)\b', '\b(stitch\w*|seam\w*|zipper|hem)\b', '\b(last|lasted|lasts|lasting|holds? up|held up|wore out|worn out|well.made|poorly made|defect\w*)\b', 'after (a|one|two|three|few|several|\d+) (wash|wear|use|day|week|month|year)']
+      comfort: ['\bcomfort\w*', '\bcomfy\b', '\b(cozy|cosy|soft|itch\w*|scratch\w*|irritat\w*|pinch\w*|rub\w*|blister\w*|uncomfortable|breathable|cushion\w*|lightweight|heavy|sweaty|sweat\w*)\b', '\b(hurts?|painful|digs? in|supportive|support)\b']
+      delivery_packaging: ['\b(ship\w*|deliver\w*|arriv\w*|packag\w*|packed|wrapped)\b', '\bbox\b', '\bcame (in|with|late|early|quickly|fast)\b', '\b(late|fast|quick|quickly|on time|prompt|promptly)\b', '\b(seller|customer service|refund|return(ed)?|replacement|exchange)\b']
+    min_zero_shot_margin: 0.0
+
+  zero_shot:
+    nli_model: MoritzLaurer/deberta-v3-xsmall-zeroshot-v1.1-all-33   # 142 MB, Hugging Face
+    hypothesis_template: "This review is about {}."
+    nli_labels:
+      fit_size: "how well it fits or its size"
+      fabric_material: "the fabric or material"
+      colour_accuracy: "whether the colour matches the picture"
+      quality_durability: "quality or durability"
+      comfort: "how comfortable it is"
+      delivery_packaging: "delivery, shipping or packaging"
+    embed_descriptions:
+      fit_size: "how well the item fits, its size, runs small or large, true to size"
+      fabric_material: "the fabric or material the item is made of, texture, thickness"
+      colour_accuracy: "the colour of the item and whether it matches the photo"
+      quality_durability: "build quality and durability, how long it lasts, breaking or falling apart"
+      comfort: "how comfortable the item is to wear, soft, itchy, painful"
+      delivery_packaging: "delivery speed, shipping, packaging and the seller service"
+    batch_size: 16
+    threshold: 0.5               # NLI entailment probability (a chunk may have several aspects)
+    embed_threshold: 0.30        # cosine for the embedding variant (tuned on the labelled sample)
+    llm_max_chars: 600
+
+  labelling:
+    n_random: 100               # random reviews
+    n_enriched: 100             # reviews that some method (rules / embeddings / NLI) tagged, spread over aspects
+    seed: 42
+
+  summary:
+    min_mentions: 5             # an aspect is summarised only if at least this many reviews mention it
+    positive_min_rating: 4      # sentiment = star rating: >= 4 positive, <= 2 negative, 3 mixed
+    negative_max_rating: 2
+    top_quotes: 2
+
+  qa:
+    max_new_tokens: 450
+    no_evidence_answer: "Not enough reviews mention this."
+    repair_attempts: 1
+    max_chunk_chars_in_prompt: 500
+
+  evaluation:
+    dev_products: 10            # questions of these products tune the evidence threshold
+    handcheck_n: 15
+    cv_folds: 5                 # product-grouped folds for the evidence-gate estimate
+    judge_temperature: 0.0
+
+  # Direction of fit mentions, for summaries like "68% of fit mentions say it runs small".
+  fit_direction:
+    runs_small: ['\bruns? small', 'too (small|tight|short|snug|narrow)', '\b(small|tight|snug|short) (for|on|in)\b', 'order (a |one )?(size )?(up|larger|bigger)', 'size up', 'smaller than', '\b(tight|snug)\b']
+    runs_large: ['\bruns? (large|big)', 'too (large|big|loose|long|baggy|wide)', 'order (a |one )?(size )?(down|smaller)', 'size down', 'larger than|bigger than', '\b(loose|baggy|oversized)\b']
+    true_to_size: ['true to size', '\btts\b', 'fits? (perfectly|great|well|as expected|just right)', 'perfect fit', 'fit(s)? as described']

@@ -1,0 +1,86 @@
+# Phase 5 test set: 60 questions over 20 products (45 answerable, 15 unanswerable).
+# Written from the reviews BEFORE any ranker or model was run.
+#   answerable   : `evidence` is a regex that reviews carrying the answer match (checked: at least 3 matching reviews)
+#   unanswerable : `absent` is a regex for the asked-about topic; no review of that product may match it (checked)
+# dev = true  -> used to tune the evidence-gate similarity threshold; dev = false -> final test only.
+questions:
+  # ---- B0BYCZ2W78  UPF 50+ long sleeve shirt (dev)
+  - {id: Q01, item: B0BYCZ2W78, dev: true, kind: answerable, q: "Does this shirt run big or small? Should I size up?", evidence: 'too (big|small|large|tight)|runs? (big|small|large)|true to size|(size|sizes) (up|down)|gigantic|fits? (perfectly|great|small|large)'}
+  - {id: Q02, item: B0BYCZ2W78, dev: true, kind: answerable, q: "Does the shirt keep you cool in hot weather?", evidence: 'cool|breath|heat|hot\b|sweat'}
+  - {id: Q03, item: B0BYCZ2W78, dev: true, kind: unanswerable, q: "Does this shirt come in a camouflage pattern?", absent: 'camo'}
+  # ---- B00ZRXLFTU  shirt stays (dev)
+  - {id: Q04, item: B00ZRXLFTU, dev: true, kind: answerable, q: "Do the shirt stays stay in place all day or do they pop off?", evidence: 'pop(s|ped)? off|stay(s|ed)? (in place|put|down|on)|keeps? (my |your )?shirt'}
+  - {id: Q05, item: B00ZRXLFTU, dev: true, kind: answerable, q: "Is the elastic strong or does it stretch out?", evidence: 'elastic|stretch|loose'}
+  - {id: Q06, item: B00ZRXLFTU, dev: true, kind: unanswerable, q: "Can these be worn with women's blouses?", absent: 'blouse|women'}
+  # ---- B07Q2XMK2T  athletic skort (dev)
+  - {id: Q07, item: B07Q2XMK2T, dev: true, kind: answerable, q: "Are the shorts under the skirt comfortable and do they stop rubbing?", evidence: 'shorts? (underneath|under|inside|attached)|built.?in shorts|rubbing|chafe'}
+  - {id: Q08, item: B07Q2XMK2T, dev: true, kind: answerable, q: "Is the skort longer or shorter than expected?", evidence: 'longer than|shorter than|too long|too short|length'}
+  - {id: Q09, item: B07Q2XMK2T, dev: true, kind: unanswerable, q: "Does the skort have a built-in sports bra?", absent: '\bbra\b|padded|padding'}
+  # ---- B09Y3TXYF1  orthopedic slippers (dev)
+  - {id: Q10, item: B09Y3TXYF1, dev: true, kind: answerable, q: "Do these slippers run big or small?", evidence: 'too (big|large|small)|oversized|full size|runs? (big|small|large)|true to size|sizing'}
+  - {id: Q11, item: B09Y3TXYF1, dev: true, kind: answerable, q: "Do they give good arch support?", evidence: 'arch support|supportive|foot ?bed'}
+  - {id: Q12, item: B09Y3TXYF1, dev: true, kind: unanswerable, q: "Can these slippers be worn in the shower?", absent: 'shower|bath'}
+  # ---- B09LLS1LGH  orthopedic slip-on sneakers (dev)
+  - {id: Q13, item: B09LLS1LGH, dev: true, kind: answerable, q: "Are these shoes narrow? Would wide feet fit?", evidence: 'narrow|\bwide\b|width'}
+  - {id: Q14, item: B09LLS1LGH, dev: true, kind: answerable, q: "Is the arch support good for plantar fasciitis?", evidence: 'arch support|plantar|insole'}
+  - {id: Q15, item: B09LLS1LGH, dev: true, kind: unanswerable, q: "Do these shoes come with a shoe bag?", absent: 'shoe bag|dust bag'}
+  # ---- B00DMWQOYY  cat pendant necklace (dev)
+  - {id: Q16, item: B00DMWQOYY, dev: true, kind: answerable, q: "Does the chain or clasp break easily?", evidence: '(chain|clasp).{0,60}(broke|break|snap|weak|flimsy)|(broke|break).{0,60}(chain|clasp)'}
+  - {id: Q17, item: B00DMWQOYY, dev: true, kind: answerable, q: "Does the pendant look like the picture?", evidence: 'as pictured|like the (picture|photo)|exactly as|looks just like'}
+  - {id: Q18, item: B00DMWQOYY, dev: true, kind: unanswerable, q: "Is the necklace nickel free and safe for metal allergies?", absent: 'nickel|allerg|sensitive skin'}
+  # ---- B0B613N3SD  sterling silver initial earrings (dev)
+  - {id: Q19, item: B0B613N3SD, dev: true, kind: answerable, q: "Is it real sterling silver and does it tarnish?", evidence: 'sterling|925|tarnish'}
+  - {id: Q20, item: B0B613N3SD, dev: true, kind: answerable, q: "Are the earrings small? How big do they look when worn?", evidence: 'small|tiny|\bsize\b|bigger|smaller'}
+  - {id: Q21, item: B0B613N3SD, dev: true, kind: unanswerable, q: "Do the earrings come with a certificate of authenticity?", absent: 'certificate|authenticity'}
+  # ---- B07C6N6Q6D  water bottle drop earrings (dev)
+  - {id: Q22, item: B07C6N6Q6D, dev: true, kind: answerable, q: "Are these earrings heavy or lightweight to wear?", evidence: 'heavy|light.?weight|\blight\b|weigh'}
+  - {id: Q23, item: B07C6N6Q6D, dev: true, kind: answerable, q: "How long did shipping take?", evidence: 'ship|arriv|deliver'}
+  - {id: Q24, item: B07C6N6Q6D, dev: true, kind: unanswerable, q: "How many centimetres long are the earrings?", absent: '\bcm\b|centimet|millimet|\bmm\b'}
+  # ---- B00C54QX3M  mechanical pocket watch (test)
+  - {id: Q25, item: B00C54QX3M, dev: false, kind: answerable, q: "Does the watch keep accurate time and keep working?", evidence: 'keep(s|ing)? (good |accurate )?time|stopped working|stops working|works? (great|fine|well)|not work|doesn.t work'}
+  - {id: Q26, item: B00C54QX3M, dev: false, kind: answerable, q: "Does it look good for the price?", evidence: 'beautiful|looks? (great|good|nice)|for the price|worth'}
+  - {id: Q27, item: B00C54QX3M, dev: false, kind: unanswerable, q: "Does the pocket watch come in a gift box?", absent: 'gift box|presentation box'}
+  # ---- B09CZCJRJY  stretchy watch bands (test)
+  - {id: Q28, item: B09CZCJRJY, dev: false, kind: answerable, q: "Are the bands comfortable to wear?", evidence: 'comfort'}
+  - {id: Q29, item: B09CZCJRJY, dev: false, kind: answerable, q: "Does the colour fade?", evidence: 'fad|colou?r'}
+  - {id: Q30, item: B09CZCJRJY, dev: false, kind: unanswerable, q: "Do these bands fit the Apple Watch Ultra?", absent: 'ultra|apple watch'}
+  # ---- B0177D7E0G  adjustable eyeglass strap (test)
+  - {id: Q31, item: B0177D7E0G, dev: false, kind: answerable, q: "Do the straps stay attached to the glasses?", evidence: 'slide off|stay(s)? (on|connected|attached|put)|do not stay|come off|falls? off|stays? on'}
+  - {id: Q32, item: B0177D7E0G, dev: false, kind: answerable, q: "Is the strap long enough for an adult head?", evidence: 'too short|long enough|too long|adjust'}
+  - {id: Q33, item: B0177D7E0G, dev: false, kind: unanswerable, q: "Does the strap come with a carrying pouch?", absent: 'pouch|carrying|travel case'}
+  # ---- B0BCBW5HC3  kids glasses strap (test)
+  - {id: Q34, item: B0BCBW5HC3, dev: false, kind: answerable, q: "Does this strap work with all types of glasses?", evidence: 'not for all|only works|certain types|works? (with|for) (my|his|her)|fits? (his|her|my)'}
+  - {id: Q35, item: B0BCBW5HC3, dev: false, kind: answerable, q: "How durable is the stitching?", evidence: 'stitch|fall(ing)? apart|holding up|durab'}
+  - {id: Q36, item: B0BCBW5HC3, dev: false, kind: unanswerable, q: "Is the strap machine washable?", absent: 'wash'}
+  # ---- B07F17DPJ6  sling chest bag (test)
+  - {id: Q37, item: B07F17DPJ6, dev: false, kind: answerable, q: "Are the shoulder straps comfortable?", evidence: 'strap.{0,50}(comfort|thick|thin|wide|padded|dig|adjust|long)|(comfort|thick|thin|wide|padded|dig|adjust|long).{0,50}strap'}
+  - {id: Q38, item: B07F17DPJ6, dev: false, kind: answerable, q: "Is the bag the size shown in the listing, and what fits inside?", evidence: 'smaller than|bigger than|dimensions|fits (everything|my|a)'}
+  - {id: Q39, item: B07F17DPJ6, dev: false, kind: unanswerable, q: "Is the bag waterproof?", absent: 'waterproof|water.?resist'}
+  # ---- B08BNK9JQ2  slim leather wallet (test)
+  - {id: Q40, item: B08BNK9JQ2, dev: false, kind: answerable, q: "Is the ID pocket tight?", evidence: 'tight|ID pocket|id slot'}
+  - {id: Q41, item: B08BNK9JQ2, dev: false, kind: answerable, q: "Does the leather hold up over time?", evidence: 'tear|torn|broke|peel|worn|held up|holds up|hold up|durab'}
+  - {id: Q42, item: B08BNK9JQ2, dev: false, kind: unanswerable, q: "Does the wallet have a coin pocket?", absent: 'coin'}
+  # ---- B07JWLTCLX  bluetooth beanie (test)
+  - {id: Q43, item: B07JWLTCLX, dev: false, kind: answerable, q: "How is the sound quality?", evidence: 'sound|audio|music'}
+  - {id: Q44, item: B07JWLTCLX, dev: false, kind: answerable, q: "Is the beanie comfortable and snug on the head?", evidence: 'snug|tight|comfort'}
+  - {id: Q45, item: B07JWLTCLX, dev: false, kind: unanswerable, q: "Does the headset support wireless charging?", absent: 'wireless charg|\bqi\b'}
+  # ---- B07Y29D1TL  paisley bandanas (test, 3 answerable)
+  - {id: Q46, item: B07Y29D1TL, dev: false, kind: answerable, q: "Does the colour bleed when washed?", evidence: 'bleed|run\b|dye|washed'}
+  - {id: Q47, item: B07Y29D1TL, dev: false, kind: answerable, q: "Is the pattern printed on both sides?", evidence: 'one side|both sides|printed'}
+  - {id: Q48, item: B07Y29D1TL, dev: false, kind: answerable, q: "Are they large enough for a head wrap?", evidence: 'large|big|small|size'}
+  # ---- B0B49KW781  satin chemise (test, 3 answerable)
+  - {id: Q49, item: B0B49KW781, dev: false, kind: answerable, q: "Is the nightgown true to size?", evidence: 'true to size|runs? (small|large)|fits? like|not a'}
+  - {id: Q50, item: B0B49KW781, dev: false, kind: answerable, q: "Does the dye bleed when washed?", evidence: 'bleed|dye|washed'}
+  - {id: Q51, item: B0B49KW781, dev: false, kind: answerable, q: "Does it look like the photos?", evidence: 'different from|as pictured|photo|picture|accurately'}
+  # ---- B01EKTWXAQ  yoga socks (test, 3 answerable)
+  - {id: Q52, item: B01EKTWXAQ, dev: false, kind: answerable, q: "Do the toe grips wear down quickly?", evidence: 'grip|rubber'}
+  - {id: Q53, item: B01EKTWXAQ, dev: false, kind: answerable, q: "Are they good for yoga and exercise?", evidence: 'yoga|exercise|pilates|barre'}
+  - {id: Q54, item: B01EKTWXAQ, dev: false, kind: answerable, q: "Is the seller's customer service good?", evidence: 'seller|customer service|replied|refund'}
+  # ---- B079HCP3N5  boxer briefs for big men (test, 3 answerable)
+  - {id: Q55, item: B079HCP3N5, dev: false, kind: answerable, q: "Do these fit big men well, in the waist and in the legs?", evidence: 'waist|legs?\b|3x|4x|5xl|big man'}
+  - {id: Q56, item: B079HCP3N5, dev: false, kind: answerable, q: "Is the fabric thin or substantial?", evidence: 'material|fabric|thin|substantial|soft'}
+  - {id: Q57, item: B079HCP3N5, dev: false, kind: answerable, q: "Do they ride up or bunch?", evidence: 'ride|bunch|roll|tight|snug'}
+  # ---- B07CQ84KLT  maxi dress (test, 3 answerable)
+  - {id: Q58, item: B07CQ84KLT, dev: false, kind: answerable, q: "Is the dress long or short? I am around five feet tall.", evidence: 'too long|too short|very short|length|long enough'}
+  - {id: Q59, item: B07CQ84KLT, dev: false, kind: answerable, q: "Does the dress have pockets?", evidence: 'pocket'}
+  - {id: Q60, item: B07CQ84KLT, dev: false, kind: answerable, q: "How is the shipping and packaging?", evidence: 'shipping|shipped|arrived|packag|came (fast|late)'}

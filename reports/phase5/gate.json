@@ -1,0 +1,30 @@
+{
+ "min_similarity": 0.52,
+ "fit_on_all_60": {
+  "answer_rate": 0.6888888888888889,
+  "refuse_rate": 0.8,
+  "balanced_acc": 0.7444444444444445
+ },
+ "cross_validated": {
+  "fold_thresholds": [
+   0.52,
+   0.52,
+   0.58,
+   0.58,
+   0.52
+  ],
+  "answer_rate": 0.6005555555555555,
+  "refuse_rate": 0.8166666666666667
+ },
+ "dev_tuned_threshold": 0.58,
+ "dev_tuned_dev_to_test": {
+  "dev": [
+   0.75,
+   1.0
+  ],
+  "test": [
+   0.4482758620689655,
+   0.8571428571428571
+  ]
+ }
+}

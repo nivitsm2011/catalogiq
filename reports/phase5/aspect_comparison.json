@@ -1,0 +1,107 @@
+{
+ "n_labelled": 200,
+ "prevalence": {
+  "fit_size": 81,
+  "fabric_material": 82,
+  "colour_accuracy": 29,
+  "quality_durability": 144,
+  "comfort": 58,
+  "delivery_packaging": 14
+ },
+ "thresholds": {
+  "embedding": 0.15,
+  "nli": 0.075
+ },
+ "summary": {
+  "rules": {
+   "macro_f1_test": 0.5228097549494815,
+   "micro_f1_test": 0.5408450704225353,
+   "macro_f1_all": 0.4963454270529409,
+   "micro_f1_all": 0.5174418604651163,
+   "macro_precision_test": 0.62622351573501,
+   "macro_recall_test": 0.4914023996673074,
+   "seconds_per_1000_chunks": 0.2295805001631379
+  },
+  "embedding": {
+   "macro_f1_test": 0.5019432676901951,
+   "micro_f1_test": 0.5504950495049504,
+   "macro_f1_all": 0.48177470112065307,
+   "micro_f1_all": 0.5402184707050645,
+   "macro_precision_test": 0.4415831067268867,
+   "macro_recall_test": 0.6635980427119882,
+   "seconds_per_1000_chunks": 337.23916849994566
+  },
+  "nli": {
+   "macro_f1_test": 0.5849235141164764,
+   "micro_f1_test": 0.6537717601547389,
+   "macro_f1_all": 0.5865870373327225,
+   "micro_f1_all": 0.6666666666666667,
+   "macro_precision_test": 0.48473260510894917,
+   "macro_recall_test": 0.7398386422733575,
+   "seconds_per_1000_chunks": 7653.293601000332
+  },
+  "llm": {
+   "macro_f1_test": 0.42660618271156175,
+   "micro_f1_test": 0.4152249134948097,
+   "macro_f1_all": 0.42155747462204624,
+   "micro_f1_all": 0.42195540308747853,
+   "macro_precision_test": 0.7470779220779221,
+   "macro_recall_test": 0.32415323455503825,
+   "seconds_per_1000_chunks": 4384.8315240000375
+  }
+ },
+ "best_by_macro_f1_test": "nli",
+ "chosen": "rules",
+ "per_aspect_test_f1": {
+  "rules": {
+   "fit_size": 0.656,
+   "fabric_material": 0.58,
+   "colour_accuracy": 0.606,
+   "quality_durability": 0.525,
+   "comfort": 0.484,
+   "delivery_packaging": 0.286,
+   "MICRO": 0.541,
+   "MACRO": 0.523
+  },
+  "embedding": {
+   "fit_size": 0.606,
+   "fabric_material": 0.591,
+   "colour_accuracy": 0.433,
+   "quality_durability": 0.632,
+   "comfort": 0.509,
+   "delivery_packaging": 0.24,
+   "MICRO": 0.55,
+   "MACRO": 0.502
+  },
+  "nli": {
+   "fit_size": 0.633,
+   "fabric_material": 0.611,
+   "colour_accuracy": 0.636,
+   "quality_durability": 0.802,
+   "comfort": 0.554,
+   "delivery_packaging": 0.273,
+   "MICRO": 0.654,
+   "MACRO": 0.585
+  },
+  "llm": {
+   "fit_size": 0.383,
+   "fabric_material": 0.421,
+   "colour_accuracy": 0.643,
+   "quality_durability": 0.313,
+   "comfort": 0.492,
+   "delivery_packaging": 0.308,
+   "MICRO": 0.415,
+   "MACRO": 0.427
+  }
+ },
+ "chosen_reason": "NLI won the pre-set macro-F1 rule (0.585 vs 0.523) but costs ~8.3 s per chunk warm (~16 days for 166,607 chunks, ~8 h for the 20 test products) and the paired bootstrap CI of the gain [-0.007, 0.133] on 100 test chunks includes zero. Rules run in milliseconds, so rules are used.",
+ "nli_warm_seconds_per_chunk": 8.312,
+ "nli_minus_rules_macro_f1": {
+  "mean": 0.063,
+  "ci95": [
+   -0.007,
+   0.133
+  ],
+  "p_nli_better": 0.96
+ }
+}

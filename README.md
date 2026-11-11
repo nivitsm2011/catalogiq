@@ -3,7 +3,7 @@
 An AI copilot for e-commerce marketplaces: it helps small sellers create better listings, helps shoppers
 get grounded answers, and helps catalog teams monitor quality. Runs fully locally on CPU.
 
-> Status: Phase 4 complete (grounded listing generator). Full README coming as features land.
+> Status: Phase 5 complete (shopper Q&A over reviews). Full README coming as features land.
 
 See [CLAUDE.md](CLAUDE.md) for the project brief, [docs/progress.md](docs/progress.md) for status and
 [docs/decisions.md](docs/decisions.md) for design decisions.
@@ -88,3 +88,21 @@ result.listing, result.report.to_dict()
 Key finding: retrieved example listings improved style but made a 3B model copy unsupported facts (70% of listings), so the guardrails are
 essential. Details: [docs/model_card_listing_generator.md](docs/model_card_listing_generator.md),
 [docs/style_guide.md](docs/style_guide.md), [notebooks/04_listing_generator.ipynb](notebooks/04_listing_generator.ipynb).
+
+## Shopper Q&A over reviews (Phase 5)
+
+```powershell
+.\.venv\Scripts\python.exe scripts/build_review_index.py     # chunk 139k reviews and index them in ChromaDB (resumable)
+.\.venv\Scripts\python.exe scripts/evaluate_qa.py all        # retrieval, answers, judge, summaries (needs Ollama; about 25 min)
+.\.venv\Scripts\python.exe scripts/summarise_qa_eval.py      # collect metrics, log to MLflow
+```
+
+```python
+from catalogiq.rag.qa import ReviewQA
+# qa = ReviewQA(get_llm_client(), chunks, collection, titles, min_similarity=0.52)
+# qa.answer("B0BYCZ2W78", "Does this shirt run big or small?").output.model_dump()
+```
+
+Answers cite review ids, and the system says "Not enough reviews mention this." when fewer than 2 reviews support an answer. On 60 test
+questions it refused 14 of 15 unanswerable ones and also refused 31% of answerable ones; cited review ids were never invented. Details and
+limits: [docs/model_card_review_qa.md](docs/model_card_review_qa.md), [notebooks/05_review_qa.ipynb](notebooks/05_review_qa.ipynb).

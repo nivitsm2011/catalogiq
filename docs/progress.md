@@ -146,4 +146,47 @@
 - Seller notes in the evaluation are only the brand (from the catalog name); materials, sizes and weights were not supplied.
 - Classifier colour is often unsure; 31 of 50 RAG titles still contain the unsure colour. The app should ask the seller to confirm attributes.
 - The 100 duplicate labels from Phase 3 are still AI-provisional.
-- Phase 4 commit is not yet pushed (awaiting confirmation).
+- Phase 4 commit is pushed to GitHub (`89e743a`).
+
+
+## Phase 5 - Shopper Q&A over reviews (complete; commit not yet pushed)
+
+**Done**
+- Index: 139,400 reviews -> 166,607 chunks (short reviews whole, long ones in 3-sentence windows, <= 700 characters) with review id, product,
+  rating, verified flag, helpful votes, date; own ChromaDB collection `amazon_reviews` (MiniLM, resumable build).
+- Aspect tagging (six aspects) compared on 200 owner-labelled pieces: keyword rules, embedding similarity, zero-shot NLI (DeBERTa-v3-xsmall,
+  142 MB download, approved), zero-shot LLM. Selection rule fixed in advance; rules used (see below).
+- Pipeline `src/catalogiq/rag/qa.py`: per-product hybrid retrieval (BM25 + vector, RRF) + helpfulness/verified re-rank, evidence gate
+  (>= 2 distinct reviews at similarity >= 0.52, else "Not enough reviews mention this." with no LLM call), JSON-validated answer with inline
+  citations, agree/disagree lines, confidence, aspect, evidence_count; invalid ids stripped and counted.
+- Product summaries (`summary.py`): numbers computed in code, LLM only phrases, per-aspect number check with template fallback.
+- Evaluation on 60 questions / 20 products (45 answerable, 15 unanswerable), claim-level LLM judge, owner hand-check of 15 answers,
+  `notebooks/05_review_qa.ipynb`, `docs/model_card_review_qa.md`, MLflow run `phase5_review_qa`. 23 tests in `tests/test_qa.py` (LLM mocked); 79 tests in total, all passing; ruff and black clean.
+
+**Metrics** (llama3.2:3b on CPU)
+| Metric | Value |
+|---|---|
+| Retrieval recall@5 (45 answerable): BM25 / vector / hybrid / hybrid + re-rank | 0.978 / 0.889 / 1.000 / 1.000 |
+| MRR: hybrid / hybrid + re-rank | 0.829 / 0.893 |
+| Correct refusal (unanswerable) | 93.3% (14 of 15) |
+| False refusal (answerable) | 31.1% (14 of 45); first pipeline version 82% |
+| Citations: invalid ids / relevance | 0 of 99 / 84.8% |
+| LLM judge: fully faithful answers / claims supported | 40.6% of 32 / 56.7% (lower bound: judge too strict) |
+| Hand-check (n=15): judge-human agreement / human faithful | 60% / 93% (6 of the judge's 7 flags overturned) |
+| Evidence gate, cross-validated: answer rate / refuse rate | 60% / 82% |
+| Aspect macro-F1 (100 test pieces): NLI / rules / embedding / LLM | 0.585 / 0.523 / 0.502 / 0.427 |
+| NLI warm cost | 8.3 s per piece (about 16 days for the whole index) |
+| Latency per question: answered / refused | 38.5 s / 1.9 s |
+| Summaries (20 products): LLM / mixed / template | 18 / 1 / 1 |
+
+**Open issues / risks**
+- Evidence gate is a weak discriminator; its first dev/test tuning collapsed (test answer rate 45%) so it was cross-validated, and the final
+  threshold 0.52 is fit on all 60 questions (end-to-end numbers slightly optimistic). Design was iterated on the same 60 questions.
+- Faithfulness judge = same 3B model, too strict; hand-check is 15 answers by one person (14 faithful). A rough reweighted estimate is
+  about 92% faithful but has no interval.
+- NLI scored best on the pre-set rule but was not used (8.3 s per piece; gain +0.063 macro-F1, 95% CI [-0.007, 0.133]). Rules are used.
+- The 200 aspect labels are liberal (quality/durability ticked on 144, 136 with 2+ aspects); delivery has only 14 positives.
+- Failure Q27: the system said a pocket watch comes in a gift box; one cited review says "as a gift" (word match, not meaning) and the test
+  label missed the other review's "fancy box". Next: require the question's key noun in a cited review; say "2 reviews" not "most".
+- Answered questions take about 39 s on CPU: too slow for live use without caching, a faster model or a GPU.
+- The Phase 3 duplicate labels are still AI-provisional.

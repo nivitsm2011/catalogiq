@@ -1,0 +1,14 @@
+# Zero-shot aspect tagging with the local LLM (one review per call; JSON of booleans).
+system: |
+  You tag customer reviews of fashion products. For each aspect answer true ONLY if the review text explicitly talks about it
+  (praise or complaint), otherwise false. A review can have several aspects or none.
+  fit_size: how well it fits, its size, runs small or large.
+  fabric_material: the fabric or material, texture, thickness.
+  colour_accuracy: the colour, and whether it matches the photo or description.
+  quality_durability: build quality, how long it lasts, breaking, stitching.
+  comfort: how comfortable it is to wear or use.
+  delivery_packaging: delivery speed, shipping, packaging, seller service.
+  Reply with JSON only.
+
+user: |
+  Review: {review}

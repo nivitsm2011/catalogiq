@@ -57,3 +57,9 @@ def get_search_config() -> dict[str, Any]:
 def get_rag_config() -> dict[str, Any]:
     """Return the ``rag`` section of ``configs/rag.yaml`` (Phase 4 settings)."""
     return load_config(PROJECT_ROOT / "configs" / "rag.yaml")["rag"]
+
+
+@cache
+def get_qa_config() -> dict[str, Any]:
+    """Return the ``qa`` section of ``configs/qa.yaml`` (Phase 5 settings)."""
+    return load_config(PROJECT_ROOT / "configs" / "qa.yaml")["qa"]

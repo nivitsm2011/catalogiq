@@ -1,0 +1,1384 @@
+{
+ "method": "rules",
+ "products": {
+  "B00C54QX3M": {
+   "title": "Carrie Hughes Men Mechanical Pocket Watch with Chain CH461",
+   "facts": {
+    "item_id": "B00C54QX3M",
+    "n_reviews": 127,
+    "aspects": {
+     "fabric_material": {
+      "mentions": 14,
+      "pct_of_reviews": 11,
+      "pct_positive": 64,
+      "pct_negative": 36,
+      "pct_mixed": 0,
+      "mean_rating": 3.4
+     },
+     "quality_durability": {
+      "mentions": 54,
+      "pct_of_reviews": 43,
+      "pct_positive": 57,
+      "pct_negative": 31,
+      "pct_mixed": 11,
+      "mean_rating": 3.4
+     },
+     "comfort": {
+      "mentions": 5,
+      "pct_of_reviews": 4,
+      "pct_positive": 60,
+      "pct_negative": 40,
+      "pct_mixed": 0,
+      "mean_rating": 2.8
+     },
+     "delivery_packaging": {
+      "mentions": 25,
+      "pct_of_reviews": 20,
+      "pct_positive": 52,
+      "pct_negative": 32,
+      "pct_mixed": 16,
+      "mean_rating": 3.3
+     }
+    }
+   },
+   "template": "Fabric and material: 14 reviews mention it; 64% are positive and 36% negative. Quality and durability: 54 reviews mention it; 57% are positive and 31% negative. Comfort: 5 reviews mention it; 60% are positive and 40% negative. Delivery and packaging: 25 reviews mention it; 52% are positive and 32% negative.",
+   "summary": "Fabric and material: 14 reviews mention it, 64% positive, 0% mixed, 36% negative, average 3.4 stars. Quality and durability: 54 reviews mention it, 57% positive, 11% mixed, 31% negative, average 3.4 stars. Comfort: 5 reviews mention it, 60% positive, 0% mixed, 40% negative, average 2.8 stars. Delivery and packaging: 25 reviews mention it, 52% positive, 16% mixed, 32% negative, average 3.3 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B00DMWQOYY": {
+   "title": "niceeshop(TM) Vintage Glazed Lady Cat Pendant Long Chain Necklace,Black",
+   "facts": {
+    "item_id": "B00DMWQOYY",
+    "n_reviews": 253,
+    "aspects": {
+     "fit_size": {
+      "mentions": 14,
+      "pct_of_reviews": 6,
+      "pct_positive": 57,
+      "pct_negative": 14,
+      "pct_mixed": 29,
+      "mean_rating": 3.7,
+      "fit": {
+       "runs_small": 0,
+       "runs_large": 3,
+       "true_to_size": 0,
+       "with_direction": 3,
+       "pct_runs_small": 0,
+       "pct_runs_large": 100,
+       "pct_true_to_size": 0
+      }
+     },
+     "fabric_material": {
+      "mentions": 13,
+      "pct_of_reviews": 5,
+      "pct_positive": 54,
+      "pct_negative": 15,
+      "pct_mixed": 31,
+      "mean_rating": 3.6
+     },
+     "colour_accuracy": {
+      "mentions": 30,
+      "pct_of_reviews": 12,
+      "pct_positive": 77,
+      "pct_negative": 10,
+      "pct_mixed": 13,
+      "mean_rating": 4.0
+     },
+     "quality_durability": {
+      "mentions": 84,
+      "pct_of_reviews": 33,
+      "pct_positive": 37,
+      "pct_negative": 39,
+      "pct_mixed": 24,
+      "mean_rating": 3.0
+     },
+     "comfort": {
+      "mentions": 14,
+      "pct_of_reviews": 6,
+      "pct_positive": 57,
+      "pct_negative": 14,
+      "pct_mixed": 29,
+      "mean_rating": 3.6
+     },
+     "delivery_packaging": {
+      "mentions": 47,
+      "pct_of_reviews": 19,
+      "pct_positive": 62,
+      "pct_negative": 28,
+      "pct_mixed": 11,
+      "mean_rating": 3.6
+     }
+    }
+   },
+   "template": "Fit and size: 14 reviews mention it; 57% are positive and 14% negative. Of 3 reviews that say how it fits, 0% say it runs small, 100% large and 0% true to size. Fabric and material: 13 reviews mention it; 54% are positive and 15% negative. Colour: 30 reviews mention it; 77% are positive and 10% negative. Quality and durability: 84 reviews mention it; 37% are positive and 39% negative. Comfort: 14 reviews mention it; 57% are positive and 14% negative. Delivery and packaging: 47 reviews mention it; 62% are positive and 28% negative.",
+   "summary": "Fit and size: 14 reviews mention it, with 57% positive, 29% mixed, and 14% negative, averaging 3.7 stars. Fabric and material: 13 reviews mention it, with 54% positive, 31% mixed, and 15% negative, averaging 3.6 stars. Colour: 30 reviews mention it, with 77% positive, 13% mixed, and 10% negative, averaging 4.0 stars. Quality and durability: 84 reviews mention it, with 37% positive, 24% mixed, and 39% negative, averaging 3.0 stars. Comfort: 14 reviews mention it, with 57% positive, 29% mixed, and 14% negative, averaging 3.6 stars. Delivery and packaging: 47 reviews mention it, with 62% positive, 11% mixed, and 28% negative, averaging 3.6 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B00ZRXLFTU": {
+   "title": "Buttons & Pleats The Best Shirt Stays Advanced Type Footloop Style",
+   "facts": {
+    "item_id": "B00ZRXLFTU",
+    "n_reviews": 179,
+    "aspects": {
+     "fit_size": {
+      "mentions": 21,
+      "pct_of_reviews": 12,
+      "pct_positive": 48,
+      "pct_negative": 48,
+      "pct_mixed": 5,
+      "mean_rating": 3.1,
+      "fit": {
+       "runs_small": 5,
+       "runs_large": 3,
+       "true_to_size": 0,
+       "with_direction": 8,
+       "pct_runs_small": 62,
+       "pct_runs_large": 38,
+       "pct_true_to_size": 0
+      }
+     },
+     "fabric_material": {
+      "mentions": 40,
+      "pct_of_reviews": 22,
+      "pct_positive": 60,
+      "pct_negative": 25,
+      "pct_mixed": 15,
+      "mean_rating": 3.7
+     },
+     "colour_accuracy": {
+      "mentions": 8,
+      "pct_of_reviews": 4,
+      "pct_positive": 88,
+      "pct_negative": 12,
+      "pct_mixed": 0,
+      "mean_rating": 4.2
+     },
+     "quality_durability": {
+      "mentions": 81,
+      "pct_of_reviews": 45,
+      "pct_positive": 59,
+      "pct_negative": 32,
+      "pct_mixed": 9,
+      "mean_rating": 3.6
+     },
+     "comfort": {
+      "mentions": 39,
+      "pct_of_reviews": 22,
+      "pct_positive": 74,
+      "pct_negative": 13,
+      "pct_mixed": 13,
+      "mean_rating": 4.2
+     },
+     "delivery_packaging": {
+      "mentions": 28,
+      "pct_of_reviews": 16,
+      "pct_positive": 64,
+      "pct_negative": 29,
+      "pct_mixed": 7,
+      "mean_rating": 3.8
+     }
+    }
+   },
+   "template": "Fit and size: 21 reviews mention it; 48% are positive and 48% negative. Of 8 reviews that say how it fits, 62% say it runs small, 38% large and 0% true to size. Fabric and material: 40 reviews mention it; 60% are positive and 25% negative. Colour: 8 reviews mention it; 88% are positive and 12% negative. Quality and durability: 81 reviews mention it; 59% are positive and 32% negative. Comfort: 39 reviews mention it; 74% are positive and 13% negative. Delivery and packaging: 28 reviews mention it; 64% are positive and 29% negative.",
+   "summary": "Fit and size: 21 reviews mention it, with 48% positive, 5% mixed, and 48% negative, averaging 3.1 stars. Fabric and material: 40 reviews mention it, with 60% positive, 15% mixed, and 25% negative, averaging 3.7 stars. Colour: 8 reviews mention it, with 88% positive, 0% mixed, and 12% negative, averaging 4.2 stars. Quality and durability: 81 reviews mention it, with 59% positive, 9% mixed, and 32% negative, averaging 3.6 stars. Comfort: 39 reviews mention it, with 74% positive, 13% mixed, and 13% negative, averaging 4.2 stars. Delivery and packaging: 28 reviews mention it, with 64% positive, 7% mixed, and 29% negative, averaging 3.8 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B0177D7E0G": {
+   "title": "RDEXP Adjustable Elastic Sport Strap Eyeglasses Glasses Strap Holder with Push Button Buckle Pack of 5",
+   "facts": {
+    "item_id": "B0177D7E0G",
+    "n_reviews": 123,
+    "aspects": {
+     "fit_size": {
+      "mentions": 21,
+      "pct_of_reviews": 17,
+      "pct_positive": 38,
+      "pct_negative": 48,
+      "pct_mixed": 14,
+      "mean_rating": 2.9,
+      "fit": {
+       "runs_small": 10,
+       "runs_large": 4,
+       "true_to_size": 1,
+       "with_direction": 15,
+       "pct_runs_small": 67,
+       "pct_runs_large": 27,
+       "pct_true_to_size": 7
+      }
+     },
+     "fabric_material": {
+      "mentions": 29,
+      "pct_of_reviews": 24,
+      "pct_positive": 28,
+      "pct_negative": 52,
+      "pct_mixed": 21,
+      "mean_rating": 2.7
+     },
+     "colour_accuracy": {
+      "mentions": 5,
+      "pct_of_reviews": 4,
+      "pct_positive": 80,
+      "pct_negative": 20,
+      "pct_mixed": 0,
+      "mean_rating": 4.0
+     },
+     "quality_durability": {
+      "mentions": 38,
+      "pct_of_reviews": 31,
+      "pct_positive": 13,
+      "pct_negative": 79,
+      "pct_mixed": 8,
+      "mean_rating": 1.9
+     },
+     "comfort": {
+      "mentions": 22,
+      "pct_of_reviews": 18,
+      "pct_positive": 36,
+      "pct_negative": 45,
+      "pct_mixed": 18,
+      "mean_rating": 3.1
+     },
+     "delivery_packaging": {
+      "mentions": 15,
+      "pct_of_reviews": 12,
+      "pct_positive": 27,
+      "pct_negative": 67,
+      "pct_mixed": 7,
+      "mean_rating": 2.3
+     }
+    }
+   },
+   "template": "Fit and size: 21 reviews mention it; 38% are positive and 48% negative. Of 15 reviews that say how it fits, 67% say it runs small, 27% large and 7% true to size. Fabric and material: 29 reviews mention it; 28% are positive and 52% negative. Colour: 5 reviews mention it; 80% are positive and 20% negative. Quality and durability: 38 reviews mention it; 13% are positive and 79% negative. Comfort: 22 reviews mention it; 36% are positive and 45% negative. Delivery and packaging: 15 reviews mention it; 27% are positive and 67% negative.",
+   "summary": "Fit and size: 21 reviews mention it, with 38% positive, 14% mixed, 48% negative, and an average rating of 2.9 stars. Fabric and material: 29 reviews mention it, with 28% positive, 21% mixed, 52% negative, and an average rating of 2.7 stars. Colour: 5 reviews mention it, with 80% positive, 0% mixed, 20% negative, and an average rating of 4.0 stars. Quality and durability: 38 reviews mention it, with 13% positive, 8% mixed, 79% negative, and an average rating of 1.9 stars. Comfort: 22 reviews mention it, with 36% positive, 18% mixed, 45% negative, and an average rating of 3.1 stars. Delivery and packaging: 15 reviews mention it, with 27% positive, 7% mixed, 67% negative, and an average rating of 2.3 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B01EKTWXAQ": {
+   "title": "Yoga Socks Non Slip Skid with Toe Grips for Pilates Barre Women 4 Pack by Meaiguo",
+   "facts": {
+    "item_id": "B01EKTWXAQ",
+    "n_reviews": 141,
+    "aspects": {
+     "fit_size": {
+      "mentions": 68,
+      "pct_of_reviews": 48,
+      "pct_positive": 49,
+      "pct_negative": 29,
+      "pct_mixed": 22,
+      "mean_rating": 3.4,
+      "fit": {
+       "runs_small": 15,
+       "runs_large": 6,
+       "true_to_size": 11,
+       "with_direction": 32,
+       "pct_runs_small": 47,
+       "pct_runs_large": 19,
+       "pct_true_to_size": 34
+      }
+     },
+     "fabric_material": {
+      "mentions": 30,
+      "pct_of_reviews": 21,
+      "pct_positive": 40,
+      "pct_negative": 33,
+      "pct_mixed": 27,
+      "mean_rating": 3.1
+     },
+     "colour_accuracy": {
+      "mentions": 7,
+      "pct_of_reviews": 5,
+      "pct_positive": 86,
+      "pct_negative": 0,
+      "pct_mixed": 14,
+      "mean_rating": 4.6
+     },
+     "quality_durability": {
+      "mentions": 22,
+      "pct_of_reviews": 16,
+      "pct_positive": 55,
+      "pct_negative": 27,
+      "pct_mixed": 18,
+      "mean_rating": 3.5
+     },
+     "comfort": {
+      "mentions": 42,
+      "pct_of_reviews": 30,
+      "pct_positive": 67,
+      "pct_negative": 21,
+      "pct_mixed": 12,
+      "mean_rating": 3.8
+     },
+     "delivery_packaging": {
+      "mentions": 23,
+      "pct_of_reviews": 16,
+      "pct_positive": 61,
+      "pct_negative": 17,
+      "pct_mixed": 22,
+      "mean_rating": 3.7
+     }
+    }
+   },
+   "template": "Fit and size: 68 reviews mention it; 49% are positive and 29% negative. Of 32 reviews that say how it fits, 47% say it runs small, 19% large and 34% true to size. Fabric and material: 30 reviews mention it; 40% are positive and 33% negative. Colour: 7 reviews mention it; 86% are positive and 0% negative. Quality and durability: 22 reviews mention it; 55% are positive and 27% negative. Comfort: 42 reviews mention it; 67% are positive and 21% negative. Delivery and packaging: 23 reviews mention it; 61% are positive and 17% negative.",
+   "summary": "Fit and size: 68 reviews mention it, 48% of all reviews, with 49% positive, 22% mixed, 29% negative, and an average of 3.4 stars. Fabric and material: 30 reviews mention it, 21% of all reviews, with 40% positive, 27% mixed, 33% negative, and an average of 3.1 stars. Colour: 7 reviews mention it, 5% of all reviews, with 86% positive, 14% mixed, and 0% negative, and an average of 4.6 stars. Quality and durability: 22 reviews mention it, 16% of all reviews, with 55% positive, 18% mixed, and 27% negative, and an average of 3.5 stars. Comfort: 42 reviews mention it, 30% of all reviews, with 67% positive, 12% mixed, and 21% negative, and an average of 3.8 stars. Delivery and packaging: 23 reviews mention it, 16% of all reviews, with 61% positive, 22% mixed, and 17% negative, and an average of 3.7 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B079HCP3N5": {
+   "title": "Fruit of the Loom Men's Big Man Black/Gray Boxer Brief(Pack of 2)",
+   "facts": {
+    "item_id": "B079HCP3N5",
+    "n_reviews": 146,
+    "aspects": {
+     "fit_size": {
+      "mentions": 95,
+      "pct_of_reviews": 65,
+      "pct_positive": 78,
+      "pct_negative": 9,
+      "pct_mixed": 13,
+      "mean_rating": 4.1,
+      "fit": {
+       "runs_small": 19,
+       "runs_large": 8,
+       "true_to_size": 25,
+       "with_direction": 52,
+       "pct_runs_small": 37,
+       "pct_runs_large": 15,
+       "pct_true_to_size": 48
+      }
+     },
+     "fabric_material": {
+      "mentions": 20,
+      "pct_of_reviews": 14,
+      "pct_positive": 60,
+      "pct_negative": 5,
+      "pct_mixed": 35,
+      "mean_rating": 3.8
+     },
+     "quality_durability": {
+      "mentions": 31,
+      "pct_of_reviews": 21,
+      "pct_positive": 68,
+      "pct_negative": 13,
+      "pct_mixed": 19,
+      "mean_rating": 4.0
+     },
+     "comfort": {
+      "mentions": 34,
+      "pct_of_reviews": 23,
+      "pct_positive": 88,
+      "pct_negative": 3,
+      "pct_mixed": 9,
+      "mean_rating": 4.4
+     },
+     "delivery_packaging": {
+      "mentions": 15,
+      "pct_of_reviews": 10,
+      "pct_positive": 80,
+      "pct_negative": 7,
+      "pct_mixed": 13,
+      "mean_rating": 4.1
+     }
+    }
+   },
+   "template": "Fit and size: 95 reviews mention it; 78% are positive and 9% negative. Of 52 reviews that say how it fits, 37% say it runs small, 15% large and 48% true to size. Fabric and material: 20 reviews mention it; 60% are positive and 5% negative. Quality and durability: 31 reviews mention it; 68% are positive and 13% negative. Comfort: 34 reviews mention it; 88% are positive and 3% negative. Delivery and packaging: 15 reviews mention it; 80% are positive and 7% negative.",
+   "summary": "Fit and size: 95 reviews mention it, with 78% positive, 13% mixed, and 9% negative, averaging 4.1 stars. Fabric and material: 20 reviews mention it, with 60% positive, 35% mixed, and 5% negative, averaging 3.8 stars. Quality and durability: 31 reviews mention it, with 68% positive, 19% mixed, and 13% negative, averaging 4.0 stars. Comfort: 34 reviews mention it, with 88% positive, 9% mixed, and 3% negative, averaging 4.4 stars. Delivery and packaging: 15 reviews mention it, with 80% positive, 13% mixed, and 7% negative, averaging 4.1 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B07C6N6Q6D": {
+   "title": "Ownsig Women Bohemian Water Bottle Pendant Earrings Drop Dangle Earrings Creative Unique Red pair",
+   "facts": {
+    "item_id": "B07C6N6Q6D",
+    "n_reviews": 153,
+    "aspects": {
+     "fit_size": {
+      "mentions": 10,
+      "pct_of_reviews": 7,
+      "pct_positive": 90,
+      "pct_negative": 0,
+      "pct_mixed": 10,
+      "mean_rating": 4.7,
+      "fit": {
+       "runs_small": 2,
+       "runs_large": 1,
+       "true_to_size": 0,
+       "with_direction": 3,
+       "pct_runs_small": 67,
+       "pct_runs_large": 33,
+       "pct_true_to_size": 0
+      }
+     },
+     "colour_accuracy": {
+      "mentions": 14,
+      "pct_of_reviews": 9,
+      "pct_positive": 86,
+      "pct_negative": 7,
+      "pct_mixed": 7,
+      "mean_rating": 4.6
+     },
+     "quality_durability": {
+      "mentions": 29,
+      "pct_of_reviews": 19,
+      "pct_positive": 76,
+      "pct_negative": 17,
+      "pct_mixed": 7,
+      "mean_rating": 4.1
+     },
+     "comfort": {
+      "mentions": 20,
+      "pct_of_reviews": 13,
+      "pct_positive": 95,
+      "pct_negative": 0,
+      "pct_mixed": 5,
+      "mean_rating": 4.8
+     },
+     "delivery_packaging": {
+      "mentions": 22,
+      "pct_of_reviews": 14,
+      "pct_positive": 91,
+      "pct_negative": 5,
+      "pct_mixed": 5,
+      "mean_rating": 4.6
+     }
+    }
+   },
+   "template": "Fit and size: 10 reviews mention it; 90% are positive and 0% negative. Of 3 reviews that say how it fits, 67% say it runs small, 33% large and 0% true to size. Colour: 14 reviews mention it; 86% are positive and 7% negative. Quality and durability: 29 reviews mention it; 76% are positive and 17% negative. Comfort: 20 reviews mention it; 95% are positive and 0% negative. Delivery and packaging: 22 reviews mention it; 91% are positive and 5% negative.",
+   "summary": "Fit and size: 10 reviews mention it, with 90% positive, 10% mixed, and 0% negative reviews, averaging 4.7 stars. Colour: 14 reviews mention it, with 86% positive, 7% mixed, and 7% negative reviews, averaging 4.6 stars. Quality and durability: 29 reviews mention it, with 76% positive, 7% mixed, and 17% negative reviews, averaging 4.1 stars. Comfort: 20 reviews mention it, with 95% positive, 5% mixed, and 0% negative reviews, averaging 4.8 stars. Delivery and packaging: 22 reviews mention it, with 91% positive, 5% mixed, and 5% negative reviews, averaging 4.6 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B07CQ84KLT": {
+   "title": "LILBETTER Women V-Neck Polka Dot Print Spaghetti Strap Boho Long Maxi Dresses",
+   "facts": {
+    "item_id": "B07CQ84KLT",
+    "n_reviews": 300,
+    "aspects": {
+     "fit_size": {
+      "mentions": 138,
+      "pct_of_reviews": 46,
+      "pct_positive": 72,
+      "pct_negative": 18,
+      "pct_mixed": 10,
+      "mean_rating": 4.0,
+      "fit": {
+       "runs_small": 28,
+       "runs_large": 27,
+       "true_to_size": 24,
+       "with_direction": 79,
+       "pct_runs_small": 35,
+       "pct_runs_large": 34,
+       "pct_true_to_size": 30
+      }
+     },
+     "fabric_material": {
+      "mentions": 83,
+      "pct_of_reviews": 28,
+      "pct_positive": 73,
+      "pct_negative": 20,
+      "pct_mixed": 6,
+      "mean_rating": 4.0
+     },
+     "colour_accuracy": {
+      "mentions": 37,
+      "pct_of_reviews": 12,
+      "pct_positive": 78,
+      "pct_negative": 19,
+      "pct_mixed": 3,
+      "mean_rating": 4.1
+     },
+     "quality_durability": {
+      "mentions": 65,
+      "pct_of_reviews": 22,
+      "pct_positive": 49,
+      "pct_negative": 37,
+      "pct_mixed": 14,
+      "mean_rating": 3.1
+     },
+     "comfort": {
+      "mentions": 92,
+      "pct_of_reviews": 31,
+      "pct_positive": 91,
+      "pct_negative": 5,
+      "pct_mixed": 3,
+      "mean_rating": 4.5
+     },
+     "delivery_packaging": {
+      "mentions": 28,
+      "pct_of_reviews": 9,
+      "pct_positive": 46,
+      "pct_negative": 54,
+      "pct_mixed": 0,
+      "mean_rating": 2.8
+     }
+    }
+   },
+   "template": "Fit and size: 138 reviews mention it; 72% are positive and 18% negative. Of 79 reviews that say how it fits, 35% say it runs small, 34% large and 30% true to size. Fabric and material: 83 reviews mention it; 73% are positive and 20% negative. Colour: 37 reviews mention it; 78% are positive and 19% negative. Quality and durability: 65 reviews mention it; 49% are positive and 37% negative. Comfort: 92 reviews mention it; 91% are positive and 5% negative. Delivery and packaging: 28 reviews mention it; 46% are positive and 54% negative.",
+   "summary": "Fit and size: 138 reviews mention it, 46% of all reviews, with 72% positive, 10% mixed, 18% negative, and an average of 4.0 stars. Fabric and material: 83 reviews mention it, 28% of all reviews, with 73% positive, 6% mixed, 20% negative, and an average of 4.0 stars. Colour: 37 reviews mention it, 12% of all reviews, with 78% positive, 3% mixed, 19% negative, and an average of 4.1 stars. Quality and durability: 65 reviews mention it, 22% of all reviews, with 49% positive, 14% mixed, 37% negative, and an average of 3.1 stars. Comfort: 92 reviews mention it, 31% of all reviews, with 91% positive, 3% mixed, 5% negative, and an average of 4.5 stars. Delivery and packaging: 28 reviews mention it, 9% of all reviews, with 46% positive, 0% mixed, 54% negative, and an average of 2.8 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B07F17DPJ6": {
+   "title": "NICGID Sling Bags, Chest Shoulder Backpacks Crossbody Purse Outdoor Chest Bag Travel Backpack for Men Women",
+   "facts": {
+    "item_id": "B07F17DPJ6",
+    "n_reviews": 278,
+    "aspects": {
+     "fit_size": {
+      "mentions": 108,
+      "pct_of_reviews": 39,
+      "pct_positive": 91,
+      "pct_negative": 3,
+      "pct_mixed": 6,
+      "mean_rating": 4.6,
+      "fit": {
+       "runs_small": 12,
+       "runs_large": 4,
+       "true_to_size": 6,
+       "with_direction": 22,
+       "pct_runs_small": 55,
+       "pct_runs_large": 18,
+       "pct_true_to_size": 27
+      }
+     },
+     "fabric_material": {
+      "mentions": 34,
+      "pct_of_reviews": 12,
+      "pct_positive": 82,
+      "pct_negative": 6,
+      "pct_mixed": 12,
+      "mean_rating": 4.4
+     },
+     "colour_accuracy": {
+      "mentions": 16,
+      "pct_of_reviews": 6,
+      "pct_positive": 75,
+      "pct_negative": 12,
+      "pct_mixed": 12,
+      "mean_rating": 4.1
+     },
+     "quality_durability": {
+      "mentions": 122,
+      "pct_of_reviews": 44,
+      "pct_positive": 75,
+      "pct_negative": 15,
+      "pct_mixed": 10,
+      "mean_rating": 4.2
+     },
+     "comfort": {
+      "mentions": 49,
+      "pct_of_reviews": 18,
+      "pct_positive": 88,
+      "pct_negative": 4,
+      "pct_mixed": 8,
+      "mean_rating": 4.6
+     },
+     "delivery_packaging": {
+      "mentions": 21,
+      "pct_of_reviews": 8,
+      "pct_positive": 48,
+      "pct_negative": 33,
+      "pct_mixed": 19,
+      "mean_rating": 3.3
+     }
+    }
+   },
+   "template": "Fit and size: 108 reviews mention it; 91% are positive and 3% negative. Of 22 reviews that say how it fits, 55% say it runs small, 18% large and 27% true to size. Fabric and material: 34 reviews mention it; 82% are positive and 6% negative. Colour: 16 reviews mention it; 75% are positive and 12% negative. Quality and durability: 122 reviews mention it; 75% are positive and 15% negative. Comfort: 49 reviews mention it; 88% are positive and 4% negative. Delivery and packaging: 21 reviews mention it; 48% are positive and 33% negative.",
+   "summary": "Fit and size: 108 reviews mention it, with 91% positive, 6% mixed, and 3% negative, averaging 4.6 stars. Fabric and material: 34 reviews mention it, with 82% positive, 12% mixed, and 6% negative, averaging 4.4 stars. Colour: 16 reviews mention it, with 75% positive, 12% mixed, and 12% negative, averaging 4.1 stars. Quality and durability: 122 reviews mention it, with 75% positive, 10% mixed, and 15% negative, averaging 4.2 stars. Comfort: 49 reviews mention it, with 88% positive, 8% mixed, and 4% negative, averaging 4.6 stars. Delivery and packaging: 21 reviews mention it, with 48% positive, 19% mixed, and 33% negative, averaging 3.3 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B07JWLTCLX": {
+   "title": "SoundBot\u00ae WEAVE HD Stereo Bluetooth 4.1 Wireless Smart Beanie Headset Musical Knit Headphone Speaker Hat Speakerphone Cap w/ 5Hrs Music Streaming & 7Hrs Hands-Free Talking, 60Hrs Standby, Built-in Mic",
+   "facts": {
+    "item_id": "B07JWLTCLX",
+    "n_reviews": 300,
+    "aspects": {
+     "fit_size": {
+      "mentions": 41,
+      "pct_of_reviews": 14,
+      "pct_positive": 44,
+      "pct_negative": 32,
+      "pct_mixed": 24,
+      "mean_rating": 3.2,
+      "fit": {
+       "runs_small": 21,
+       "runs_large": 1,
+       "true_to_size": 2,
+       "with_direction": 24,
+       "pct_runs_small": 88,
+       "pct_runs_large": 4,
+       "pct_true_to_size": 8
+      }
+     },
+     "fabric_material": {
+      "mentions": 19,
+      "pct_of_reviews": 6,
+      "pct_positive": 63,
+      "pct_negative": 16,
+      "pct_mixed": 21,
+      "mean_rating": 3.8
+     },
+     "quality_durability": {
+      "mentions": 105,
+      "pct_of_reviews": 35,
+      "pct_positive": 59,
+      "pct_negative": 20,
+      "pct_mixed": 21,
+      "mean_rating": 3.7
+     },
+     "comfort": {
+      "mentions": 42,
+      "pct_of_reviews": 14,
+      "pct_positive": 74,
+      "pct_negative": 14,
+      "pct_mixed": 12,
+      "mean_rating": 4.0
+     },
+     "delivery_packaging": {
+      "mentions": 41,
+      "pct_of_reviews": 14,
+      "pct_positive": 49,
+      "pct_negative": 39,
+      "pct_mixed": 12,
+      "mean_rating": 3.3
+     }
+    }
+   },
+   "template": "Fit and size: 41 reviews mention it; 44% are positive and 32% negative. Of 24 reviews that say how it fits, 88% say it runs small, 4% large and 8% true to size. Fabric and material: 19 reviews mention it; 63% are positive and 16% negative. Quality and durability: 105 reviews mention it; 59% are positive and 20% negative. Comfort: 42 reviews mention it; 74% are positive and 14% negative. Delivery and packaging: 41 reviews mention it; 49% are positive and 39% negative.",
+   "summary": "Fit and size: 41 reviews mention it; 44% are positive and 32% negative. Of 24 reviews that say how it fits, 88% say it runs small, 4% large and 8% true to size. Fabric and material: 19 reviews mention it; 63% are positive and 16% negative. Quality and durability: 105 reviews mention it; 59% are positive and 20% negative. Comfort: 42 reviews mention it; 74% are positive and 14% negative. Delivery and packaging: 41 reviews mention it; 49% are positive and 39% negative.",
+   "source": "template",
+   "bad_aspects": [
+    "fit_size",
+    "fabric_material",
+    "quality_durability",
+    "comfort",
+    "delivery_packaging"
+   ],
+   "bad_numbers": [
+    "4.1",
+    "4.1",
+    "4.1",
+    "4.1",
+    "4.1"
+   ]
+  },
+  "B07Q2XMK2T": {
+   "title": "icyzone Athletic Skirts for Women - Workout Running Golf Tennis Skort with Pockets",
+   "facts": {
+    "item_id": "B07Q2XMK2T",
+    "n_reviews": 140,
+    "aspects": {
+     "fit_size": {
+      "mentions": 92,
+      "pct_of_reviews": 66,
+      "pct_positive": 76,
+      "pct_negative": 15,
+      "pct_mixed": 9,
+      "mean_rating": 4.1,
+      "fit": {
+       "runs_small": 16,
+       "runs_large": 10,
+       "true_to_size": 23,
+       "with_direction": 49,
+       "pct_runs_small": 33,
+       "pct_runs_large": 20,
+       "pct_true_to_size": 47
+      }
+     },
+     "fabric_material": {
+      "mentions": 26,
+      "pct_of_reviews": 19,
+      "pct_positive": 58,
+      "pct_negative": 15,
+      "pct_mixed": 27,
+      "mean_rating": 3.6
+     },
+     "colour_accuracy": {
+      "mentions": 30,
+      "pct_of_reviews": 21,
+      "pct_positive": 73,
+      "pct_negative": 7,
+      "pct_mixed": 20,
+      "mean_rating": 4.1
+     },
+     "quality_durability": {
+      "mentions": 19,
+      "pct_of_reviews": 14,
+      "pct_positive": 63,
+      "pct_negative": 26,
+      "pct_mixed": 11,
+      "mean_rating": 3.6
+     },
+     "comfort": {
+      "mentions": 53,
+      "pct_of_reviews": 38,
+      "pct_positive": 85,
+      "pct_negative": 9,
+      "pct_mixed": 6,
+      "mean_rating": 4.4
+     },
+     "delivery_packaging": {
+      "mentions": 8,
+      "pct_of_reviews": 6,
+      "pct_positive": 62,
+      "pct_negative": 12,
+      "pct_mixed": 25,
+      "mean_rating": 3.9
+     }
+    }
+   },
+   "template": "Fit and size: 92 reviews mention it; 76% are positive and 15% negative. Of 49 reviews that say how it fits, 33% say it runs small, 20% large and 47% true to size. Fabric and material: 26 reviews mention it; 58% are positive and 15% negative. Colour: 30 reviews mention it; 73% are positive and 7% negative. Quality and durability: 19 reviews mention it; 63% are positive and 26% negative. Comfort: 53 reviews mention it; 85% are positive and 9% negative. Delivery and packaging: 8 reviews mention it; 62% are positive and 12% negative.",
+   "summary": "Fit and size: 92 reviews mention it, 66% of all reviews, with 76% positive, 9% mixed, 15% negative, and an average of 4.1 stars. Fabric and material: 26 reviews mention it, 19% of all reviews, with 58% positive, 27% mixed, 15% negative, and an average of 3.6 stars. Colour: 30 reviews mention it, 21% of all reviews, with 73% positive, 20% mixed, 7% negative, and an average of 4.1 stars. Quality and durability: 19 reviews mention it, 14% of all reviews, with 63% positive, 11% mixed, 26% negative, and an average of 3.6 stars. Comfort: 53 reviews mention it, 38% of all reviews, with 85% positive, 6% mixed, 9% negative, and an average of 4.4 stars. Delivery and packaging: 8 reviews mention it, 6% of all reviews, with 62% positive, 25% mixed, 12% negative, and an average of 3.9 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B07Y29D1TL": {
+   "title": "Large Bandanas 27 x 27 | Versatile Biker Rags | Classic Paisley Bandana Pattern",
+   "facts": {
+    "item_id": "B07Y29D1TL",
+    "n_reviews": 300,
+    "aspects": {
+     "fit_size": {
+      "mentions": 129,
+      "pct_of_reviews": 43,
+      "pct_positive": 85,
+      "pct_negative": 9,
+      "pct_mixed": 5,
+      "mean_rating": 4.4,
+      "fit": {
+       "runs_small": 7,
+       "runs_large": 13,
+       "true_to_size": 7,
+       "with_direction": 27,
+       "pct_runs_small": 26,
+       "pct_runs_large": 48,
+       "pct_true_to_size": 26
+      }
+     },
+     "fabric_material": {
+      "mentions": 65,
+      "pct_of_reviews": 22,
+      "pct_positive": 63,
+      "pct_negative": 25,
+      "pct_mixed": 12,
+      "mean_rating": 3.8
+     },
+     "colour_accuracy": {
+      "mentions": 85,
+      "pct_of_reviews": 28,
+      "pct_positive": 81,
+      "pct_negative": 12,
+      "pct_mixed": 7,
+      "mean_rating": 4.3
+     },
+     "quality_durability": {
+      "mentions": 91,
+      "pct_of_reviews": 30,
+      "pct_positive": 73,
+      "pct_negative": 21,
+      "pct_mixed": 7,
+      "mean_rating": 4.0
+     },
+     "comfort": {
+      "mentions": 48,
+      "pct_of_reviews": 16,
+      "pct_positive": 88,
+      "pct_negative": 8,
+      "pct_mixed": 4,
+      "mean_rating": 4.4
+     },
+     "delivery_packaging": {
+      "mentions": 48,
+      "pct_of_reviews": 16,
+      "pct_positive": 71,
+      "pct_negative": 17,
+      "pct_mixed": 12,
+      "mean_rating": 4.1
+     }
+    }
+   },
+   "template": "Fit and size: 129 reviews mention it; 85% are positive and 9% negative. Of 27 reviews that say how it fits, 26% say it runs small, 48% large and 26% true to size. Fabric and material: 65 reviews mention it; 63% are positive and 25% negative. Colour: 85 reviews mention it; 81% are positive and 12% negative. Quality and durability: 91 reviews mention it; 73% are positive and 21% negative. Comfort: 48 reviews mention it; 88% are positive and 8% negative. Delivery and packaging: 48 reviews mention it; 71% are positive and 17% negative.",
+   "summary": "Fit and size: 129 reviews mention it, 43% of all reviews, with 85% positive, 5% mixed, 9% negative, and an average of 4.4 stars. Fabric and material: 65 reviews mention it, 22% of all reviews, with 63% positive, 12% mixed, 25% negative, and an average of 3.8 stars. Colour: 85 reviews mention it, 28% of all reviews, with 81% positive, 7% mixed, 12% negative, and an average of 4.3 stars. Quality and durability: 91 reviews mention it, 30% of all reviews, with 73% positive, 7% mixed, 21% negative, and an average of 4.0 stars. Comfort: 48 reviews mention it, 16% of all reviews, with 88% positive, 4% mixed, 8% negative, and an average of 4.4 stars. Delivery and packaging: 48 reviews mention it, 16% of all reviews, with 71% positive, 12% mixed, 17% negative, and an average of 4.1 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B08BNK9JQ2": {
+   "title": "Slim Wallet Front Pocket Minimalist Genuine Leather RFID Blocking Card Holder",
+   "facts": {
+    "item_id": "B08BNK9JQ2",
+    "n_reviews": 208,
+    "aspects": {
+     "fit_size": {
+      "mentions": 56,
+      "pct_of_reviews": 27,
+      "pct_positive": 86,
+      "pct_negative": 2,
+      "pct_mixed": 12,
+      "mean_rating": 4.6,
+      "fit": {
+       "runs_small": 9,
+       "runs_large": 7,
+       "true_to_size": 2,
+       "with_direction": 18,
+       "pct_runs_small": 50,
+       "pct_runs_large": 39,
+       "pct_true_to_size": 11
+      }
+     },
+     "fabric_material": {
+      "mentions": 46,
+      "pct_of_reviews": 22,
+      "pct_positive": 78,
+      "pct_negative": 9,
+      "pct_mixed": 13,
+      "mean_rating": 4.3
+     },
+     "colour_accuracy": {
+      "mentions": 20,
+      "pct_of_reviews": 10,
+      "pct_positive": 85,
+      "pct_negative": 10,
+      "pct_mixed": 5,
+      "mean_rating": 4.4
+     },
+     "quality_durability": {
+      "mentions": 80,
+      "pct_of_reviews": 38,
+      "pct_positive": 85,
+      "pct_negative": 4,
+      "pct_mixed": 11,
+      "mean_rating": 4.5
+     },
+     "comfort": {
+      "mentions": 26,
+      "pct_of_reviews": 12,
+      "pct_positive": 88,
+      "pct_negative": 0,
+      "pct_mixed": 12,
+      "mean_rating": 4.6
+     },
+     "delivery_packaging": {
+      "mentions": 16,
+      "pct_of_reviews": 8,
+      "pct_positive": 81,
+      "pct_negative": 12,
+      "pct_mixed": 6,
+      "mean_rating": 4.1
+     }
+    }
+   },
+   "template": "Fit and size: 56 reviews mention it; 86% are positive and 2% negative. Of 18 reviews that say how it fits, 50% say it runs small, 39% large and 11% true to size. Fabric and material: 46 reviews mention it; 78% are positive and 9% negative. Colour: 20 reviews mention it; 85% are positive and 10% negative. Quality and durability: 80 reviews mention it; 85% are positive and 4% negative. Comfort: 26 reviews mention it; 88% are positive and 0% negative. Delivery and packaging: 16 reviews mention it; 81% are positive and 12% negative.",
+   "summary": "Fit and size: 56 reviews mention it, with 86% positive, 12% mixed, 2% negative, and an average of 4.6 stars. Fabric and material: 46 reviews mention it, with 78% positive, 13% mixed, 9% negative, and an average of 4.3 stars. Colour: 20 reviews mention it, with 85% positive, 5% mixed, 10% negative, and an average of 4.4 stars. Quality and durability: 80 reviews mention it, with 85% positive, 11% mixed, 4% negative, and an average of 4.5 stars. Comfort: 26 reviews mention it, with 88% positive, 12% mixed, 0% negative, and an average of 4.6 stars. Delivery and packaging: 16 reviews mention it, with 81% positive, 6% mixed, 12% negative, and an average of 4.1 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B09CZCJRJY": {
+   "title": "XRHWW 5 Pack 20mm Stretchy Nylon Loop Watch Bands Compatible With Samsung Galaxy Watch Active 2 44mm 40mm/Active 40mm/Galaxy Watch 3 41mm/Galaxy Watch 42mm/Galaxy Watch 4 44mm 40mm/Galaxy watch 5 44mm 40mm/Pro 45mm",
+   "facts": {
+    "item_id": "B09CZCJRJY",
+    "n_reviews": 167,
+    "aspects": {
+     "fit_size": {
+      "mentions": 67,
+      "pct_of_reviews": 40,
+      "pct_positive": 72,
+      "pct_negative": 18,
+      "pct_mixed": 10,
+      "mean_rating": 4.0,
+      "fit": {
+       "runs_small": 12,
+       "runs_large": 5,
+       "true_to_size": 7,
+       "with_direction": 24,
+       "pct_runs_small": 50,
+       "pct_runs_large": 21,
+       "pct_true_to_size": 29
+      }
+     },
+     "fabric_material": {
+      "mentions": 52,
+      "pct_of_reviews": 31,
+      "pct_positive": 75,
+      "pct_negative": 17,
+      "pct_mixed": 8,
+      "mean_rating": 4.1
+     },
+     "colour_accuracy": {
+      "mentions": 51,
+      "pct_of_reviews": 31,
+      "pct_positive": 86,
+      "pct_negative": 8,
+      "pct_mixed": 6,
+      "mean_rating": 4.5
+     },
+     "quality_durability": {
+      "mentions": 38,
+      "pct_of_reviews": 23,
+      "pct_positive": 74,
+      "pct_negative": 16,
+      "pct_mixed": 11,
+      "mean_rating": 4.1
+     },
+     "comfort": {
+      "mentions": 86,
+      "pct_of_reviews": 51,
+      "pct_positive": 90,
+      "pct_negative": 5,
+      "pct_mixed": 6,
+      "mean_rating": 4.6
+     },
+     "delivery_packaging": {
+      "mentions": 34,
+      "pct_of_reviews": 20,
+      "pct_positive": 74,
+      "pct_negative": 15,
+      "pct_mixed": 12,
+      "mean_rating": 4.1
+     }
+    }
+   },
+   "template": "Fit and size: 67 reviews mention it; 72% are positive and 18% negative. Of 24 reviews that say how it fits, 50% say it runs small, 21% large and 29% true to size. Fabric and material: 52 reviews mention it; 75% are positive and 17% negative. Colour: 51 reviews mention it; 86% are positive and 8% negative. Quality and durability: 38 reviews mention it; 74% are positive and 16% negative. Comfort: 86 reviews mention it; 90% are positive and 5% negative. Delivery and packaging: 34 reviews mention it; 74% are positive and 15% negative.",
+   "summary": "Fit and size: 67 reviews mention it, 72% positive, 10% mixed, 18% negative, average 4.0 stars, 50% runs small, 21% runs large, 29% true to size Fabric and material: 52 reviews mention it, 75% positive, 8% mixed, 17% negative, average 4.1 stars Colour: 51 reviews mention it, 86% positive, 6% mixed, 8% negative, average 4.5 stars Quality and durability: 38 reviews mention it, 74% positive, 11% mixed, 16% negative, average 4.1 stars Comfort: 86 reviews mention it, 90% positive, 6% mixed, 5% negative, average 4.6 stars Delivery and packaging: 34 reviews mention it, 74% positive, 12% mixed, 15% negative, average 4.1 stars",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B09LLS1LGH": {
+   "title": "OrthoComfoot Men's Plantar Fasciitis Slip-Ons Sneakers, Arch Support Walking Loafers, Foot and Heel Pain Relief Arch Support Shoes, Orthopedic Comfortable Casual Slip On",
+   "facts": {
+    "item_id": "B09LLS1LGH",
+    "n_reviews": 124,
+    "aspects": {
+     "fit_size": {
+      "mentions": 50,
+      "pct_of_reviews": 40,
+      "pct_positive": 60,
+      "pct_negative": 20,
+      "pct_mixed": 20,
+      "mean_rating": 3.7,
+      "fit": {
+       "runs_small": 7,
+       "runs_large": 6,
+       "true_to_size": 10,
+       "with_direction": 23,
+       "pct_runs_small": 30,
+       "pct_runs_large": 26,
+       "pct_true_to_size": 43
+      }
+     },
+     "fabric_material": {
+      "mentions": 10,
+      "pct_of_reviews": 8,
+      "pct_positive": 80,
+      "pct_negative": 20,
+      "pct_mixed": 0,
+      "mean_rating": 4.0
+     },
+     "colour_accuracy": {
+      "mentions": 10,
+      "pct_of_reviews": 8,
+      "pct_positive": 60,
+      "pct_negative": 20,
+      "pct_mixed": 20,
+      "mean_rating": 3.8
+     },
+     "quality_durability": {
+      "mentions": 23,
+      "pct_of_reviews": 19,
+      "pct_positive": 57,
+      "pct_negative": 22,
+      "pct_mixed": 22,
+      "mean_rating": 3.7
+     },
+     "comfort": {
+      "mentions": 65,
+      "pct_of_reviews": 52,
+      "pct_positive": 82,
+      "pct_negative": 9,
+      "pct_mixed": 9,
+      "mean_rating": 4.4
+     },
+     "delivery_packaging": {
+      "mentions": 15,
+      "pct_of_reviews": 12,
+      "pct_positive": 47,
+      "pct_negative": 33,
+      "pct_mixed": 20,
+      "mean_rating": 3.4
+     }
+    }
+   },
+   "template": "Fit and size: 50 reviews mention it; 60% are positive and 20% negative. Of 23 reviews that say how it fits, 30% say it runs small, 26% large and 43% true to size. Fabric and material: 10 reviews mention it; 80% are positive and 20% negative. Colour: 10 reviews mention it; 60% are positive and 20% negative. Quality and durability: 23 reviews mention it; 57% are positive and 22% negative. Comfort: 65 reviews mention it; 82% are positive and 9% negative. Delivery and packaging: 15 reviews mention it; 47% are positive and 33% negative.",
+   "summary": "Fit and size: 50 reviews mention it, 60% positive, 20% mixed, 20% negative, average 3.7 stars, 30% runs small, 26% runs large, 43% true to size Fabric and material: 10 reviews mention it, 80% positive, 0% mixed, 20% negative, average 4.0 stars Colour: 10 reviews mention it, 60% positive, 20% mixed, 20% negative, average 3.8 stars Quality and durability: 23 reviews mention it, 57% positive, 22% mixed, 22% negative, average 3.7 stars Comfort: 65 reviews mention it, 82% positive, 9% mixed, 9% negative, average 4.4 stars Delivery and packaging: 15 reviews mention it, 47% positive, 20% mixed, 33% negative, average 3.4 stars",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B09Y3TXYF1": {
+   "title": "Orthofeet Innovative Orthopedic Slippers for Men - Ideal for Plantar Fasciitis, Foot & Heel Pain Relief. Arch Support Slippers, Cushioning Ergonomic Sole & Extended Widths - Asheville",
+   "facts": {
+    "item_id": "B09Y3TXYF1",
+    "n_reviews": 300,
+    "aspects": {
+     "fit_size": {
+      "mentions": 97,
+      "pct_of_reviews": 32,
+      "pct_positive": 86,
+      "pct_negative": 8,
+      "pct_mixed": 6,
+      "mean_rating": 4.5,
+      "fit": {
+       "runs_small": 6,
+       "runs_large": 12,
+       "true_to_size": 29,
+       "with_direction": 47,
+       "pct_runs_small": 13,
+       "pct_runs_large": 26,
+       "pct_true_to_size": 62
+      }
+     },
+     "fabric_material": {
+      "mentions": 11,
+      "pct_of_reviews": 4,
+      "pct_positive": 82,
+      "pct_negative": 9,
+      "pct_mixed": 9,
+      "mean_rating": 4.3
+     },
+     "colour_accuracy": {
+      "mentions": 7,
+      "pct_of_reviews": 2,
+      "pct_positive": 100,
+      "pct_negative": 0,
+      "pct_mixed": 0,
+      "mean_rating": 5.0
+     },
+     "quality_durability": {
+      "mentions": 76,
+      "pct_of_reviews": 25,
+      "pct_positive": 88,
+      "pct_negative": 5,
+      "pct_mixed": 7,
+      "mean_rating": 4.6
+     },
+     "comfort": {
+      "mentions": 206,
+      "pct_of_reviews": 69,
+      "pct_positive": 92,
+      "pct_negative": 4,
+      "pct_mixed": 3,
+      "mean_rating": 4.7
+     },
+     "delivery_packaging": {
+      "mentions": 28,
+      "pct_of_reviews": 9,
+      "pct_positive": 64,
+      "pct_negative": 25,
+      "pct_mixed": 11,
+      "mean_rating": 3.8
+     }
+    }
+   },
+   "template": "Fit and size: 97 reviews mention it; 86% are positive and 8% negative. Of 47 reviews that say how it fits, 13% say it runs small, 26% large and 62% true to size. Fabric and material: 11 reviews mention it; 82% are positive and 9% negative. Colour: 7 reviews mention it; 100% are positive and 0% negative. Quality and durability: 76 reviews mention it; 88% are positive and 5% negative. Comfort: 206 reviews mention it; 92% are positive and 4% negative. Delivery and packaging: 28 reviews mention it; 64% are positive and 25% negative.",
+   "summary": "Fit and size: 97 reviews mention it; 86% are positive and 8% negative. Of 47 reviews that say how it fits, 13% say it runs small, 26% large and 62% true to size. Fabric and material: 11 reviews mention it, 82% positive, 9% mixed, 9% negative, average 4.3 stars. Colour: 7 reviews mention it, 100% positive, average 5.0 stars. Quality and durability: 76 reviews mention it, 88% positive, 7% mixed, 5% negative, average 4.6 stars. Comfort: 206 reviews mention it, 92% positive, 3% mixed, 4% negative, average 4.7 stars. Delivery and packaging: 28 reviews mention it, 64% positive, 11% mixed, 25% negative, average 3.8 stars.",
+   "source": "mixed",
+   "bad_aspects": [
+    "fit_size"
+   ],
+   "bad_numbers": [
+    "21"
+   ]
+  },
+  "B0B49KW781": {
+   "title": "Pyroluna Satin Chemise Sexy Lingerie Halter Dress Lace Nightgown Sleepwear for Women",
+   "facts": {
+    "item_id": "B0B49KW781",
+    "n_reviews": 181,
+    "aspects": {
+     "fit_size": {
+      "mentions": 117,
+      "pct_of_reviews": 65,
+      "pct_positive": 48,
+      "pct_negative": 34,
+      "pct_mixed": 18,
+      "mean_rating": 3.3,
+      "fit": {
+       "runs_small": 44,
+       "runs_large": 3,
+       "true_to_size": 25,
+       "with_direction": 72,
+       "pct_runs_small": 61,
+       "pct_runs_large": 4,
+       "pct_true_to_size": 35
+      }
+     },
+     "fabric_material": {
+      "mentions": 65,
+      "pct_of_reviews": 36,
+      "pct_positive": 52,
+      "pct_negative": 25,
+      "pct_mixed": 23,
+      "mean_rating": 3.5
+     },
+     "colour_accuracy": {
+      "mentions": 51,
+      "pct_of_reviews": 28,
+      "pct_positive": 55,
+      "pct_negative": 22,
+      "pct_mixed": 24,
+      "mean_rating": 3.6
+     },
+     "quality_durability": {
+      "mentions": 40,
+      "pct_of_reviews": 22,
+      "pct_positive": 45,
+      "pct_negative": 38,
+      "pct_mixed": 18,
+      "mean_rating": 3.3
+     },
+     "comfort": {
+      "mentions": 53,
+      "pct_of_reviews": 29,
+      "pct_positive": 64,
+      "pct_negative": 21,
+      "pct_mixed": 15,
+      "mean_rating": 3.8
+     },
+     "delivery_packaging": {
+      "mentions": 26,
+      "pct_of_reviews": 14,
+      "pct_positive": 19,
+      "pct_negative": 54,
+      "pct_mixed": 27,
+      "mean_rating": 2.5
+     }
+    }
+   },
+   "template": "Fit and size: 117 reviews mention it; 48% are positive and 34% negative. Of 72 reviews that say how it fits, 61% say it runs small, 4% large and 35% true to size. Fabric and material: 65 reviews mention it; 52% are positive and 25% negative. Colour: 51 reviews mention it; 55% are positive and 22% negative. Quality and durability: 40 reviews mention it; 45% are positive and 38% negative. Comfort: 53 reviews mention it; 64% are positive and 21% negative. Delivery and packaging: 26 reviews mention it; 19% are positive and 54% negative.",
+   "summary": "Fit and size: The Pyroluna Satin Chemise Sexy Lingerie Halter Dress Lace Nightgown Sleepwear for Women runs small for 61% of reviewers, true to size for 35%, and large for 4%. Fabric and material: The fabric material received 52% positive reviews, 23% mixed reviews, and 25% negative reviews, with an average rating of 3.5 stars. Colour: The colour accuracy received 55% positive reviews, 24% mixed reviews, and 22% negative reviews, with an average rating of 3.6 stars. Quality and durability: The quality and durability received 45% positive reviews, 18% mixed reviews, and 38% negative reviews, with an average rating of 3.3 stars. Comfort: The comfort received 64% positive reviews, 15% mixed reviews, and 21% negative reviews, with an average rating of 3.8 stars. Delivery and packaging: The delivery and packaging received 19% positive reviews, 27% mixed reviews, and 54% negative reviews, with an average rating of 2.5 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B0B613N3SD": {
+   "title": "Jewlpire 925 Sterling Silver Stud Earrings for Women Girls - Initial Earrings Letter Earrings-18K Gold Plated AAAAA+CZ Stud Earrings Hypoallergenic Stud Earrings Alphabet Earrings Dainty Jewelry Gifts",
+   "facts": {
+    "item_id": "B0B613N3SD",
+    "n_reviews": 169,
+    "aspects": {
+     "fit_size": {
+      "mentions": 35,
+      "pct_of_reviews": 21,
+      "pct_positive": 86,
+      "pct_negative": 6,
+      "pct_mixed": 9,
+      "mean_rating": 4.5,
+      "fit": {
+       "runs_small": 5,
+       "runs_large": 2,
+       "true_to_size": 3,
+       "with_direction": 10,
+       "pct_runs_small": 50,
+       "pct_runs_large": 20,
+       "pct_true_to_size": 30
+      }
+     },
+     "fabric_material": {
+      "mentions": 12,
+      "pct_of_reviews": 7,
+      "pct_positive": 92,
+      "pct_negative": 0,
+      "pct_mixed": 8,
+      "mean_rating": 4.8
+     },
+     "quality_durability": {
+      "mentions": 26,
+      "pct_of_reviews": 15,
+      "pct_positive": 96,
+      "pct_negative": 4,
+      "pct_mixed": 0,
+      "mean_rating": 4.8
+     },
+     "comfort": {
+      "mentions": 10,
+      "pct_of_reviews": 6,
+      "pct_positive": 100,
+      "pct_negative": 0,
+      "pct_mixed": 0,
+      "mean_rating": 5.0
+     },
+     "delivery_packaging": {
+      "mentions": 17,
+      "pct_of_reviews": 10,
+      "pct_positive": 76,
+      "pct_negative": 12,
+      "pct_mixed": 12,
+      "mean_rating": 4.4
+     }
+    }
+   },
+   "template": "Fit and size: 35 reviews mention it; 86% are positive and 6% negative. Of 10 reviews that say how it fits, 50% say it runs small, 20% large and 30% true to size. Fabric and material: 12 reviews mention it; 92% are positive and 0% negative. Quality and durability: 26 reviews mention it; 96% are positive and 4% negative. Comfort: 10 reviews mention it; 100% are positive and 0% negative. Delivery and packaging: 17 reviews mention it; 76% are positive and 12% negative.",
+   "summary": "Fit and size: The earrings run small for 50% of reviewers, true to size for 30%, and large for 20%. Fabric and material: The material is very positive, with 92% of reviewers giving it high praise. Quality and durability: The earrings are very durable, with 96% of reviewers saying they are long-lasting. Comfort: The earrings are extremely comfortable, with all reviewers saying they are comfortable to wear. Delivery and packaging: The packaging is generally positive, with 76% of reviewers saying it was good or excellent.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B0BCBW5HC3": {
+   "title": "Geborilma Kids Glasses Strap Elastic - Adjustable Eyeglass Band for Kids Toddler Baby - Eyeglasses Straps for Sports",
+   "facts": {
+    "item_id": "B0BCBW5HC3",
+    "n_reviews": 129,
+    "aspects": {
+     "fit_size": {
+      "mentions": 37,
+      "pct_of_reviews": 29,
+      "pct_positive": 49,
+      "pct_negative": 38,
+      "pct_mixed": 14,
+      "mean_rating": 3.1,
+      "fit": {
+       "runs_small": 7,
+       "runs_large": 10,
+       "true_to_size": 4,
+       "with_direction": 21,
+       "pct_runs_small": 33,
+       "pct_runs_large": 48,
+       "pct_true_to_size": 19
+      }
+     },
+     "fabric_material": {
+      "mentions": 18,
+      "pct_of_reviews": 14,
+      "pct_positive": 17,
+      "pct_negative": 67,
+      "pct_mixed": 17,
+      "mean_rating": 2.1
+     },
+     "colour_accuracy": {
+      "mentions": 12,
+      "pct_of_reviews": 9,
+      "pct_positive": 58,
+      "pct_negative": 42,
+      "pct_mixed": 0,
+      "mean_rating": 3.2
+     },
+     "quality_durability": {
+      "mentions": 44,
+      "pct_of_reviews": 34,
+      "pct_positive": 20,
+      "pct_negative": 66,
+      "pct_mixed": 14,
+      "mean_rating": 2.2
+     },
+     "comfort": {
+      "mentions": 17,
+      "pct_of_reviews": 13,
+      "pct_positive": 59,
+      "pct_negative": 29,
+      "pct_mixed": 12,
+      "mean_rating": 3.5
+     },
+     "delivery_packaging": {
+      "mentions": 19,
+      "pct_of_reviews": 15,
+      "pct_positive": 26,
+      "pct_negative": 68,
+      "pct_mixed": 5,
+      "mean_rating": 2.3
+     }
+    }
+   },
+   "template": "Fit and size: 37 reviews mention it; 49% are positive and 38% negative. Of 21 reviews that say how it fits, 33% say it runs small, 48% large and 19% true to size. Fabric and material: 18 reviews mention it; 17% are positive and 67% negative. Colour: 12 reviews mention it; 58% are positive and 42% negative. Quality and durability: 44 reviews mention it; 20% are positive and 66% negative. Comfort: 17 reviews mention it; 59% are positive and 29% negative. Delivery and packaging: 19 reviews mention it; 26% are positive and 68% negative.",
+   "summary": "Fit and size: 37 reviews mention it, with 29% positive, 14% mixed, 38% negative, and an average rating of 3.1 stars. Fabric and material: 18 reviews mention it, with 17% positive, 17% mixed, and 67% negative, and an average rating of 2.1 stars. Colour: 12 reviews mention it, with 58% positive, 0% mixed, and 42% negative, and an average rating of 3.2 stars. Quality and durability: 44 reviews mention it, with 20% positive, 14% mixed, and 66% negative, and an average rating of 2.2 stars. Comfort: 17 reviews mention it, with 59% positive, 12% mixed, and 29% negative, and an average rating of 3.5 stars. Delivery and packaging: 19 reviews mention it, with 26% positive, 5% mixed, and 68% negative, and an average rating of 2.3 stars.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  },
+  "B0BYCZ2W78": {
+   "title": "DEVOPS Men's 2 Pack UPF 50+ Sun Protection Long Sleeve Dri Fit Fishing Hiking Running Workout T-Shirts",
+   "facts": {
+    "item_id": "B0BYCZ2W78",
+    "n_reviews": 300,
+    "aspects": {
+     "fit_size": {
+      "mentions": 169,
+      "pct_of_reviews": 56,
+      "pct_positive": 86,
+      "pct_negative": 8,
+      "pct_mixed": 5,
+      "mean_rating": 4.5,
+      "fit": {
+       "runs_small": 16,
+       "runs_large": 23,
+       "true_to_size": 35,
+       "with_direction": 74,
+       "pct_runs_small": 22,
+       "pct_runs_large": 31,
+       "pct_true_to_size": 47
+      }
+     },
+     "fabric_material": {
+      "mentions": 56,
+      "pct_of_reviews": 19,
+      "pct_positive": 86,
+      "pct_negative": 12,
+      "pct_mixed": 2,
+      "mean_rating": 4.3
+     },
+     "colour_accuracy": {
+      "mentions": 41,
+      "pct_of_reviews": 14,
+      "pct_positive": 88,
+      "pct_negative": 7,
+      "pct_mixed": 5,
+      "mean_rating": 4.6
+     },
+     "quality_durability": {
+      "mentions": 42,
+      "pct_of_reviews": 14,
+      "pct_positive": 74,
+      "pct_negative": 24,
+      "pct_mixed": 2,
+      "mean_rating": 4.0
+     },
+     "comfort": {
+      "mentions": 115,
+      "pct_of_reviews": 38,
+      "pct_positive": 93,
+      "pct_negative": 5,
+      "pct_mixed": 2,
+      "mean_rating": 4.7
+     },
+     "delivery_packaging": {
+      "mentions": 35,
+      "pct_of_reviews": 12,
+      "pct_positive": 77,
+      "pct_negative": 14,
+      "pct_mixed": 9,
+      "mean_rating": 4.2
+     }
+    }
+   },
+   "template": "Fit and size: 169 reviews mention it; 86% are positive and 8% negative. Of 74 reviews that say how it fits, 22% say it runs small, 31% large and 47% true to size. Fabric and material: 56 reviews mention it; 86% are positive and 12% negative. Colour: 41 reviews mention it; 88% are positive and 7% negative. Quality and durability: 42 reviews mention it; 74% are positive and 24% negative. Comfort: 115 reviews mention it; 93% are positive and 5% negative. Delivery and packaging: 35 reviews mention it; 77% are positive and 14% negative.",
+   "summary": "Fit and size: The shirt runs true to size for 47% of reviewers, while 22% run small and 31% run large. Fabric and material: The fabric material is generally well-received, with 86% of reviewers giving it 4.3-star ratings. Colour: Colour accuracy is generally accurate, with 88% of reviewers giving it 4.6-star ratings. Quality and durability: The quality and durability of the shirt are generally positive, with 74% of reviewers giving it 4.0-star ratings. Comfort: The shirt is very comfortable, with 93% of reviewers giving it 4.7-star ratings. Delivery and packaging: The delivery packaging is generally positive, with 77% of reviewers giving it 4.2-star ratings.",
+   "source": "llm",
+   "bad_aspects": [],
+   "bad_numbers": []
+  }
+ }
+}

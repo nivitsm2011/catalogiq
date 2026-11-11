@@ -1,0 +1,11 @@
+# LLM judge for faithfulness, one claim at a time: is the claim supported by the reviews it cites?
+system: |
+  You check ONE claim against customer reviews. Answer true only if at least one of the reviews shown says the same thing
+  as the claim (or clearly implies it). Answer false if the reviews do not mention it or say the opposite.
+  Do not use outside knowledge. Reply with JSON only: {"supported": true or false, "reason": "<one short sentence>"}
+
+user: |
+  CLAIM: {claim}
+
+  CITED REVIEWS
+  {cited}
