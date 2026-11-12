@@ -1,0 +1,119 @@
+{
+ "n_listings": 6339,
+ "pct_with_any_issue": 8.313614134721565,
+ "pct_needs_attention": 4.117368670137245,
+ "score_mean": 98.66682442025557,
+ "score_percentiles": {
+  "5": 90.0,
+  "25": 100.0,
+  "50": 100.0,
+  "75": 100.0,
+  "95": 100.0
+ },
+ "issue_counts": {
+  "text_or_watermark": 171,
+  "blurry": 104,
+  "overexposed": 84,
+  "cluttered_background": 64,
+  "mismatch_baseColour": 63,
+  "mismatch_articleType": 55,
+  "mismatch_gender": 44,
+  "too_dark": 3
+ },
+ "by_master_category": {
+  "Accessories": {
+   "n": 1580,
+   "pct_with_issue": 12.09,
+   "mean_score": 98.05
+  },
+  "Apparel": {
+   "n": 3107,
+   "pct_with_issue": 8.11,
+   "mean_score": 98.81
+  },
+  "Footwear": {
+   "n": 1375,
+   "pct_with_issue": 3.93,
+   "mean_score": 99.17
+  },
+  "Personal Care": {
+   "n": 277,
+   "pct_with_issue": 10.83,
+   "mean_score": 98.1
+  }
+ },
+ "by_group": {
+  "accessories": {
+   "n": 233,
+   "pct_with_issue": 7.3,
+   "mean_score": 98.54
+  },
+  "bags_wallets": {
+   "n": 557,
+   "pct_with_issue": 5.92,
+   "mean_score": 99.03
+  },
+  "beauty": {
+   "n": 277,
+   "pct_with_issue": 10.83,
+   "mean_score": 98.1
+  },
+  "bottomwear": {
+   "n": 372,
+   "pct_with_issue": 2.69,
+   "mean_score": 99.44
+  },
+  "dresses_ethnic": {
+   "n": 496,
+   "pct_with_issue": 3.43,
+   "mean_score": 99.35
+  },
+  "eyewear": {
+   "n": 162,
+   "pct_with_issue": 0.0,
+   "mean_score": 100.0
+  },
+  "footwear": {
+   "n": 1375,
+   "pct_with_issue": 3.93,
+   "mean_score": 99.17
+  },
+  "innerwear_socks": {
+   "n": 410,
+   "pct_with_issue": 14.88,
+   "mean_score": 97.84
+  },
+  "jewellery": {
+   "n": 146,
+   "pct_with_issue": 46.58,
+   "mean_score": 91.36
+  },
+  "topwear": {
+   "n": 1930,
+   "pct_with_issue": 9.02,
+   "mean_score": 98.71
+  },
+  "watches": {
+   "n": 381,
+   "pct_with_issue": 16.54,
+   "mean_score": 98.09
+  }
+ },
+ "thresholds": {
+  "image": {
+   "blur_min_laplacian_var": 259.4879,
+   "dark_max_mean_luma": 117.6396,
+   "bright_min_p5_luma": 230.8,
+   "min_short_side_px": 48,
+   "aspect_min": 0.55,
+   "aspect_max": 1.45,
+   "clutter_max_corner_std": 37.4095,
+   "text_min_clip_margin": 1.5686
+  },
+  "consistency": {
+   "min_conf": 0.9,
+   "margin": 0.4,
+   "mode": "and"
+  }
+ }
+}

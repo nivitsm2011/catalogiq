@@ -1,0 +1,37 @@
+{
+ "blur_min_laplacian_var": {
+  "threshold": 259.4879,
+  "recall_val": 1.0,
+  "fpr_val": 0.028,
+  "n_pos": 1560,
+  "n_neg": 898
+ },
+ "dark_max_mean_luma": {
+  "threshold": 117.6396,
+  "recall_val": 1.0,
+  "fpr_val": 0.001,
+  "n_pos": 1560,
+  "n_neg": 898
+ },
+ "bright_min_p5_luma": {
+  "threshold": 230.8,
+  "recall_val": 0.126,
+  "fpr_val": 0.028,
+  "n_pos": 1560,
+  "n_neg": 898
+ },
+ "clutter_max_corner_std": {
+  "threshold": 37.4095,
+  "recall_val": 0.413,
+  "fpr_val": 0.029,
+  "n_pos": 782,
+  "n_neg": 898
+ },
+ "text_min_clip_margin": {
+  "threshold": 1.5686,
+  "recall_val": 0.591,
+  "fpr_val": 0.029,
+  "n_pos": 780,
+  "n_neg": 898
+ }
+}

@@ -1,0 +1,7 @@
+{
+ "blur_min_laplacian_var": 259.4879,
+ "dark_max_mean_luma": 117.6396,
+ "bright_min_p5_luma": 230.8,
+ "clutter_max_corner_std": 37.4095,
+ "text_min_clip_margin": 1.5686
+}

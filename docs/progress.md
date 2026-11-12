@@ -149,7 +149,7 @@
 - Phase 4 commit is pushed to GitHub (`89e743a`).
 
 
-## Phase 5 - Shopper Q&A over reviews (complete; commit not yet pushed)
+## Phase 5 - Shopper Q&A over reviews (complete, pushed: `c16e398`)
 
 **Done**
 - Index: 139,400 reviews -> 166,607 chunks (short reviews whole, long ones in 3-sentence windows, <= 700 characters) with review id, product,
@@ -190,3 +190,38 @@
   label missed the other review's "fancy box". Next: require the question's key noun in a cited review; say "2 reviews" not "most".
 - Answered questions take about 39 s on CPU: too slow for live use without caching, a faster model or a GPU.
 - The Phase 3 duplicate labels are still AI-provisional.
+
+
+## Phase 6 - Catalog quality checker (complete; commit not yet pushed)
+
+**Done**
+- Image checks with OpenCV (`quality/image_checks.py`): blur, darkness, washed-out exposure, resolution, aspect ratio, corner-based background clutter;
+  text/watermark by CLIP zero-shot (`clip_checks.py`) after a blob heuristic failed. Thresholds tuned on validation (max recall at <= 3% of clean photos flagged).
+- Degraded-copy generator (`degrade.py`): blur, dark, washed-out, shrunk, stretched (3 levels each), cluttered, text/watermark.
+- Consistency (`consistency.py`): Phase 2 classifier AND CLIP zero-shot for colour, product type, gender; 300 injected mismatches per split, tuned on validation, reported on test.
+- Completeness (`completeness.py`), 0-100 score with fixes (`score.py`), batch report over the 6,339 test listings (`scripts/run_quality_report.py` ->
+  `reports/phase6/quality_report.csv` + `quality_summary.json`).
+- `notebooks/06_quality_checker.ipynb`, `docs/model_card_quality_checker.md`, 13 new tests (`tests/test_quality.py`); 92 tests in total, all passing; ruff and black clean.
+
+**Metrics** (test split)
+| Metric | Value |
+|---|---|
+| Blurry: recall / precision / clean photos flagged | 0.999 / 0.42 / 2.4% |
+| Too dark | 1.00 / 0.90 / 0.2% |
+| Overexposed | 0.115 / 0.65 / 1.2% |
+| Cluttered background | 0.45 / 0.75 / 1.0% |
+| Text or watermark (CLIP; blob heuristic about 1% recall) | 0.60 / 0.39 / 2.6% |
+| Low resolution / bad aspect ratio | 1.00 / 0.67 and 1.00 / 1.00 |
+| Consistency, 300 injected: overall precision / recall | 0.47 / 0.48 (colour F1 0.23, type 0.53, gender 0.63) |
+| Consistency, manual review of 24 untouched flagged listings | 12 likely catalog errors, 12 ambiguous, 0 clearly correct |
+| Completeness: catalog / injected gaps found | 100% / 300 of 300 |
+| Score: clean photo mean / AUC real-defect copies vs clean | 99.1 / 0.925 |
+| Batch: listings with a flag / score below 85 / mean score | 8.3% / 4.1% / 98.7 |
+
+**Open issues / risks**
+- Jewellery (46.6% flagged: tiny items on white read as overexposed and blurry) and watches (14% text flags) are over-flagged; per-category thresholds are needed.
+- Overexposure is nearly undetectable (recall 0.115); blur also fires on dark and washed-out photos (contrast dependence).
+- All catalog photos are 60x80 studio shots: the phone-photo gap is unmeasured, defect recall comes from our own degraded copies, and only 2 of 120 natural photos had a defect.
+- All Phase 6 labels are the AI assistant's (owner's choice), so they are provisional.
+- Score weights are judgement, not fitted to outcomes. Colour mismatch detection is weak (F1 0.23).
+

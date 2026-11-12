@@ -1,0 +1,25 @@
+id,attribute,stated,classifier,clf_conf,clip_best,clip_margin,row,n,review_verdict
+57496,articleType,Casual Shoes,Formal Shoes,0.9750970602035522,Formal Shoes,0.958858609199524,5215,1,ambiguous_boundary
+40161,articleType,Capris,Shorts,0.9737155437469482,Shorts,0.854409396648407,3118,2,ambiguous_boundary
+9116,articleType,Casual Shoes,Sports Shoes,0.980789840221405,Sports Shoes,0.9568217396736144,904,3,likely_label_error
+45799,articleType,Flats,Heels,0.9433944821357728,Heels,0.4488664865493774,2138,4,likely_label_error
+2667,articleType,Handbags,Clutches,0.979239821434021,Clutches,0.4211935997009277,2941,5,likely_label_error
+36466,articleType,Casual Shoes,Sports Shoes,0.9673434495925904,Sports Shoes,0.9796093106269836,1849,6,likely_label_error
+26934,articleType,Dresses,Tops,0.9127625226974488,Tunics,0.5554673075675964,359,7,ambiguous_boundary
+42985,articleType,Sports Shoes,Casual Shoes,0.954215407371521,Casual Shoes,0.5901402831077576,5309,8,ambiguous_boundary
+55608,baseColour,White,Red,0.95880126953125,Red,0.982180655002594,3661,9,likely_label_error
+14993,baseColour,Grey,Blue,0.9586489796638488,Blue,0.8373132348060608,4845,10,ambiguous_boundary
+34514,baseColour,Black,Blue,0.9796781539916992,Blue,0.986842691898346,4074,11,ambiguous_boundary
+38041,baseColour,Blue,Black,0.9277654886245728,Black,0.8002440929412842,5581,12,ambiguous_boundary
+8100,baseColour,Black,Grey,0.9451982378959656,Grey,0.8788796663284302,5971,13,likely_label_error
+19100,baseColour,Yellow,Orange,0.973392367362976,Brown,0.6136793494224548,2610,14,likely_label_error
+56971,baseColour,White,Black,0.9401623606681824,Black,0.9629957675933838,4948,15,likely_label_error
+11991,baseColour,Grey,Blue,0.9409166574478148,Blue,0.9648222923278807,3109,16,likely_label_error
+13324,gender,Men,Boys,0.9404923915863036,Boys,0.5468505024909973,4983,17,ambiguous_boundary
+13338,gender,Men,Boys,0.9746325612068176,Boys,0.4976811408996582,3982,18,ambiguous_boundary
+31208,gender,Men,Women,0.9249781966209412,Girls,0.4128758609294891,4614,19,ambiguous_boundary
+4570,gender,Women,Men,0.9046566486358644,Men,0.9461616277694702,326,20,ambiguous_boundary
+13337,gender,Men,Boys,0.9746325612068176,Boys,0.4976811408996582,4425,21,ambiguous_boundary
+4927,gender,Women,Girls,0.9438412189483644,Girls,0.8810346722602844,740,22,likely_label_error
+27223,gender,Women,Girls,0.9900599718093872,Girls,0.5720915794372559,340,23,likely_label_error
+17802,gender,Women,Girls,0.9979090690612792,Girls,0.9052347540855408,5884,24,likely_label_error

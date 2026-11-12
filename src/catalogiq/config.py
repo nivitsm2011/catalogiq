@@ -63,3 +63,9 @@ def get_rag_config() -> dict[str, Any]:
 def get_qa_config() -> dict[str, Any]:
     """Return the ``qa`` section of ``configs/qa.yaml`` (Phase 5 settings)."""
     return load_config(PROJECT_ROOT / "configs" / "qa.yaml")["qa"]
+
+
+@cache
+def get_quality_config() -> dict[str, Any]:
+    """Return the ``quality`` section of ``configs/quality.yaml`` (Phase 6 settings)."""
+    return load_config(PROJECT_ROOT / "configs" / "quality.yaml")["quality"]

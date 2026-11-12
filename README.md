@@ -3,7 +3,7 @@
 An AI copilot for e-commerce marketplaces: it helps small sellers create better listings, helps shoppers
 get grounded answers, and helps catalog teams monitor quality. Runs fully locally on CPU.
 
-> Status: Phase 5 complete (shopper Q&A over reviews). Full README coming as features land.
+> Status: Phase 6 complete (catalog quality checker). Full README coming as features land.
 
 See [CLAUDE.md](CLAUDE.md) for the project brief, [docs/progress.md](docs/progress.md) for status and
 [docs/decisions.md](docs/decisions.md) for design decisions.
@@ -106,3 +106,23 @@ from catalogiq.rag.qa import ReviewQA
 Answers cite review ids, and the system says "Not enough reviews mention this." when fewer than 2 reviews support an answer. On 60 test
 questions it refused 14 of 15 unanswerable ones and also refused 31% of answerable ones; cited review ids were never invented. Details and
 limits: [docs/model_card_review_qa.md](docs/model_card_review_qa.md), [notebooks/05_review_qa.ipynb](notebooks/05_review_qa.ipynb).
+
+## Catalog quality checker (Phase 6)
+
+```powershell
+.\.venv\Scripts\python.exe scripts/tune_quality_thresholds.py   # tune image-check thresholds on the validation split
+.\.venv\Scripts\python.exe scripts/evaluate_consistency.py      # inject 300 mismatches, tune on val, report on test
+.\.venv\Scripts\python.exe scripts/evaluate_image_checks.py     # 500 clean + 8,500 degraded test photos (about 20 min on CPU)
+.\.venv\Scripts\python.exe scripts/run_quality_report.py        # whole test catalog -> reports/phase6/quality_report.csv
+```
+
+```python
+from catalogiq.quality.image_checks import check_image
+from catalogiq.quality.score import listing_score
+res = check_image(photo_rgb_uint8)                   # {"metrics", "flags", "issues"}
+listing_score(res["issues"], mismatches=[], completeness_pct=100.0, missing=[])   # score 0-100, flags with fixes
+```
+
+Every listing gets a 0-100 score and a plain-English fix per flag. On the 6,339 test listings 8.3% carry a flag and 4.1% score below 85; photo-listing
+mismatch detection finds about half of 300 injected errors (precision 0.47, a lower bound); jewellery and watches are over-flagged by global thresholds.
+Details and limits: [docs/model_card_quality_checker.md](docs/model_card_quality_checker.md), [notebooks/06_quality_checker.ipynb](notebooks/06_quality_checker.ipynb).

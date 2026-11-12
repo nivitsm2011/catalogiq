@@ -1,0 +1,81 @@
+# Phase 6: catalog quality checker (image checks, image-text consistency, completeness, score, batch report).
+quality:
+  seed: 42
+
+  paths:
+    image_cache: data/interim/images_u8.npy        # (N, 80, 60, 3) uint8, aligned with images_index.parquet
+    image_index: data/interim/images_index.parquet
+    eval_dir: reports/phase6
+    thresholds: reports/phase6/thresholds.json     # tuned values; override the defaults below when present
+    consistency_thresholds: reports/phase6/consistency_thresholds.json
+    classifier_probs_dir: data/interim/quality_clf_probs   # cached classifier probabilities per split
+    image_labels: reports/phase6/image_labels.csv  # AI-assigned (provisional) labels of the natural sample
+    label_sheets_dir: reports/phase6/label_sheets
+    batch_csv: reports/phase6/quality_report.csv
+    batch_summary: reports/phase6/quality_summary.json
+
+  image:
+    work_long_side: 80          # blur/text/edge measures are computed on this size so they do not depend on photo size
+    corner_frac: 0.2            # each corner patch is this fraction of the height/width; a clean background is plain in the corners
+    # DEFAULTS, overridden by reports/phase6/thresholds.json after scripts/tune_quality_thresholds.py
+    thresholds:
+      blur_min_laplacian_var: 60.0       # below this the photo is flagged "blurry"
+      dark_max_mean_luma: 90.0           # mean luminance below this: "too dark"
+      bright_min_p5_luma: 170.0          # even the darkest 5% of pixels above this: "washed out"
+      min_short_side_px: 48              # catalog photos are 60x80 thumbnails; a live marketplace would use >= 500
+      aspect_min: 0.55                   # width / height range accepted
+      aspect_max: 1.45
+      clutter_max_corner_std: 26.0       # median colour spread over the four corner patches
+      text_min_clip_margin: 3.0          # CLIP zero-shot score (text overlay vs clean photo); the blob heuristic is only a baseline
+    text_prompts: ["a product photo with text and watermark overlaid", "a clean product photo with no text"]
+
+  degrade:
+    # one degraded copy per (type, level) of each clean photo; level 0 is the mildest
+    blur_sigma: [0.8, 1.3, 2.0]
+    darken_factor: [0.6, 0.45, 0.3]
+    wash_blend: [0.5, 0.65, 0.8]         # blend with white
+    downscale_factor: [0.7, 0.5, 0.35]
+    stretch_aspect: [0.4, 1.8, 2.4]      # new width / height after squeezing or stretching
+    # a level counts as a real defect (positive) only from this index on; milder levels are reported but not scored
+    positive_from_level: {blur: 1, dark: 1, bright: 1, lowres: 1, aspect: 0, clutter: 0, text: 0}
+
+  consistency:
+    attributes: [baseColour, articleType, gender]
+    clip_prompts:
+      baseColour: "a product photo of a {value} coloured item"
+      articleType: "a product photo of {value}"
+      gender: "a product photo of an item for {value}"
+    # DEFAULTS, tuned on the validation split
+    min_classifier_conf: 0.8             # classifier must be this sure that the stated value is wrong
+    clip_min_alt_margin: 0.25            # CLIP probability of the best alternative minus the stated value
+    n_injected: 300                      # 100 per attribute
+    # colour families that look alike are not counted as a mismatch (Blue vs Navy are one family already)
+    similar_colours: [[Beige, Brown], [Grey, Black], [Grey, White], [Pink, Red], [Orange, Yellow], [Gold, Yellow], [Gold, Brown], [Beige, White]]
+
+  completeness:
+    always_required: [productDisplayName]    # on top of the category's required_attributes in configs/rag.yaml
+
+  score:
+    # transparent weights (sum to 100) and flag penalties (points off the component, which starts at 100)
+    weights: {image: 40, consistency: 35, completeness: 25}
+    image_penalty:
+      blurry: 40
+      too_dark: 40
+      overexposed: 30
+      low_resolution: 50
+      bad_aspect_ratio: 20
+      cluttered_background: 25
+      text_or_watermark: 25
+    consistency_penalty: {attribute_mismatch: 60}   # per mismatching attribute, capped at 100
+    issue_below: 85                      # a listing with a score below this is "needs attention"
+
+  fixes:
+    blurry: "Retake the photo with a steady hand or a tripod and tap to focus on the product."
+    too_dark: "Retake the photo in better light, for example near a window, and avoid dim rooms."
+    overexposed: "Retake the photo with less light or flash; the picture is washed out."
+    low_resolution: "Upload a larger photo (at least 500 pixels on the short side on a live marketplace)."
+    bad_aspect_ratio: "Use a portrait or square photo without stretching; crop instead of resizing."
+    cluttered_background: "Place the product on a plain white or neutral background."
+    text_or_watermark: "Remove text, logos or watermarks overlaid on the photo."
+    attribute_mismatch: "The photo does not match the listing ({detail}). Check the {attribute} or replace the photo."
+    missing_attributes: "Add the missing details: {detail}."
