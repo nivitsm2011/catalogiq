@@ -381,7 +381,7 @@ def render(results: dict[str, Any], notes: list[dict[str, str]] | None = None) -
             if results.get("run_commit") and results["run_commit"][:7] != g["short"]
             else ""
         )
-        "Produced by `python -m catalogiq.eval.run_all`; every table below was recomputed in that run unless the "
+        + "Produced by `python -m catalogiq.eval.run_all`; every table below was recomputed in that run unless the "
         "Provenance section says otherwise. Experiment `catalogiq-eval` in MLflow, tagged with the commit hash.",
         "## 1. Vision: product attributes from a photo (Phase 2)",
         _safe(lambda: _vision(comp["vision"])),
