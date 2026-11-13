@@ -15,7 +15,7 @@ switch ($Task) {
     }
     "test" { & $py -m pytest }
     "eval" { & $py -m catalogiq.eval.run_all @args }
-    "app" { & $py -m streamlit run app/main.py }
+    "app" { & $py -m streamlit run app/Home.py }
     "api" { & $py -m uvicorn api.main:app --reload }
     default { Write-Host "Usage: .\tasks.ps1 <setup|lint|test|app|api>" }
 }

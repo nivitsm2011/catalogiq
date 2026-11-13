@@ -27,6 +27,9 @@ class Flag:
     fix: str  # what the seller should do
 
 
+FRIENDLY = {"baseColour": "colour", "articleType": "product type", "gender": "gender"}
+
+
 def _fix(code: str, **kw: str) -> str:
     return get_quality_config()["fixes"][code].format(**kw)
 
@@ -48,7 +51,7 @@ def mismatch_flags(mismatches: list[dict[str, str]]) -> list[Flag]:
             f"{m['attribute']} listed as {m['stated']} but the photo looks like {m['seen']}",
             _fix(
                 "attribute_mismatch",
-                attribute=m["attribute"],
+                attribute=FRIENDLY.get(m["attribute"], m["attribute"]),
                 detail=f"listed {m['stated']}, photo looks like {m['seen']}",
             ),
         )

@@ -3,7 +3,7 @@
 An AI copilot for e-commerce marketplaces: it helps small sellers create better listings, helps shoppers
 get grounded answers, and helps catalog teams monitor quality. Runs fully locally on CPU.
 
-> Status: Phase 7 complete (unified evaluation and scorecard). Full README coming as features land.
+> Status: Phase 8 complete (FastAPI backend and Streamlit app). Full README coming as features land.
 
 See [CLAUDE.md](CLAUDE.md) for the project brief, [docs/progress.md](docs/progress.md) for status and
 [docs/decisions.md](docs/decisions.md) for design decisions.
@@ -139,3 +139,19 @@ the earlier phases recorded, a product-impact section whose assumptions are labe
 experiment `catalogiq-eval`, tagged with the git commit. To replace the placeholder time assumptions with your own, time 5 listings with
 `reports/phase7/listing_timing.html`, save the CSV as `reports/phase7/manual_listing_times.csv` and use `--render-only`.
 Limitations: [docs/limitations_and_risks.md](docs/limitations_and_risks.md).
+
+## API and app (Phase 8)
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn api.main:app --port 8000     # API, docs at http://127.0.0.1:8000/docs (models load in about 2 minutes)
+.\.venv\Scripts\python.exe -m streamlit run app/Home.py            # app at http://localhost:8501
+```
+
+Four pages: **Seller Studio** (photo -> editable attributes -> listing with fact check -> quality score with fix tips -> similar listings), **Shopper View** (search by words or
+photo, outfits, review Q&A with citations), **Catalog Ops** (quality KPIs, worst listings, duplicate queue) and **Model Card** (the scorecard). Demo mode (sidebar toggle) uses 10
+preloaded products whose listings and sample questions are cached, so they are instant; anything new runs the local model (seconds to a minute on CPU).
+API reference: [docs/api.md](docs/api.md). Screenshots: [docs/screenshots/](docs/screenshots/). Checks: `python -m scripts.e2e_smoke` clicks through every flow in headless Edge.
+
+| Seller Studio | Shopper View | Catalog Ops |
+|---|---|---|
+| ![Seller Studio](docs/screenshots/02_seller_studio_shirt.png) | ![Shopper View](docs/screenshots/04_shopper_search_and_outfit.png) | ![Catalog Ops](docs/screenshots/06_catalog_ops.png) |

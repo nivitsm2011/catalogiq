@@ -226,7 +226,7 @@
 - Score weights are judgement, not fitted to outcomes. Colour mismatch detection is weak (F1 0.23).
 
 
-## Phase 7 - Unified evaluation and scorecard (complete except the owner's timings)
+## Phase 7 - Unified evaluation and scorecard (complete except the owner's timings; commit `26dae74`)
 
 **Done**
 - `src/catalogiq/eval/run_all.py` (`python -m catalogiq.eval.run_all`, `.\tasks.ps1 eval`, `make eval`): re-runs the Phase 2-6 evaluations on their fixed
@@ -262,4 +262,34 @@
   `llama-server` process (peak RAM 2.3 GB before the fix, 5.1 GB after).
 - Search and baselines are re-scored from cached embeddings and cached baseline predictions (recomputing the 42,257 CLIP embeddings takes about 2 hours).
 - Phase 6 commit `e153db0` is not yet pushed to GitHub.
+
+
+## Phase 8 - FastAPI backend and Streamlit app (complete; commit not yet pushed)
+
+**Done**
+- **API** (`api/`, docs in `docs/api.md`, interactive docs at `/docs`): `POST /predict-attributes`, `/generate-listing`, `/search/image`, `GET /search/text`,
+  `POST /shop-the-look`, `/quality-check`, `/ask-reviews/{item_id}`, `GET /health`, `/metrics`, plus review products and aspect summaries, the ops summary and
+  duplicate queue (with persisted decisions), demo products, dropdown options, the catalog photos and the scorecard. Pydantic schemas, photo validation (JPEG/PNG/WebP,
+  at most 5 MB, real content checked), one error shape with readable messages, request logging with latency, in-memory request metrics, models loaded once at startup
+  (about 1.5-2 minutes) with a background warm-up of the lazy parts, `503 starting_up` until ready.
+- **App** (`app/`, run `.\tasks.ps1 app`): custom theme (`.streamlit/config.toml`), brand header and logo, animated KPI counters, Lottie loaders (three local animations made by
+  `scripts/make_lottie.py`), animated bars and rings, Plotly bar charts with a Replay animation, cards and chips instead of raw tables. Pages: **Seller Studio** (photo or camera or
+  demo product, editable attributes with confidence chips, listing with fact check, quality score with fix tips, similar listings, JSON/CSV download), **Shopper View**
+  (text or photo search with filters, product detail, shop-the-look, aspect summary bars, review Q&A chat with clickable citations), **Catalog Ops** (KPIs, issue charts,
+  worst listings with fixes, duplicate review queue with Merge / Keep both) and **Model Card** (the scorecard and an architecture diagram). Demo mode: 10 preloaded
+  products whose listings and sample questions are replayed from the LLM cache, so they are instant.
+- **Testing:** 25 API tests with `TestClient` and a fake state (`tests/test_api.py`); `scripts/e2e_smoke.py` drives a real headless Edge through every flow (12 checks, all pass,
+  including a new listing generated live by the local LLM after editing an attribute); 7 screenshots in `docs/screenshots/` taken with `scripts/take_screenshots.py`.
+  129 tests in total, all passing; ruff and black clean.
+
+**Measured against the running server** (this CPU): attributes about 1.4 s, text or image search about 0.4 s, outfit 0.7 s, quality check about 1 s, cached listing about 1 s,
+a new no-RAG listing about 15-30 s, a new answer about 40 s; startup 89-114 s.
+
+**Open issues / risks**
+- The photo catalog (Kaggle) and the reviews (Amazon) are different products, so the Shopper View shows review Q&A for a separate list of products (title only, no photo).
+- New listings and answers are slow on CPU (seconds to a minute); the UI says so and demo products are instant. Real-time use would need a faster model or a GPU.
+- Quality thresholds are tuned for 60x80 studio thumbnails; uploaded phone photos may behave differently (the page says so). The duplicate queue's threshold rests on AI-provisional labels.
+- The built-in browser pane of the desktop app was hidden during testing, so the click-through ran in headless Edge (DevTools protocol) instead; the camera widget was not tested with real hardware.
+- Streamlit and the API are single-user local servers: no authentication, no concurrency tuning, decisions in the duplicate queue are saved to a local JSON file.
+- Phases 6, 7 and 8 are committed locally but not pushed to GitHub.
 

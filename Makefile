@@ -17,7 +17,7 @@ eval:
 	$(PY) -m catalogiq.eval.run_all
 
 app:
-	$(PY) -m streamlit run app/main.py
+	$(PY) -m streamlit run app/Home.py
 
 api:
 	$(PY) -m uvicorn api.main:app --reload
