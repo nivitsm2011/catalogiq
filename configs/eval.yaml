@@ -1,0 +1,53 @@
+# Phase 7: unified evaluation (re-run every component on its fixed test set, scorecard, drift check).
+eval:
+  experiment: catalogiq-eval
+  seed: 42
+
+  paths:
+    out_dir: reports/phase7
+    scorecard: reports/scorecard.md
+    results: reports/phase7/eval_results.json
+    drift: reports/phase7/drift.csv
+    reference: configs/eval_reference.yaml
+    limitations: docs/limitations_and_risks.md
+    timings: reports/phase7/manual_listing_times.csv   # the owner's timings of manual listings (see scripts/make_timing_sheet.py)
+    qa_regen_dir: reports/phase7/regen_qa              # Phase 5 answers regenerated through the LLM cache
+    rag_regen_dir: reports/phase7/regen_rag            # Phase 4 listings regenerated through the LLM cache
+    logs_dir: reports/phase7/logs
+
+  fixed_sets:
+    # what "fixed test set" means for each component (documented in the scorecard)
+    vision: "Phase 1 test split, 6,339 photos (group-aware split, seed 42)"
+    search: "1,995 test photos as queries against the 35,918-photo train+val gallery (seed 42); 300 attribute text queries"
+    listing: "50 held-out test products stratified by category group (seed 42), seller note = brand only"
+    qa: "60 questions on 20 products (45 answerable, 15 unanswerable), configs/qa_test_questions.yaml"
+    quality: "500 clean test photos + 8,500 degraded copies (seed 43); 300 injected mismatches in the 6,339 test listings (seed 49)"
+
+  duplicates:
+    labels_csv: reports/duplicate_labels_ai_provisional.csv   # the owner never supplied their own labels (Phase 3 open item)
+
+  # drift check: how far a re-run may move from what the earlier phases recorded
+  drift:
+    tolerance_abs: 0.0015        # numbers recorded to 3 decimals
+    tolerance_abs_2dp: 0.006     # numbers recorded to 2 decimals
+    tolerance_rel_timing: 0.5    # wall-clock timings depend on the machine state
+
+  system:
+    n_photos: 5                  # test photos pushed through photo -> full listing with an UNCACHED LLM
+    modes:                       # (use_rag, self_correct)
+      no_rag: [false, false]
+      rag_with_rewrite: [true, true]
+    sample_interval_s: 0.5       # RAM sampling interval
+    ollama_models_dir: "~/.ollama/models"
+    budget_gb: 5.0               # project footprint budget from CLAUDE.md
+
+  impact:
+    # Every value below is an ASSUMPTION unless the owner's timings file exists. They are labelled as
+    # such in the scorecard and never presented as results.
+    assumptions:
+      manual_minutes_per_listing: 12.0        # ASSUMPTION until the owner times 5 manual listings
+      review_minutes_per_generated_listing: 3.0   # ASSUMPTION: a seller reads and fixes the draft
+      ops_review_minutes_per_flagged_listing: 2.0 # ASSUMPTION: catalog team looks at one flagged listing
+      ops_review_minutes_per_listing_unscreened: 0.5  # ASSUMPTION: manual spot check of every listing
+      listings_per_month: 10000               # ASSUMPTION: illustrative marketplace size
+      hourly_cost: 10.0                       # ASSUMPTION: illustrative labour cost per hour (any currency)

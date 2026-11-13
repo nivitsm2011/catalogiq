@@ -1,0 +1,88 @@
+# Numbers the earlier phases recorded in docs/progress.md (and the notebooks / model cards), used by the Phase 7 drift check.
+# Each entry: value, tol (abs | abs2 for numbers recorded to 2 decimals | timing), source.
+# Keys are the metric names written by src/catalogiq/eval/components.py.
+reference:
+  # ---- Phase 2: vision (test split, 6,339 photos)
+  vision.masterCategory.macro_f1: {value: 0.990, tol: abs, source: "progress.md Phase 2"}
+  vision.subCategory.macro_f1: {value: 0.922, tol: abs, source: "progress.md Phase 2"}
+  vision.articleType.macro_f1: {value: 0.806, tol: abs, source: "progress.md Phase 2"}
+  vision.baseColour.macro_f1: {value: 0.582, tol: abs, source: "progress.md Phase 2"}
+  vision.gender.macro_f1: {value: 0.747, tol: abs, source: "progress.md Phase 2"}
+  vision.season.macro_f1: {value: 0.714, tol: abs, source: "progress.md Phase 2"}
+  vision.usage.macro_f1: {value: 0.639, tol: abs, source: "progress.md Phase 2"}
+  vision.mean.macro_f1: {value: 0.771, tol: abs, source: "progress.md Phase 2"}
+  vision.articleType.accuracy: {value: 0.857, tol: abs, source: "progress.md Phase 2"}
+  vision.baseColour.accuracy: {value: 0.675, tol: abs, source: "progress.md Phase 2"}
+  vision.logreg.mean.macro_f1: {value: 0.725, tol: abs, source: "progress.md Phase 2"}
+  vision.clip_zero_shot.mean.macro_f1: {value: 0.569, tol: abs, source: "progress.md Phase 2"}
+  vision.baseColour.coverage: {value: 0.40, tol: abs2, source: "progress.md Phase 2 open issues (40%)"}
+  vision.season.coverage: {value: 0.29, tol: abs2, source: "progress.md Phase 2 open issues (29%)"}
+  vision.latency_mean_ms: {value: 18.7, tol: timing, source: "progress.md Phase 2"}
+  vision.latency_p95_ms: {value: 22.2, tol: timing, source: "progress.md Phase 2"}
+
+  # ---- Phase 3: visual search and duplicates
+  search.clip.recall@5: {value: 0.823, tol: abs, source: "progress.md Phase 3"}
+  search.clip.recall@10: {value: 0.890, tol: abs, source: "progress.md Phase 3"}
+  search.clip.precision@10: {value: 0.418, tol: abs, source: "progress.md Phase 3"}
+  search.clip.map@10: {value: 0.309, tol: abs, source: "progress.md Phase 3"}
+  search.clf_features.recall@10: {value: 0.854, tol: abs, source: "progress.md Phase 3"}
+  search.frozen.recall@10: {value: 0.796, tol: abs, source: "progress.md Phase 3"}
+  search.text.recall@10: {value: 0.887, tol: abs, source: "progress.md Phase 3"}
+  search.text.map@10: {value: 0.372, tol: abs, source: "progress.md Phase 3"}
+  search.vector_search_ms: {value: 8.2, tol: timing, source: "progress.md Phase 3"}
+  search.clip_encode_image_ms: {value: 60.0, tol: timing, source: "progress.md Phase 3"}
+  duplicates.threshold: {value: 0.975, tol: abs, source: "progress.md Phase 3 (AI-provisional labels)"}
+  duplicates.precision: {value: 1.0, tol: abs, source: "progress.md Phase 3 (AI-provisional labels)"}
+  duplicates.recall: {value: 0.22, tol: abs2, source: "progress.md Phase 3 (AI-provisional labels)"}
+
+  # ---- Phase 4: listing RAG (50 products, four arms)
+  listing.no_rag.hallucination_rate: {value: 0.02, tol: abs2, source: "progress.md Phase 4"}
+  listing.rag.hallucination_rate: {value: 0.70, tol: abs2, source: "progress.md Phase 4"}
+  listing.no_rag_fix.hallucination_rate: {value: 0.00, tol: abs2, source: "progress.md Phase 4"}
+  listing.rag_fix.hallucination_rate: {value: 0.40, tol: abs2, source: "progress.md Phase 4"}
+  listing.no_rag.banned_rate: {value: 0.14, tol: abs2, source: "progress.md Phase 4"}
+  listing.rag.banned_rate: {value: 0.70, tol: abs2, source: "progress.md Phase 4"}
+  listing.no_rag.style_compliance: {value: 0.00, tol: abs2, source: "progress.md Phase 4"}
+  listing.rag.style_compliance: {value: 0.02, tol: abs2, source: "progress.md Phase 4"}
+  listing.rag_fix.style_compliance: {value: 0.16, tol: abs2, source: "progress.md Phase 4"}
+  listing.no_rag.judge_clarity: {value: 3.32, tol: abs2, source: "progress.md Phase 4"}
+  listing.rag.judge_clarity: {value: 2.86, tol: abs2, source: "progress.md Phase 4"}
+  listing.no_rag.judge_accuracy: {value: 3.70, tol: abs2, source: "progress.md Phase 4"}
+  listing.rag.judge_accuracy: {value: 4.26, tol: abs2, source: "progress.md Phase 4"}
+  listing.rag.retrieval_hit_rate: {value: 0.96, tol: abs2, source: "progress.md Phase 4"}
+  listing.no_rag.latency_mean_s: {value: 12.8, tol: timing, source: "progress.md Phase 4 (original generation time kept in the LLM cache)"}
+  listing.rag.latency_mean_s: {value: 43.8, tol: timing, source: "progress.md Phase 4 (original generation time kept in the LLM cache)"}
+
+  # ---- Phase 5: review Q&A (60 questions)
+  qa.retrieval.bm25.recall5: {value: 0.978, tol: abs, source: "progress.md Phase 5"}
+  qa.retrieval.vector.recall5: {value: 0.889, tol: abs, source: "progress.md Phase 5"}
+  qa.retrieval.hybrid_rerank.recall5: {value: 1.000, tol: abs, source: "progress.md Phase 5"}
+  qa.retrieval.hybrid_rerank.mrr: {value: 0.893, tol: abs, source: "progress.md Phase 5"}
+  qa.correct_refusal_rate: {value: 0.933, tol: abs, source: "progress.md Phase 5"}
+  qa.false_refusal_rate: {value: 0.311, tol: abs, source: "progress.md Phase 5"}
+  qa.citation_relevance: {value: 0.848, tol: abs, source: "progress.md Phase 5"}
+  qa.citation_validity: {value: 1.0, tol: abs, source: "progress.md Phase 5 (0 of 99 invalid)"}
+  qa.faithful_answers: {value: 0.406, tol: abs, source: "progress.md Phase 5 (LLM judge, lower bound)"}
+  qa.claim_support_rate: {value: 0.567, tol: abs, source: "progress.md Phase 5"}
+  qa.handcheck_agreement: {value: 0.60, tol: abs2, source: "progress.md Phase 5 (owner hand-check, n=15)"}
+  qa.latency_answered_s: {value: 38.5, tol: timing, source: "progress.md Phase 5 (original generation time kept in the LLM cache)"}
+
+  # ---- Phase 6: quality checker
+  quality.blurry.recall: {value: 0.999, tol: abs, source: "progress.md Phase 6"}
+  quality.blurry.precision: {value: 0.423, tol: abs, source: "progress.md Phase 6"}
+  quality.too_dark.recall: {value: 1.000, tol: abs, source: "progress.md Phase 6"}
+  quality.too_dark.precision: {value: 0.899, tol: abs, source: "progress.md Phase 6"}
+  quality.overexposed.recall: {value: 0.115, tol: abs, source: "progress.md Phase 6"}
+  quality.cluttered_background.recall: {value: 0.452, tol: abs, source: "progress.md Phase 6"}
+  quality.cluttered_background.precision: {value: 0.746, tol: abs, source: "progress.md Phase 6"}
+  quality.text_or_watermark.recall: {value: 0.604, tol: abs, source: "progress.md Phase 6"}
+  quality.text_or_watermark.precision: {value: 0.387, tol: abs, source: "progress.md Phase 6"}
+  quality.low_resolution.recall: {value: 1.000, tol: abs, source: "progress.md Phase 6"}
+  quality.bad_aspect_ratio.recall: {value: 1.000, tol: abs, source: "progress.md Phase 6"}
+  consistency.overall.precision: {value: 0.472, tol: abs, source: "progress.md Phase 6"}
+  consistency.overall.recall: {value: 0.477, tol: abs, source: "progress.md Phase 6"}
+  consistency.baseColour.f1: {value: 0.23, tol: abs2, source: "progress.md Phase 6"}
+  consistency.articleType.f1: {value: 0.53, tol: abs2, source: "progress.md Phase 6"}
+  consistency.gender.f1: {value: 0.63, tol: abs2, source: "progress.md Phase 6"}
+  quality.batch.pct_with_any_issue: {value: 8.3, tol: 0.06, source: "progress.md Phase 6"}
+  quality.batch.pct_needs_attention: {value: 4.1, tol: 0.06, source: "progress.md Phase 6"}

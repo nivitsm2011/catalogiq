@@ -69,3 +69,9 @@ def get_qa_config() -> dict[str, Any]:
 def get_quality_config() -> dict[str, Any]:
     """Return the ``quality`` section of ``configs/quality.yaml`` (Phase 6 settings)."""
     return load_config(PROJECT_ROOT / "configs" / "quality.yaml")["quality"]
+
+
+@cache
+def get_eval_config() -> dict[str, Any]:
+    """Return the ``eval`` section of ``configs/eval.yaml`` (Phase 7 settings)."""
+    return load_config(PROJECT_ROOT / "configs" / "eval.yaml")["eval"]

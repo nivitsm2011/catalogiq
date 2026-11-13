@@ -13,10 +13,13 @@ lint:
 test:
 	$(PY) -m pytest
 
+eval:
+	$(PY) -m catalogiq.eval.run_all
+
 app:
 	$(PY) -m streamlit run app/main.py
 
 api:
 	$(PY) -m uvicorn api.main:app --reload
 
-.PHONY: setup lint test app api
+.PHONY: setup lint test eval app api
