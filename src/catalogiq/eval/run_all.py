@@ -17,6 +17,7 @@ import argparse
 import datetime as dt
 import json
 import math
+import os
 import time
 from typing import Any
 
@@ -124,6 +125,8 @@ def run_all(
     set_seed(cfg["seed"])
     common.LLM_CALL_BUDGET["max_calls"] = allow_llm_calls
     names = [n for n in ORDER if only is None or n in only]
+    # MLflow >= 3.16 needs an explicit opt-in for the local file store the brief asks for
+    os.environ.setdefault("MLFLOW_ALLOW_FILE_STORE", "true")
     store = resolve_path(get_config()["paths"]["mlflow_tracking_dir"])
     store.mkdir(parents=True, exist_ok=True)
     mlflow.set_tracking_uri(store.as_uri())
