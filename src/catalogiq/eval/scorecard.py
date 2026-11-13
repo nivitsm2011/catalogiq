@@ -375,6 +375,12 @@ def render(results: dict[str, Any], notes: list[dict[str, str]] | None = None) -
     parts = [
         "# CatalogIQ scorecard",
         f"Generated {results['generated']} from commit `{g['short']}`{' (uncommitted changes present)' if g['dirty'] else ''}. "
+        + (
+            f"The evaluations ran on commit `{results['run_commit'][:7]}` plus working-tree fixes that were committed afterwards "
+            f"(search and the system test were re-run after two measuring bugs were fixed). "
+            if results.get("run_commit") and results["run_commit"][:7] != g["short"]
+            else ""
+        )
         "Produced by `python -m catalogiq.eval.run_all`; every table below was recomputed in that run unless the "
         "Provenance section says otherwise. Experiment `catalogiq-eval` in MLflow, tagged with the commit hash.",
         "## 1. Vision: product attributes from a photo (Phase 2)",
