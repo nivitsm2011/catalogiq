@@ -252,7 +252,6 @@ def _system(system: dict[str, Any], disk: dict[str, Any]) -> str:
     big = pd.DataFrame(
         [{"Largest items": k, "GB": v} for k, v in list(disk["large_items_gb"].items())[:6]]
     )
-    og = disk["ollama_models_gb"]
     return (
         f"Photo -> quality check -> attributes -> full listing (title, 5 bullets, description, tags), CPU only, on "
         f"{system['n_photos']} test photos per pipeline with an **uncached** LLM. Models were loaded once "
@@ -261,10 +260,19 @@ def _system(system: dict[str, Any], disk: dict[str, Any]) -> str:
         + f"\n\n**Peak RAM:** {ram['combined_mb'] / 1000:.1f} GB in total ({ram['python_mb'] / 1000:.1f} GB the Python process with "
         f"all models loaded + {ram['ollama_mb'] / 1000:.1f} GB the Ollama server holding the language model); the laptop has "
         f"{ram['machine_total_mb'] / 1000:.1f} GB.\n\n"
-        f"**Disk footprint:** project folder {disk['project_total_gb']:.2f} GB"
+        f"**Disk footprint:** the project folder is {disk['project_total_gb']:.2f} GB against a budget of {disk['budget_gb']:.0f} GB. "
+        f"The language model CatalogIQ uses (Ollama stores it outside the folder) adds {disk.get('ollama_used_gb', 0):.1f} GB, "
+        f"so the whole system is {disk.get('total_with_ollama_gb', disk['project_total_gb']):.2f} GB"
         + (
-            f" + Ollama models {og:.2f} GB (stored outside the folder) = {disk['total_with_ollama_gb']:.2f} GB"
-            if og == og
+            " (over the budget if the model is counted)"
+            if disk.get("total_with_ollama_gb", 0) > disk["budget_gb"]
+            else ""
+        )
+        + (
+            "; the Ollama store also holds other models that CatalogIQ does not use ("
+            + ", ".join(f"{m['name']} {m['gb']:.1f} GB" for m in disk.get("ollama_other", []))
+            + ")"
+            if disk.get("ollama_other")
             else ""
         )
         + f"; budget {disk['budget_gb']:.0f} GB.\n\n"

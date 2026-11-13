@@ -41,7 +41,7 @@ class RamSampler:
         total = 0
         for proc in psutil.process_iter(["name", "memory_info"]):
             name = (proc.info["name"] or "").lower()
-            if "ollama" in name and proc.info["memory_info"]:
+            if ("ollama" in name or "llama-server" in name) and proc.info["memory_info"]:
                 total += proc.info["memory_info"].rss
         return total
 
@@ -94,14 +94,34 @@ def disk_footprint() -> dict[str, Any]:
                 sub[f"{top}/{child.name}"] = size
     ollama = Path(cfg["ollama_models_dir"]).expanduser()
     ollama_gb = _dir_size(ollama) / GB if ollama.exists() else float("nan")
+    used, others = ollama_models()
     return {
         "project_total_gb": total_project,
         "parts_gb": parts,
         "large_items_gb": dict(sorted(sub.items(), key=lambda kv: -kv[1])),
         "ollama_models_gb": ollama_gb,
+        "ollama_used_gb": sum(m["gb"] for m in used),
+        "ollama_used": used,
+        "ollama_other": others,
         "budget_gb": cfg["budget_gb"],
-        "total_with_ollama_gb": total_project + (0.0 if np.isnan(ollama_gb) else ollama_gb),
+        "total_with_ollama_gb": total_project + sum(m["gb"] for m in used),
     }
+
+
+def ollama_models() -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+    """Models in the Ollama store: (used by CatalogIQ, other models that are not part of it)."""
+    wanted = get_config()["models"]["llm"]["model"]
+    out = subprocess.run(
+        ["ollama", "list"], capture_output=True, text=True, check=False, timeout=60
+    )
+    used, others = [], []
+    for line in out.stdout.splitlines()[1:]:
+        parts = line.split()
+        if len(parts) < 4:
+            continue
+        gb = float(parts[2]) / (1.0 if parts[3].upper() == "GB" else 1024.0)
+        (used if parts[0] == wanted else others).append({"name": parts[0], "gb": gb})
+    return used, others
 
 
 def _ensure_ollama() -> None:

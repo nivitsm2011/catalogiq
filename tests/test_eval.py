@@ -8,6 +8,7 @@ import pandas as pd
 import pytest
 
 from catalogiq.eval.common import ComponentResult, CountingClient, git_info, table_to_markdown
+from catalogiq.eval.components import text_row_key
 from catalogiq.eval.impact import ASSUMPTION, ILLUSTRATIVE, MEASURED, build_impact
 from catalogiq.eval.reference import drift_table, load_reference, tolerance
 from catalogiq.eval.run_all import _finite, _flat_metrics, _mlflow_name, result_to_dict
@@ -162,3 +163,13 @@ def test_scorecard_helpers_degrade_gracefully() -> None:
     drift.loc[0, ["now", "diff", "status"]] = [2.0, 1.0, "DRIFT"]
     text = _drift(drift, [{"match": "vision", "note": "because of the test"}])
     assert "because of the test" in text and "1 DRIFT" in text
+
+
+def test_text_search_rows_map_to_distinct_keys() -> None:
+    # regression: the reference row ("CLIP text -> attribute-sentence ...") overwrote the real one
+    assert text_row_key("CLIP text -> image embeddings") == "text"
+    assert text_row_key("Random gallery items (floor)") == "text_random"
+    assert (
+        text_row_key("CLIP text -> attribute-sentence embeddings (reference, not image-based)")
+        == "text_reference"
+    )

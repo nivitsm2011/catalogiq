@@ -192,7 +192,7 @@
 - The Phase 3 duplicate labels are still AI-provisional.
 
 
-## Phase 6 - Catalog quality checker (complete; commit not yet pushed)
+## Phase 6 - Catalog quality checker (complete; commit `e153db0`)
 
 **Done**
 - Image checks with OpenCV (`quality/image_checks.py`): blur, darkness, washed-out exposure, resolution, aspect ratio, corner-based background clutter;
@@ -224,4 +224,42 @@
 - All catalog photos are 60x80 studio shots: the phone-photo gap is unmeasured, defect recall comes from our own degraded copies, and only 2 of 120 natural photos had a defect.
 - All Phase 6 labels are the AI assistant's (owner's choice), so they are provisional.
 - Score weights are judgement, not fitted to outcomes. Colour mismatch detection is weak (F1 0.23).
+
+
+## Phase 7 - Unified evaluation and scorecard (complete except the owner's timings)
+
+**Done**
+- `src/catalogiq/eval/run_all.py` (`python -m catalogiq.eval.run_all`, `.\tasks.ps1 eval`, `make eval`): re-runs the Phase 2-6 evaluations on their fixed
+  test sets, logs to MLflow experiment `catalogiq-eval` (one parent run tagged with the git commit hash and dirty flag, one nested run per component),
+  checks drift against 75 numbers recorded in the earlier phases, measures end-to-end latency, peak RAM and disk, and writes `reports/scorecard.md`
+  and `reports/phase7/{eval_results.json,drift.csv}`. Options: `--only`, `--resume`, `--reuse-image-eval`, `--skip-system`, `--render-only`.
+- Phase 4 and 5 LLM steps are replayed through the on-disk LLM cache with a cache-miss budget (default 25), so a cold cache stops with a message instead of
+  silently running for hours. Result: 0 LLM calls missed the cache in both phases.
+- Scorecard sections: vision, visual search and duplicates, listing RAG vs no-RAG, review Q&A, quality checker, system, drift, product impact (every input
+  labelled MEASURED or ASSUMPTION), limitations and risks (`docs/limitations_and_risks.md`), provenance.
+- `scripts/make_timing_sheet.py` builds `reports/phase7/listing_timing.html`, a stopwatch page for the owner to time 5 manual listings (and optionally 5 draft reviews).
+- 12 new tests (`tests/test_eval.py`); 104 tests in total, all passing; ruff and black clean.
+
+**Results of the re-run** (the six evaluations take about 24 min, the uncached system test about 9 min)
+| Item | Value |
+|---|---|
+| Numbers compared with earlier phases | 75: 68 match, 5 timing, 2 DRIFT (both timings, see below) |
+| Vision mean macro-F1, fresh inference on 6,339 test photos | 0.771 (identical to Phase 2) |
+| Phase 4 (4 arms x 50 products) and Phase 5 (60 questions), re-run through the LLM cache | every metric identical, 0 cache misses |
+| Photo -> quality check -> attributes -> full listing, no-RAG | 15.5 s mean, 22.2 s p95 (uncached LLM, 5 photos) |
+| Same, RAG + guardrail rewrite | 66.4 s mean, 78.1 s p95 |
+| Peak RAM | 5.1 GB of 16.8 GB (1.6 GB Python with all models + 3.5 GB model server) |
+| Disk | project folder 4.75 GB (budget 5 GB); with llama3.2:3b (2.0 GB, stored by Ollama) 6.75 GB |
+
+**Open issues / risks**
+- **The owner's timings of 5 manual listings are still missing.** Until `reports/phase7/manual_listing_times.csv` exists, every product-impact number is a
+  labelled placeholder ASSUMPTION and "ILLUSTRATIVE". Time the listings with `reports/phase7/listing_timing.html`, then run `python -m catalogiq.eval.run_all --render-only`.
+- The two DRIFT rows are timings: vector search 23.0 ms (Phase 3: 8.2) and CLIP encode 183 ms (60). A standalone check reproduced 188 ms, so it is the machine
+  state, not the harness; Windows reported the laptop on battery power, which probably throttles the CPU (not verified). Re-measure plugged in.
+- Project folder is 4.75 GB against the 5 GB budget, only 0.25 GB of headroom, and 6.75 GB with the language model. The Ollama store also holds two models
+  CatalogIQ does not use (deepseek-r1:7b 4.7 GB, nomic-embed-text 0.3 GB).
+- The harness caught two of my own bugs in the first run: a parsing error that made text-search drift (mAP 0.372 -> 0.903) and a RAM sampler that missed the
+  `llama-server` process (peak RAM 2.3 GB before the fix, 5.1 GB after).
+- Search and baselines are re-scored from cached embeddings and cached baseline predictions (recomputing the 42,257 CLIP embeddings takes about 2 hours).
+- Phase 6 commit `e153db0` is not yet pushed to GitHub.
 

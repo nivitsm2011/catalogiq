@@ -106,6 +106,7 @@ def run_all(
     skip_system: bool = False,
     render_only: bool = False,
     allow_llm_calls: int | None = 25,
+    resume: bool = False,
 ) -> dict[str, Any]:
     """Run the selected components, log to MLflow and write the scorecard."""
     cfg = get_eval_config()
@@ -125,6 +126,10 @@ def run_all(
     set_seed(cfg["seed"])
     common.LLM_CALL_BUDGET["max_calls"] = allow_llm_calls
     names = [n for n in ORDER if only is None or n in only]
+    if resume:
+        done = set(results["components"])
+        names = [n for n in names if n not in done]
+        logger.info("resuming: skipping %s", sorted(done) or "nothing")
     # MLflow >= 3.16 needs an explicit opt-in for the local file store the brief asks for
     os.environ.setdefault("MLFLOW_ALLOW_FILE_STORE", "true")
     store = resolve_path(get_config()["paths"]["mlflow_tracking_dir"])
@@ -151,6 +156,10 @@ def run_all(
                 mlflow.log_metrics(_finite(res.metrics))
                 mlflow.log_metric("eval_seconds", res.seconds)
                 results["components"][name] = result_to_dict(res)
+                results.setdefault("run_commit", git["commit"])
+                results_path.write_text(
+                    json.dumps(results, indent=1, default=str), encoding="utf-8"
+                )
                 logger.info("%s done in %.0f s, %d metrics", name, res.seconds, len(res.metrics))
         if not skip_system and (only is None or "system" in only):
             logger.info("=== system")
@@ -175,6 +184,9 @@ def run_all(
                     )
                 disk = disk_footprint()
                 results["disk"] = _jsonable(disk)
+                results_path.write_text(
+                    json.dumps(results, indent=1, default=str), encoding="utf-8"
+                )
                 mlflow.log_metrics({"disk_project_gb": disk["project_total_gb"]})
         elif "disk" not in results:
             results["disk"] = _jsonable(disk_footprint())
@@ -207,6 +219,9 @@ def main() -> None:
     parser.add_argument("--skip-system", action="store_true")
     parser.add_argument("--render-only", action="store_true")
     parser.add_argument(
+        "--resume", action="store_true", help="skip components already in the saved results"
+    )
+    parser.add_argument(
         "--allow-llm-calls",
         type=int,
         default=25,
@@ -219,6 +234,7 @@ def main() -> None:
         skip_system=args.skip_system,
         render_only=args.render_only,
         allow_llm_calls=args.allow_llm_calls,
+        resume=args.resume,
     )
 
 

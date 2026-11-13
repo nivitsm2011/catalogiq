@@ -128,6 +128,13 @@ def run_vision() -> ComponentResult:
 
 
 # ---------------------------------------------------------------------------------------- search
+def text_row_key(method: str) -> str:
+    """Metric key of a row of ``text_search_metrics.csv`` (the file has three kinds of rows)."""
+    if method == "CLIP text -> image embeddings":
+        return "text"
+    return "text_random" if method.startswith("Random") else "text_reference"
+
+
 def run_search() -> ComponentResult:
     """Phase 3: image and text search metrics, index latency (``scripts/evaluate_search.py``)."""
     seconds = run_script("evaluate_search")
@@ -151,7 +158,7 @@ def run_search() -> ComponentResult:
         ):
             metrics[f"search.{key}.{name}"] = float(r[col])
     for r in txt.to_dict("records"):
-        key = "text" if r["method"].startswith("CLIP") else "text_random"
+        key = text_row_key(r["method"])
         metrics[f"search.{key}.recall@10"] = float(r["recall@10"])
         metrics[f"search.{key}.precision@10"] = float(r["precision@10"])
         metrics[f"search.{key}.map@10"] = float(r["mAP@10"])

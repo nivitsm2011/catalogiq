@@ -3,7 +3,7 @@
 An AI copilot for e-commerce marketplaces: it helps small sellers create better listings, helps shoppers
 get grounded answers, and helps catalog teams monitor quality. Runs fully locally on CPU.
 
-> Status: Phase 6 complete (catalog quality checker). Full README coming as features land.
+> Status: Phase 7 complete (unified evaluation and scorecard). Full README coming as features land.
 
 See [CLAUDE.md](CLAUDE.md) for the project brief, [docs/progress.md](docs/progress.md) for status and
 [docs/decisions.md](docs/decisions.md) for design decisions.
@@ -126,3 +126,16 @@ listing_score(res["issues"], mismatches=[], completeness_pct=100.0, missing=[]) 
 Every listing gets a 0-100 score and a plain-English fix per flag. On the 6,339 test listings 8.3% carry a flag and 4.1% score below 85; photo-listing
 mismatch detection finds about half of 300 injected errors (precision 0.47, a lower bound); jewellery and watches are over-flagged by global thresholds.
 Details and limits: [docs/model_card_quality_checker.md](docs/model_card_quality_checker.md), [notebooks/06_quality_checker.ipynb](notebooks/06_quality_checker.ipynb).
+
+## Unified evaluation and scorecard (Phase 7)
+
+```powershell
+.\tasks.ps1 eval                                    # re-run every evaluation (about 35 minutes on CPU; needs Ollama for the system test)
+.\.venv\Scripts\python.exe -m catalogiq.eval.run_all --render-only   # rebuild the scorecard from saved results
+```
+
+`reports/scorecard.md` has one table per component (vision, visual search, listing RAG, review Q&A, quality checker, system), a drift check against the numbers
+the earlier phases recorded, a product-impact section whose assumptions are labelled, and the limitations and risks. Results are logged to the MLflow
+experiment `catalogiq-eval`, tagged with the git commit. To replace the placeholder time assumptions with your own, time 5 listings with
+`reports/phase7/listing_timing.html`, save the CSV as `reports/phase7/manual_listing_times.csv` and use `--render-only`.
+Limitations: [docs/limitations_and_risks.md](docs/limitations_and_risks.md).

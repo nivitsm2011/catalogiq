@@ -51,3 +51,16 @@ eval:
       ops_review_minutes_per_listing_unscreened: 0.5  # ASSUMPTION: manual spot check of every listing
       listings_per_month: 10000               # ASSUMPTION: illustrative marketplace size
       hourly_cost: 10.0                       # ASSUMPTION: illustrative labour cost per hour (any currency)
+
+  # explanations shown next to drift rows (matched by substring of the metric name)
+  drift_notes:
+    - match: "vision.latency"
+      note: "Faster than recorded (13.9 ms vs 18.7 ms mean). Wall-clock latency depends on machine state; same function and 100 runs. Accuracy numbers are identical."
+    - match: "search.vector_search_ms"
+      note: "About 3x slower than in Phase 3, identical in two runs an hour apart. Not the harness: timing CLIP standalone gave the same slowdown. Windows reported the laptop on battery power, which probably throttles the CPU. Retrieval metrics are unaffected; re-measure plugged in."
+    - match: "search.clip_encode_image_ms"
+      note: "About 3x slower than in Phase 3 (183 ms vs 60 ms); a standalone check gave 188 ms, so it is the machine state (laptop on battery), not the code. Re-measure plugged in."
+    - match: "listing."
+      note: "Original generation time replayed from the LLM cache (the number is stored with the reply), so it matches by construction; the tiny difference is rounding in the 2-decimal record."
+    - match: "qa.latency"
+      note: "Taken from the original Phase 5 run (cached replies replay instantly); the system section re-measures real speed with an uncached model."
