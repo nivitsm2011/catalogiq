@@ -1,0 +1,1954 @@
+{
+ "components": {
+  "vision": {
+   "metrics": {
+    "vision.masterCategory.macro_f1": 0.989910328723717,
+    "vision.masterCategory.accuracy": 0.9914813061997161,
+    "vision.masterCategory.coverage": 1.0,
+    "vision.masterCategory.precision_accepted": 0.9914813061997161,
+    "vision.subCategory.macro_f1": 0.9215945039340235,
+    "vision.subCategory.accuracy": 0.9589840668875217,
+    "vision.subCategory.coverage": 1.0,
+    "vision.subCategory.precision_accepted": 0.9589840668875217,
+    "vision.articleType.macro_f1": 0.8059561456350045,
+    "vision.articleType.accuracy": 0.8566019876952201,
+    "vision.articleType.coverage": 0.9285376242309512,
+    "vision.articleType.precision_accepted": 0.8904179408766565,
+    "vision.baseColour.macro_f1": 0.5820852262891077,
+    "vision.baseColour.accuracy": 0.6750276068780565,
+    "vision.baseColour.coverage": 0.39832781195772204,
+    "vision.baseColour.precision_accepted": 0.8847524752475248,
+    "vision.gender.macro_f1": 0.747358894226721,
+    "vision.gender.accuracy": 0.8780564757848242,
+    "vision.gender.coverage": 0.9660829783877584,
+    "vision.gender.precision_accepted": 0.8940235140431091,
+    "vision.season.macro_f1": 0.7140920728797586,
+    "vision.season.accuracy": 0.698973954222573,
+    "vision.season.coverage": 0.2912391475927388,
+    "vision.season.precision_accepted": 0.9029810298102982,
+    "vision.usage.macro_f1": 0.6391223689557912,
+    "vision.usage.accuracy": 0.8763211863069885,
+    "vision.usage.coverage": 0.9220697270862912,
+    "vision.usage.precision_accepted": 0.9007698887938409,
+    "vision.mean.macro_f1": 0.7714456486634462,
+    "vision.majority.mean.macro_f1": 0.09439231933167543,
+    "vision.logreg.mean.macro_f1": 0.725360821593945,
+    "vision.clip_zero_shot.mean.macro_f1": 0.5692193976807948,
+    "vision.latency_mean_ms": 13.920043000006217,
+    "vision.latency_p95_ms": 18.16146499995739
+   },
+   "tables": {
+    "per_attribute": [
+     {
+      "attribute": "masterCategory",
+      "macro_f1": 0.989910328723717,
+      "majority": 0.1644611475756934,
+      "logreg": 0.9756927660757193,
+      "clip_zero_shot": 0.8832769716433329,
+      "accuracy": 0.9914813061997161,
+      "top3": 0.9993689856444234,
+      "threshold": 0.34110620617866516,
+      "coverage": 1.0,
+      "precision_accepted": 0.9914813061997161
+     },
+     {
+      "attribute": "subCategory",
+      "macro_f1": 0.9215945039340235,
+      "majority": 0.021257963627939302,
+      "logreg": 0.8958641386647773,
+      "clip_zero_shot": 0.668243062343061,
+      "accuracy": 0.9589840668875217,
+      "top3": 0.9949518851553872,
+      "threshold": 0.18690815567970276,
+      "coverage": 1.0,
+      "precision_accepted": 0.9589840668875217
+     },
+     {
+      "attribute": "articleType",
+      "macro_f1": 0.8059561456350045,
+      "majority": 0.005209549201980611,
+      "logreg": 0.7747060624122643,
+      "clip_zero_shot": 0.6828471579724839,
+      "accuracy": 0.8566019876952201,
+      "top3": 0.9750749329547247,
+      "threshold": 0.49467888474464417,
+      "coverage": 0.9285376242309512,
+      "precision_accepted": 0.8904179408766565
+     },
+     {
+      "attribute": "baseColour",
+      "macro_f1": 0.5820852262891077,
+      "majority": 0.024863107460643397,
+      "logreg": 0.46905173136928663,
+      "clip_zero_shot": 0.5612157824890233,
+      "accuracy": 0.6750276068780565,
+      "top3": 0.904716832307935,
+      "threshold": 0.7648246884346008,
+      "coverage": 0.39832781195772204,
+      "precision_accepted": 0.8847524752475248
+     },
+     {
+      "attribute": "gender",
+      "macro_f1": 0.747358894226721,
+      "majority": 0.13463108320251177,
+      "logreg": 0.660877930118219,
+      "clip_zero_shot": 0.5700891204241618,
+      "accuracy": 0.8780564757848242,
+      "top3": 0.992585581321975,
+      "threshold": 0.4897860586643219,
+      "coverage": 0.9660829783877584,
+      "precision_accepted": 0.8940235140431091
+     },
+     {
+      "attribute": "season",
+      "macro_f1": 0.7140920728797586,
+      "majority": 0.16424634301462795,
+      "logreg": 0.6789847484557395,
+      "clip_zero_shot": 0.23202534833307453,
+      "accuracy": 0.698973954222573,
+      "top3": 0.9834254143646409,
+      "threshold": 0.7910799384117126,
+      "coverage": 0.2912391475927388,
+      "precision_accepted": 0.9029810298102982
+     },
+     {
+      "attribute": "usage",
+      "macro_f1": 0.6391223689557912,
+      "majority": 0.14607704123833157,
+      "logreg": 0.6223483740616084,
+      "clip_zero_shot": 0.38683834056042704,
+      "accuracy": 0.8763211863069885,
+      "top3": 0.9971604353999054,
+      "threshold": 0.6009900569915771,
+      "coverage": 0.9220697270862912,
+      "precision_accepted": 0.9007698887938409
+     }
+    ],
+    "latency": {
+     "runs": 100,
+     "mean_ms": 13.920043000006217,
+     "median_ms": 13.14460000003237,
+     "p95_ms": 18.16146499995739,
+     "threads": 8
+    }
+   },
+   "provenance": {
+    "recomputed": "classifier inference on all test photos, scoring, coverage, latency",
+    "cached_inputs": "baseline predictions (majority recomputed; logistic regression and CLIP zero-shot predictions cached from Phase 2 and re-scored)",
+    "test_photos": 6339,
+    "max_abs_prob_diff_vs_phase6_cache": 0.0
+   },
+   "seconds": 30.548699300000067
+  },
+  "search": {
+   "metrics": {
+    "search.clip.recall@5": 0.8231,
+    "search.clip.recall@10": 0.8897,
+    "search.clip.precision@10": 0.4182,
+    "search.clip.map@10": 0.3092,
+    "search.clf_features.recall@5": 0.7724,
+    "search.clf_features.recall@10": 0.8536,
+    "search.clf_features.precision@10": 0.4118,
+    "search.clf_features.map@10": 0.3118,
+    "search.frozen.recall@5": 0.6982,
+    "search.frozen.recall@10": 0.796,
+    "search.frozen.precision@10": 0.3192,
+    "search.frozen.map@10": 0.2225,
+    "search.random.recall@5": 0.0401,
+    "search.random.recall@10": 0.0877,
+    "search.random.precision@10": 0.0099,
+    "search.random.map@10": 0.0025,
+    "search.text.recall@10": 0.8867,
+    "search.text.precision@10": 0.4513,
+    "search.text.map@10": 0.3718,
+    "search.text_random.recall@10": 0.0167,
+    "search.text_random.precision@10": 0.0017,
+    "search.text_random.map@10": 0.0003,
+    "search.text_reference.recall@10": 0.94,
+    "search.text_reference.precision@10": 0.8433,
+    "search.text_reference.map@10": 0.9027,
+    "search.vector_search_ms": 23.02,
+    "search.vector_search_filtered_ms": 34.88,
+    "search.clip_encode_image_ms": 182.8,
+    "search.clip_encode_text_ms": 133.24
+   },
+   "tables": {
+    "image": [
+     {
+      "representation": "CLIP ViT-B/32 image embeddings",
+      "queries": 1995,
+      "queries_without_relevant": 5,
+      "recall@5": 0.8231,
+      "recall@10": 0.8897,
+      "precision@10": 0.4182,
+      "mAP@10": 0.3092,
+      "precision@10_articleType_only": 0.8726
+     },
+     {
+      "representation": "Phase 2 fine-tuned classifier features",
+      "queries": 1995,
+      "queries_without_relevant": 5,
+      "recall@5": 0.7724,
+      "recall@10": 0.8536,
+      "precision@10": 0.4118,
+      "mAP@10": 0.3118,
+      "precision@10_articleType_only": 0.8012
+     },
+     {
+      "representation": "Frozen ImageNet MobileNetV3 features",
+      "queries": 1995,
+      "queries_without_relevant": 5,
+      "recall@5": 0.6982,
+      "recall@10": 0.796,
+      "precision@10": 0.3192,
+      "mAP@10": 0.2225,
+      "precision@10_articleType_only": 0.7409
+     },
+     {
+      "representation": "Random vectors (floor)",
+      "queries": 1995,
+      "queries_without_relevant": 5,
+      "recall@5": 0.0401,
+      "recall@10": 0.0877,
+      "precision@10": 0.0099,
+      "mAP@10": 0.0025,
+      "precision@10_articleType_only": 0.0554
+     }
+    ],
+    "text": [
+     {
+      "method": "CLIP text -> image embeddings",
+      "queries": 300,
+      "recall@10": 0.8867,
+      "precision@10": 0.4513,
+      "mAP@10": 0.3718
+     },
+     {
+      "method": "Random gallery items (floor)",
+      "queries": 300,
+      "recall@10": 0.0167,
+      "precision@10": 0.0017,
+      "mAP@10": 0.0003
+     },
+     {
+      "method": "CLIP text -> attribute-sentence embeddings (reference, not image-based)",
+      "queries": 300,
+      "recall@10": 0.94,
+      "precision@10": 0.8433,
+      "mAP@10": 0.9027
+     }
+    ],
+    "latency": {
+     "catalog_size": 42257,
+     "vector_search_flat_unfiltered": {
+      "mean_ms": 23.02,
+      "p95_ms": 37.19,
+      "n": 200
+     },
+     "vector_search_flat_filtered_gender_colour": {
+      "mean_ms": 34.88,
+      "p95_ms": 43.53,
+      "n": 100
+     },
+     "clip_encode_one_image": {
+      "mean_ms": 182.8,
+      "p95_ms": 247.76,
+      "n": 20
+     },
+     "clip_encode_one_text": {
+      "mean_ms": 133.24,
+      "p95_ms": 187.8,
+      "n": 20
+     },
+     "note": "CPU only, x64 Python emulated on ARM64; search_by_image = encode + vector search"
+    }
+   },
+   "provenance": {
+    "recomputed": "retrieval over cached CLIP embeddings, metrics, latency",
+    "cached_inputs": "CLIP embeddings of the 42,257 photos (about 2 h of CPU to recompute)"
+   },
+   "seconds": 155.89810450000004
+  },
+  "duplicates": {
+   "metrics": {
+    "duplicates.threshold": 0.975,
+    "duplicates.precision": 1.0,
+    "duplicates.recall": 0.2192,
+    "duplicates.f1_optimal_precision": 0.5796,
+    "duplicates.f1_optimal_recall": 0.4187
+   },
+   "tables": {
+    "result": {
+     "recommended_threshold": 0.975,
+     "recommended_precision": 1.0,
+     "recommended_recall": 0.2192,
+     "rule": "lowest threshold with weighted precision >= 0.95 (similarity + pHash <= 8)",
+     "precision_target_met": true,
+     "f1_optimal_threshold": 0.935,
+     "f1_optimal_precision": 0.5796,
+     "f1_optimal_recall": 0.4187,
+     "phash_max_distance": 8,
+     "pHash_only": [
+      {
+       "pHash max distance": 0,
+       "precision": 0.9162,
+       "recall": 0.1896
+      },
+      {
+       "pHash max distance": 2,
+       "precision": 0.7595,
+       "recall": 0.2192
+      },
+      {
+       "pHash max distance": 4,
+       "precision": 0.3255,
+       "recall": 0.4014
+      },
+      {
+       "pHash max distance": 8,
+       "precision": 0.1323,
+       "recall": 0.4187
+      },
+      {
+       "pHash max distance": 12,
+       "precision": 0.0699,
+       "recall": 0.4707
+      },
+      {
+       "pHash max distance": 16,
+       "precision": 0.0856,
+       "recall": 0.8351
+      }
+     ],
+     "labels": {
+      "pairs_total": 100,
+      "duplicate": 38,
+      "not_duplicate": 58,
+      "unsure": 4,
+      "blank": 0,
+      "labels_file": "reports/duplicate_labels_ai_provisional.csv"
+     }
+    },
+    "label_stats": {
+     "pairs_total": 100,
+     "duplicate": 38,
+     "not_duplicate": 58,
+     "unsure": 4,
+     "blank": 0,
+     "labels_file": "reports/duplicate_labels_ai_provisional.csv"
+    }
+   },
+   "provenance": {
+    "recomputed": "threshold rule on the 100 labelled pairs",
+    "labels": "PROVISIONAL: assigned by the AI assistant, not by a person"
+   },
+   "seconds": 1.3836883999999827
+  },
+  "listing": {
+   "metrics": {
+    "listing.no_rag.n": 50.0,
+    "listing.no_rag.valid_json_rate": 1.0,
+    "listing.no_rag.repair_used_rate": 0.02,
+    "listing.no_rag.attribute_coverage": 1.0,
+    "listing.no_rag.hallucination_rate": 0.02,
+    "listing.no_rag.unsupported_per_listing": 0.02,
+    "listing.no_rag.style_compliance": 0.0,
+    "listing.no_rag.banned_rate": 0.14,
+    "listing.no_rag.latency_mean_s": 12.841827510015573,
+    "listing.no_rag.latency_median_s": 12.383817700028885,
+    "listing.no_rag.judge_clarity": 3.32,
+    "listing.no_rag.judge_accuracy": 3.7,
+    "listing.rag.n": 50.0,
+    "listing.rag.valid_json_rate": 1.0,
+    "listing.rag.repair_used_rate": 0.0,
+    "listing.rag.attribute_coverage": 1.0,
+    "listing.rag.hallucination_rate": 0.7,
+    "listing.rag.unsupported_per_listing": 1.22,
+    "listing.rag.style_compliance": 0.02,
+    "listing.rag.banned_rate": 0.7,
+    "listing.rag.latency_mean_s": 43.83555043601198,
+    "listing.rag.latency_median_s": 43.28102390002459,
+    "listing.rag.judge_clarity": 2.86,
+    "listing.rag.judge_accuracy": 4.26,
+    "listing.rag.retrieval_hit_rate": 0.96,
+    "listing.no_rag_fix.n": 50.0,
+    "listing.no_rag_fix.valid_json_rate": 1.0,
+    "listing.no_rag_fix.repair_used_rate": 0.02,
+    "listing.no_rag_fix.attribute_coverage": 1.0,
+    "listing.no_rag_fix.hallucination_rate": 0.0,
+    "listing.no_rag_fix.unsupported_per_listing": 0.0,
+    "listing.no_rag_fix.style_compliance": 0.0,
+    "listing.no_rag_fix.banned_rate": 0.02,
+    "listing.no_rag_fix.latency_mean_s": 35.867278205994516,
+    "listing.no_rag_fix.latency_median_s": 35.06296560005285,
+    "listing.no_rag_fix.judge_clarity": 3.44,
+    "listing.no_rag_fix.judge_accuracy": 3.68,
+    "listing.rag_fix.n": 50.0,
+    "listing.rag_fix.valid_json_rate": 1.0,
+    "listing.rag_fix.repair_used_rate": 0.0,
+    "listing.rag_fix.attribute_coverage": 1.0,
+    "listing.rag_fix.hallucination_rate": 0.4,
+    "listing.rag_fix.unsupported_per_listing": 0.6,
+    "listing.rag_fix.style_compliance": 0.16,
+    "listing.rag_fix.banned_rate": 0.32,
+    "listing.rag_fix.latency_mean_s": 100.59171750401147,
+    "listing.rag_fix.latency_median_s": 102.67996035004035,
+    "listing.rag_fix.judge_clarity": 2.84,
+    "listing.rag_fix.judge_accuracy": 4.14,
+    "listing.rag_fix.retrieval_hit_rate": 0.96
+   },
+   "tables": {
+    "arms": [
+     {
+      "arm": "no_rag",
+      "n": 50,
+      "valid_json_rate": 1.0,
+      "repair_used_rate": 0.02,
+      "attribute_coverage": 1.0,
+      "hallucination_rate": 0.02,
+      "unsupported_per_listing": 0.02,
+      "style_compliance": 0.0,
+      "banned_rate": 0.14,
+      "latency_mean_s": 12.841827510015573,
+      "latency_median_s": 12.383817700028885,
+      "judge_clarity": 3.32,
+      "judge_accuracy": 3.7,
+      "retrieval_hit_rate": NaN
+     },
+     {
+      "arm": "rag",
+      "n": 50,
+      "valid_json_rate": 1.0,
+      "repair_used_rate": 0.0,
+      "attribute_coverage": 1.0,
+      "hallucination_rate": 0.7,
+      "unsupported_per_listing": 1.22,
+      "style_compliance": 0.02,
+      "banned_rate": 0.7,
+      "latency_mean_s": 43.83555043601198,
+      "latency_median_s": 43.28102390002459,
+      "judge_clarity": 2.86,
+      "judge_accuracy": 4.26,
+      "retrieval_hit_rate": 0.96
+     },
+     {
+      "arm": "no_rag_fix",
+      "n": 50,
+      "valid_json_rate": 1.0,
+      "repair_used_rate": 0.02,
+      "attribute_coverage": 1.0,
+      "hallucination_rate": 0.0,
+      "unsupported_per_listing": 0.0,
+      "style_compliance": 0.0,
+      "banned_rate": 0.02,
+      "latency_mean_s": 35.867278205994516,
+      "latency_median_s": 35.06296560005285,
+      "judge_clarity": 3.44,
+      "judge_accuracy": 3.68,
+      "retrieval_hit_rate": NaN
+     },
+     {
+      "arm": "rag_fix",
+      "n": 50,
+      "valid_json_rate": 1.0,
+      "repair_used_rate": 0.0,
+      "attribute_coverage": 1.0,
+      "hallucination_rate": 0.4,
+      "unsupported_per_listing": 0.6,
+      "style_compliance": 0.16,
+      "banned_rate": 0.32,
+      "latency_mean_s": 100.59171750401147,
+      "latency_median_s": 102.67996035004035,
+      "judge_clarity": 2.84,
+      "judge_accuracy": 4.14,
+      "retrieval_hit_rate": 0.96
+     }
+    ]
+   },
+   "provenance": {
+    "recomputed": "product sample, classifier attributes, retrieval, guardrails, judge scoring",
+    "llm": "replies read from the LLM cache (a cached reply keeps its original latency)",
+    "llm_calls_that_missed_cache": 0,
+    "same_products_as_phase4": true,
+    "n_products": 50
+   },
+   "seconds": 356.8633497000001
+  },
+  "qa": {
+   "metrics": {
+    "qa.n_answerable": 45.0,
+    "qa.n_unanswerable": 15.0,
+    "qa.correct_refusal_rate": 0.9333333333333333,
+    "qa.false_refusal_rate": 0.3111111111111111,
+    "qa.answered_answerable": 31.0,
+    "qa.unanswerable_answered": 1.0,
+    "qa.citations_kept": 99.0,
+    "qa.invalid_citation_ids": 0.0,
+    "qa.citation_validity": 1.0,
+    "qa.citation_relevance": 0.8484848484848485,
+    "qa.judged_answers": 32.0,
+    "qa.faithful_answers": 0.40625,
+    "qa.claim_support_rate": 0.5671641791044776,
+    "qa.latency_answered_s": 38.517894353124575,
+    "qa.latency_refused_s": 1.9135270714219328,
+    "qa.retrieval.bm25.recall5": 0.9777777777777777,
+    "qa.retrieval.bm25.mrr": 0.8348148148148149,
+    "qa.retrieval.hybrid.recall5": 1.0,
+    "qa.retrieval.hybrid.mrr": 0.8285185185185184,
+    "qa.retrieval.hybrid_rerank.recall5": 1.0,
+    "qa.retrieval.hybrid_rerank.mrr": 0.8929629629629631,
+    "qa.retrieval.vector.recall5": 0.8888888888888888,
+    "qa.retrieval.vector.mrr": 0.8185185185185184,
+    "qa.gate_threshold": 0.52,
+    "qa.gate_cv_answer_rate": 0.6005555555555555,
+    "qa.gate_cv_refuse_rate": 0.8166666666666667,
+    "qa.handcheck_agreement": 0.6,
+    "qa.handcheck_human_faithful": 0.9333333333333333
+   },
+   "tables": {
+    "retrieval": {
+     "bm25": {
+      "recall5": 0.9777777777777777,
+      "mrr": 0.8348148148148149,
+      "latency_ms": 215.17988499998637
+     },
+     "hybrid": {
+      "recall5": 1.0,
+      "mrr": 0.8285185185185184,
+      "latency_ms": 178.10260833331313
+     },
+     "hybrid_rerank": {
+      "recall5": 1.0,
+      "mrr": 0.8929629629629631,
+      "latency_ms": 181.84782999997728
+     },
+     "vector": {
+      "recall5": 0.8888888888888888,
+      "mrr": 0.8185185185185184,
+      "latency_ms": 180.63550166667332
+     }
+    },
+    "gate": {
+     "min_similarity": 0.52,
+     "fit_on_all_60": {
+      "answer_rate": 0.6888888888888889,
+      "refuse_rate": 0.8,
+      "balanced_acc": 0.7444444444444445
+     },
+     "cross_validated": {
+      "fold_thresholds": [
+       0.52,
+       0.52,
+       0.58,
+       0.58,
+       0.52
+      ],
+      "answer_rate": 0.6005555555555555,
+      "refuse_rate": 0.8166666666666667
+     },
+     "dev_tuned_threshold": 0.58,
+     "dev_tuned_dev_to_test": {
+      "dev": [
+       0.75,
+       1.0
+      ],
+      "test": [
+       0.4482758620689655,
+       0.8571428571428571
+      ]
+     }
+    },
+    "end_to_end": {
+     "n_answerable": 45,
+     "n_unanswerable": 15,
+     "correct_refusal_rate": 0.9333333333333333,
+     "false_refusal_rate": 0.3111111111111111,
+     "answered_answerable": 31,
+     "unanswerable_answered": 1,
+     "citations_kept": 99,
+     "invalid_citation_ids": 0,
+     "citation_validity": 1.0,
+     "citation_relevance": 0.8484848484848485,
+     "judged_answers": 32,
+     "faithful_answers": 0.40625,
+     "claim_support_rate": 0.5671641791044776,
+     "latency_mean_s": 0.20351730333334217,
+     "latency_answered_mean_s": 0.20110587187500784,
+     "latency_refused_mean_s": 0.20627322500000997
+    }
+   },
+   "provenance": {
+    "recomputed": "retrieval variants, gate tuning, answers, judge, citation checks",
+    "llm": "replies read from the LLM cache",
+    "latency": "taken from the original Phase 5 run (cached replies replay instantly)",
+    "llm_calls_that_missed_cache": 0,
+    "human_input": "faithfulness hand-check of 15 answers by the owner (saved ratings)"
+   },
+   "seconds": 64.16631869999992
+  },
+  "quality": {
+   "metrics": {
+    "quality.blurry.recall": 0.999,
+    "quality.blurry.precision": 0.42348452734209413,
+    "quality.blurry.clean_flag_rate": 0.024,
+    "quality.too_dark.recall": 1.0,
+    "quality.too_dark.precision": 0.8992805755395683,
+    "quality.too_dark.clean_flag_rate": 0.002,
+    "quality.overexposed.recall": 0.115,
+    "quality.overexposed.precision": 0.6460674157303371,
+    "quality.overexposed.clean_flag_rate": 0.012,
+    "quality.low_resolution.recall": 1.0,
+    "quality.low_resolution.precision": 0.6666666666666666,
+    "quality.low_resolution.clean_flag_rate": 0.0,
+    "quality.bad_aspect_ratio.recall": 1.0,
+    "quality.bad_aspect_ratio.precision": 1.0,
+    "quality.bad_aspect_ratio.clean_flag_rate": 0.0,
+    "quality.cluttered_background.recall": 0.452,
+    "quality.cluttered_background.precision": 0.7458745874587459,
+    "quality.cluttered_background.clean_flag_rate": 0.01,
+    "quality.text_or_watermark.recall": 0.604,
+    "quality.text_or_watermark.precision": 0.3871794871794872,
+    "quality.text_or_watermark.clean_flag_rate": 0.026,
+    "consistency.baseColour.precision": 0.25301204819277107,
+    "consistency.baseColour.recall": 0.21,
+    "consistency.baseColour.f1": 0.22950819672131145,
+    "consistency.articleType.precision": 0.509090909090909,
+    "consistency.articleType.recall": 0.56,
+    "consistency.articleType.f1": 0.5333333333333333,
+    "consistency.gender.precision": 0.6,
+    "consistency.gender.recall": 0.66,
+    "consistency.gender.f1": 0.6285714285714286,
+    "consistency.overall.precision": 0.47194719471947194,
+    "consistency.overall.recall": 0.4766666666666667,
+    "consistency.overall.f1": 0.4742951907131012,
+    "quality.batch.pct_with_any_issue": 8.313614134721565,
+    "quality.batch.pct_needs_attention": 4.117368670137245,
+    "quality.batch.score_mean": 98.66682442025557
+   },
+   "tables": {
+    "checks": [
+     {
+      "check": "blurry",
+      "precision": 0.42348452734209413,
+      "recall": 0.999,
+      "f1": 0.5948198868710927,
+      "tp": 999,
+      "fp": 1360,
+      "fn": 1,
+      "false_alarm_rate_clean": 0.024
+     },
+     {
+      "check": "too_dark",
+      "precision": 0.8992805755395683,
+      "recall": 1.0,
+      "f1": 0.9469696969696969,
+      "tp": 1000,
+      "fp": 112,
+      "fn": 0,
+      "false_alarm_rate_clean": 0.002
+     },
+     {
+      "check": "overexposed",
+      "precision": 0.6460674157303371,
+      "recall": 0.115,
+      "f1": 0.19524617996604415,
+      "tp": 115,
+      "fp": 63,
+      "fn": 885,
+      "false_alarm_rate_clean": 0.012
+     },
+     {
+      "check": "low_resolution",
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8,
+      "tp": 1000,
+      "fp": 500,
+      "fn": 0,
+      "false_alarm_rate_clean": 0.0
+     },
+     {
+      "check": "bad_aspect_ratio",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 1500,
+      "fp": 0,
+      "fn": 0,
+      "false_alarm_rate_clean": 0.0
+     },
+     {
+      "check": "cluttered_background",
+      "precision": 0.7458745874587459,
+      "recall": 0.452,
+      "f1": 0.5628891656288917,
+      "tp": 226,
+      "fp": 77,
+      "fn": 274,
+      "false_alarm_rate_clean": 0.01
+     },
+     {
+      "check": "text_or_watermark",
+      "precision": 0.3871794871794872,
+      "recall": 0.604,
+      "f1": 0.471875,
+      "tp": 302,
+      "fp": 478,
+      "fn": 198,
+      "false_alarm_rate_clean": 0.026
+     }
+    ],
+    "by_level": [
+     {
+      "type": "blur",
+      "level": 0,
+      "recall": 0.466,
+      "n": 500
+     },
+     {
+      "type": "blur",
+      "level": 1,
+      "recall": 0.998,
+      "n": 500
+     },
+     {
+      "type": "blur",
+      "level": 2,
+      "recall": 1.0,
+      "n": 500
+     },
+     {
+      "type": "dark",
+      "level": 0,
+      "recall": 0.228,
+      "n": 500
+     },
+     {
+      "type": "dark",
+      "level": 1,
+      "recall": 1.0,
+      "n": 500
+     },
+     {
+      "type": "dark",
+      "level": 2,
+      "recall": 1.0,
+      "n": 500
+     },
+     {
+      "type": "bright",
+      "level": 0,
+      "recall": 0.04,
+      "n": 500
+     },
+     {
+      "type": "bright",
+      "level": 1,
+      "recall": 0.06,
+      "n": 500
+     },
+     {
+      "type": "bright",
+      "level": 2,
+      "recall": 0.17,
+      "n": 500
+     },
+     {
+      "type": "lowres",
+      "level": 0,
+      "recall": 1.0,
+      "n": 500
+     },
+     {
+      "type": "lowres",
+      "level": 1,
+      "recall": 1.0,
+      "n": 500
+     },
+     {
+      "type": "lowres",
+      "level": 2,
+      "recall": 1.0,
+      "n": 500
+     },
+     {
+      "type": "aspect",
+      "level": 0,
+      "recall": 1.0,
+      "n": 500
+     },
+     {
+      "type": "aspect",
+      "level": 1,
+      "recall": 1.0,
+      "n": 500
+     },
+     {
+      "type": "aspect",
+      "level": 2,
+      "recall": 1.0,
+      "n": 500
+     },
+     {
+      "type": "clutter",
+      "level": 0,
+      "recall": 0.452,
+      "n": 500
+     },
+     {
+      "type": "text",
+      "level": 0,
+      "recall": 0.604,
+      "n": 500
+     }
+    ],
+    "consistency": {
+     "chosen": {
+      "min_conf": 0.9,
+      "margin": 0.4,
+      "mode": "and"
+     },
+     "val_f1": 0.5207296849087893,
+     "test": {
+      "baseColour": {
+       "precision": 0.25301204819277107,
+       "recall": 0.21,
+       "f1": 0.22950819672131145,
+       "tp": 21,
+       "fp": 62,
+       "fn": 79
+      },
+      "articleType": {
+       "precision": 0.509090909090909,
+       "recall": 0.56,
+       "f1": 0.5333333333333333,
+       "tp": 56,
+       "fp": 54,
+       "fn": 44
+      },
+      "gender": {
+       "precision": 0.6,
+       "recall": 0.66,
+       "f1": 0.6285714285714286,
+       "tp": 66,
+       "fp": 44,
+       "fn": 34
+      },
+      "overall": {
+       "precision": 0.47194719471947194,
+       "recall": 0.4766666666666667,
+       "f1": 0.4742951907131012,
+       "tp": 143,
+       "fp": 160,
+       "fn": 157
+      }
+     },
+     "test_variants": {
+      "clf": {
+       "min_conf": 0.95,
+       "margin": 0.5,
+       "precision": 0.5294117647058824,
+       "recall": 0.42,
+       "f1": 0.46840148698884754,
+       "tp": 126,
+       "fp": 112,
+       "fn": 174
+      },
+      "clip": {
+       "min_conf": 0.5,
+       "margin": 0.9,
+       "precision": 0.197869101978691,
+       "recall": 0.43333333333333335,
+       "f1": 0.27168234064785785,
+       "tp": 130,
+       "fp": 527,
+       "fn": 170
+      },
+      "or": {
+       "min_conf": 0.95,
+       "margin": 0.95,
+       "precision": 0.2990990990990991,
+       "recall": 0.5533333333333333,
+       "f1": 0.3883040935672515,
+       "tp": 166,
+       "fp": 389,
+       "fn": 134
+      },
+      "and": {
+       "min_conf": 0.9,
+       "margin": 0.4,
+       "precision": 0.47194719471947194,
+       "recall": 0.4766666666666667,
+       "f1": 0.4742951907131012,
+       "tp": 143,
+       "fp": 160,
+       "fn": 157
+      }
+     },
+     "natural_flags": {
+      "total": 151,
+      "by_attribute": {
+       "baseColour": 59,
+       "articleType": 50,
+       "gender": 42
+      },
+      "n_test": 6339
+     }
+    },
+    "batch": {
+     "n_listings": 6339,
+     "pct_with_any_issue": 8.313614134721565,
+     "pct_needs_attention": 4.117368670137245,
+     "score_mean": 98.66682442025557,
+     "score_percentiles": {
+      "5": 90.0,
+      "25": 100.0,
+      "50": 100.0,
+      "75": 100.0,
+      "95": 100.0
+     },
+     "issue_counts": {
+      "text_or_watermark": 171,
+      "blurry": 104,
+      "overexposed": 84,
+      "cluttered_background": 64,
+      "mismatch_baseColour": 63,
+      "mismatch_articleType": 55,
+      "mismatch_gender": 44,
+      "too_dark": 3
+     },
+     "by_master_category": {
+      "Accessories": {
+       "n": 1580,
+       "pct_with_issue": 12.09,
+       "mean_score": 98.05
+      },
+      "Apparel": {
+       "n": 3107,
+       "pct_with_issue": 8.11,
+       "mean_score": 98.81
+      },
+      "Footwear": {
+       "n": 1375,
+       "pct_with_issue": 3.93,
+       "mean_score": 99.17
+      },
+      "Personal Care": {
+       "n": 277,
+       "pct_with_issue": 10.83,
+       "mean_score": 98.1
+      }
+     },
+     "by_group": {
+      "accessories": {
+       "n": 233,
+       "pct_with_issue": 7.3,
+       "mean_score": 98.54
+      },
+      "bags_wallets": {
+       "n": 557,
+       "pct_with_issue": 5.92,
+       "mean_score": 99.03
+      },
+      "beauty": {
+       "n": 277,
+       "pct_with_issue": 10.83,
+       "mean_score": 98.1
+      },
+      "bottomwear": {
+       "n": 372,
+       "pct_with_issue": 2.69,
+       "mean_score": 99.44
+      },
+      "dresses_ethnic": {
+       "n": 496,
+       "pct_with_issue": 3.43,
+       "mean_score": 99.35
+      },
+      "eyewear": {
+       "n": 162,
+       "pct_with_issue": 0.0,
+       "mean_score": 100.0
+      },
+      "footwear": {
+       "n": 1375,
+       "pct_with_issue": 3.93,
+       "mean_score": 99.17
+      },
+      "innerwear_socks": {
+       "n": 410,
+       "pct_with_issue": 14.88,
+       "mean_score": 97.84
+      },
+      "jewellery": {
+       "n": 146,
+       "pct_with_issue": 46.58,
+       "mean_score": 91.36
+      },
+      "topwear": {
+       "n": 1930,
+       "pct_with_issue": 9.02,
+       "mean_score": 98.71
+      },
+      "watches": {
+       "n": 381,
+       "pct_with_issue": 16.54,
+       "mean_score": 98.09
+      }
+     },
+     "thresholds": {
+      "image": {
+       "blur_min_laplacian_var": 259.4879,
+       "dark_max_mean_luma": 117.6396,
+       "bright_min_p5_luma": 230.8,
+       "min_short_side_px": 48,
+       "aspect_min": 0.55,
+       "aspect_max": 1.45,
+       "clutter_max_corner_std": 37.4095,
+       "text_min_clip_margin": 1.5686
+      },
+      "consistency": {
+       "min_conf": 0.9,
+       "margin": 0.4,
+       "mode": "and"
+      }
+     }
+    }
+   },
+   "provenance": {
+    "recomputed": "degraded copies and flags, consistency injection and scoring (thresholds kept as tuned), batch report over all test listings",
+    "reused_image_eval": false,
+    "labels": "natural-photo labels and the 24-listing review are the AI assistant's",
+    "seconds_by_script": {
+     "evaluate_image_checks": 708.2632380999999,
+     "evaluate_consistency": 43.909660299999814,
+     "run_quality_report": 54.4230034000002
+    }
+   },
+   "seconds": 806.7792487000002
+  }
+ },
+ "git": {
+  "commit": "aee5adeada9682c37444175e29df476f0bedf13a",
+  "short": "aee5ade",
+  "branch": "main",
+  "dirty": false
+ },
+ "run_commit": "1e2f6647f88dc889460b21e6fad31c1f06059b59",
+ "system": {
+  "rows": [
+   {
+    "product_id": 23961,
+    "mode": "no_rag",
+    "quality_s": 0.7925857000000178,
+    "classify_s": 0.9107824000002438,
+    "generate_s": 22.455813900000066,
+    "total_s": 24.159182000000328,
+    "ok": true,
+    "issues_found": 0
+   },
+   {
+    "product_id": 23961,
+    "mode": "rag_with_rewrite",
+    "quality_s": 0.7925857000000178,
+    "classify_s": 0.9107824000002438,
+    "generate_s": 78.16641179999988,
+    "total_s": 79.86977990000014,
+    "ok": true,
+    "issues_found": 0
+   },
+   {
+    "product_id": 13060,
+    "mode": "no_rag",
+    "quality_s": 0.18420590000005177,
+    "classify_s": 0.7918675999999323,
+    "generate_s": 11.332129399999758,
+    "total_s": 12.308202899999742,
+    "ok": true,
+    "issues_found": 0
+   },
+   {
+    "product_id": 13060,
+    "mode": "rag_with_rewrite",
+    "quality_s": 0.18420590000005177,
+    "classify_s": 0.7918675999999323,
+    "generate_s": 54.905832799999644,
+    "total_s": 55.88190629999963,
+    "ok": true,
+    "issues_found": 0
+   },
+   {
+    "product_id": 48178,
+    "mode": "no_rag",
+    "quality_s": 0.19007349999992584,
+    "classify_s": 0.027238499999839405,
+    "generate_s": 14.220801299999948,
+    "total_s": 14.438113299999713,
+    "ok": true,
+    "issues_found": 0
+   },
+   {
+    "product_id": 48178,
+    "mode": "rag_with_rewrite",
+    "quality_s": 0.19007349999992584,
+    "classify_s": 0.027238499999839405,
+    "generate_s": 58.89090040000019,
+    "total_s": 59.10821239999996,
+    "ok": true,
+    "issues_found": 0
+   },
+   {
+    "product_id": 22548,
+    "mode": "no_rag",
+    "quality_s": 0.2835022000003846,
+    "classify_s": 0.0254147999999077,
+    "generate_s": 12.744988199999625,
+    "total_s": 13.053905199999917,
+    "ok": true,
+    "issues_found": 0
+   },
+   {
+    "product_id": 22548,
+    "mode": "rag_with_rewrite",
+    "quality_s": 0.2835022000003846,
+    "classify_s": 0.0254147999999077,
+    "generate_s": 70.63617160000013,
+    "total_s": 70.94508860000042,
+    "ok": true,
+    "issues_found": 0
+   },
+   {
+    "product_id": 15854,
+    "mode": "no_rag",
+    "quality_s": 0.3650938999999198,
+    "classify_s": 0.02429470000015499,
+    "generate_s": 13.272029700000076,
+    "total_s": 13.66141830000015,
+    "ok": true,
+    "issues_found": 0
+   },
+   {
+    "product_id": 15854,
+    "mode": "rag_with_rewrite",
+    "quality_s": 0.3650938999999198,
+    "classify_s": 0.02429470000015499,
+    "generate_s": 66.02671809999993,
+    "total_s": 66.4161067,
+    "ok": true,
+    "issues_found": 0
+   }
+  ],
+  "summary": {
+   "no_rag": {
+    "quality_s": {
+     "mean": 0.36309224000005996,
+     "median": 0.2835022000003846,
+     "p95": 0.7070873399999982
+    },
+    "classify_s": {
+     "mean": 0.35591960000001566,
+     "median": 0.027238499999839405,
+     "p95": 0.8869994400001815
+    },
+    "generate_s": {
+     "mean": 14.805152499999895,
+     "median": 13.272029700000076,
+     "p95": 20.80881138000004
+    },
+    "total_s": {
+     "mean": 15.52416433999997,
+     "median": 13.66141830000015,
+     "p95": 22.214968260000205
+    }
+   },
+   "rag_with_rewrite": {
+    "quality_s": {
+     "mean": 0.36309224000005996,
+     "median": 0.2835022000003846,
+     "p95": 0.7070873399999982
+    },
+    "classify_s": {
+     "mean": 0.35591960000001566,
+     "median": 0.027238499999839405,
+     "p95": 0.8869994400001815
+    },
+    "generate_s": {
+     "mean": 65.72520693999995,
+     "median": 66.02671809999993,
+     "p95": 76.66036375999992
+    },
+    "total_s": {
+     "mean": 66.44421878000003,
+     "median": 66.4161067,
+     "p95": 78.08484164000019
+    }
+   }
+  },
+  "n_photos": 5,
+  "load_models_s": 82.01356380000016,
+  "cold_start_s": 6.93188519999967,
+  "ram": {
+   "python_mb": 1627.918336,
+   "ollama_mb": 3466.469376,
+   "combined_mb": 5094.096896,
+   "machine_total_mb": 16758.587392
+  },
+  "machine": {
+   "cpu_threads": 8,
+   "note": "CPU only, x64 Python emulated on ARM64"
+  }
+ },
+ "disk": {
+  "project_total_gb": 4.745008847676218,
+  "parts_gb": {
+   ".venv": 1.6849659085273743,
+   "data": 2.169566184282303,
+   "models": 0.8472446454688907,
+   "mlruns": 0.0001072688028216362,
+   "reports": 0.018059476278722286,
+   "docs": 9.822938591241837e-05,
+   "notebooks": 0.008103598840534687,
+   ".git": 0.016046456061303616,
+   "other (src, tests, scripts, configs, ...)": 0.0008170800283551216
+  },
+  "large_items_gb": {
+   "data/processed": 0.9164683893322945,
+   "models/cache": 0.8119101794436574,
+   "data/interim": 0.7202645782381296,
+   "data/raw": 0.5328332167118788
+  },
+  "ollama_models_gb": 6.497626797296107,
+  "ollama_used_gb": 2.0,
+  "ollama_used": [
+   {
+    "name": "llama3.2:3b",
+    "gb": 2.0
+   }
+  ],
+  "ollama_other": [
+   {
+    "name": "nomic-embed-text:latest",
+    "gb": 0.267578125
+   },
+   {
+    "name": "deepseek-r1:7b",
+    "gb": 4.7
+   }
+  ],
+  "budget_gb": 5.0,
+  "total_with_ollama_gb": 6.745008847676218
+ },
+ "total_seconds": 680.3189112999999,
+ "drift": [
+  {
+   "metric": "vision.masterCategory.macro_f1",
+   "previous": 0.99,
+   "now": 0.989910328723717,
+   "diff": -8.967127628300986e-05,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.subCategory.macro_f1",
+   "previous": 0.922,
+   "now": 0.9215945039340235,
+   "diff": -0.0004054960659765072,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.articleType.macro_f1",
+   "previous": 0.806,
+   "now": 0.8059561456350045,
+   "diff": -4.3854364995543627e-05,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.baseColour.macro_f1",
+   "previous": 0.582,
+   "now": 0.5820852262891077,
+   "diff": 8.522628910778707e-05,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.gender.macro_f1",
+   "previous": 0.747,
+   "now": 0.747358894226721,
+   "diff": 0.0003588942267209738,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.season.macro_f1",
+   "previous": 0.714,
+   "now": 0.7140920728797586,
+   "diff": 9.207287975865341e-05,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.usage.macro_f1",
+   "previous": 0.639,
+   "now": 0.6391223689557912,
+   "diff": 0.00012236895579120777,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.mean.macro_f1",
+   "previous": 0.771,
+   "now": 0.7714456486634462,
+   "diff": 0.00044564866344620757,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.articleType.accuracy",
+   "previous": 0.857,
+   "now": 0.8566019876952201,
+   "diff": -0.00039801230477987115,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.baseColour.accuracy",
+   "previous": 0.675,
+   "now": 0.6750276068780565,
+   "diff": 2.7606878056474216e-05,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.logreg.mean.macro_f1",
+   "previous": 0.725,
+   "now": 0.725360821593945,
+   "diff": 0.00036082159394501545,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.clip_zero_shot.mean.macro_f1",
+   "previous": 0.569,
+   "now": 0.5692193976807948,
+   "diff": 0.00021939768079481947,
+   "status": "match",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.baseColour.coverage",
+   "previous": 0.4,
+   "now": 0.39832781195772204,
+   "diff": -0.0016721880422779778,
+   "status": "match",
+   "source": "progress.md Phase 2 open issues (40%)"
+  },
+  {
+   "metric": "vision.season.coverage",
+   "previous": 0.29,
+   "now": 0.2912391475927388,
+   "diff": 0.0012391475927387985,
+   "status": "match",
+   "source": "progress.md Phase 2 open issues (29%)"
+  },
+  {
+   "metric": "vision.latency_mean_ms",
+   "previous": 18.7,
+   "now": 13.920043000006217,
+   "diff": -4.779956999993782,
+   "status": "timing",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "vision.latency_p95_ms",
+   "previous": 22.2,
+   "now": 18.16146499995739,
+   "diff": -4.038535000042611,
+   "status": "timing",
+   "source": "progress.md Phase 2"
+  },
+  {
+   "metric": "search.clip.recall@5",
+   "previous": 0.823,
+   "now": 0.8231,
+   "diff": 0.00010000000000010001,
+   "status": "match",
+   "source": "progress.md Phase 3"
+  },
+  {
+   "metric": "search.clip.recall@10",
+   "previous": 0.89,
+   "now": 0.8897,
+   "diff": -0.00029999999999996696,
+   "status": "match",
+   "source": "progress.md Phase 3"
+  },
+  {
+   "metric": "search.clip.precision@10",
+   "previous": 0.418,
+   "now": 0.4182,
+   "diff": 0.00020000000000003348,
+   "status": "match",
+   "source": "progress.md Phase 3"
+  },
+  {
+   "metric": "search.clip.map@10",
+   "previous": 0.309,
+   "now": 0.3092,
+   "diff": 0.00019999999999997797,
+   "status": "match",
+   "source": "progress.md Phase 3"
+  },
+  {
+   "metric": "search.clf_features.recall@10",
+   "previous": 0.854,
+   "now": 0.8536,
+   "diff": -0.00039999999999995595,
+   "status": "match",
+   "source": "progress.md Phase 3"
+  },
+  {
+   "metric": "search.frozen.recall@10",
+   "previous": 0.796,
+   "now": 0.796,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 3"
+  },
+  {
+   "metric": "search.text.recall@10",
+   "previous": 0.887,
+   "now": 0.8867,
+   "diff": -0.00029999999999996696,
+   "status": "match",
+   "source": "progress.md Phase 3"
+  },
+  {
+   "metric": "search.text.map@10",
+   "previous": 0.372,
+   "now": 0.3718,
+   "diff": -0.00019999999999997797,
+   "status": "match",
+   "source": "progress.md Phase 3"
+  },
+  {
+   "metric": "search.vector_search_ms",
+   "previous": 8.2,
+   "now": 23.02,
+   "diff": 14.82,
+   "status": "DRIFT",
+   "source": "progress.md Phase 3"
+  },
+  {
+   "metric": "search.clip_encode_image_ms",
+   "previous": 60.0,
+   "now": 182.8,
+   "diff": 122.80000000000001,
+   "status": "DRIFT",
+   "source": "progress.md Phase 3"
+  },
+  {
+   "metric": "duplicates.threshold",
+   "previous": 0.975,
+   "now": 0.975,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 3 (AI-provisional labels)"
+  },
+  {
+   "metric": "duplicates.precision",
+   "previous": 1.0,
+   "now": 1.0,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 3 (AI-provisional labels)"
+  },
+  {
+   "metric": "duplicates.recall",
+   "previous": 0.22,
+   "now": 0.2192,
+   "diff": -0.0007999999999999952,
+   "status": "match",
+   "source": "progress.md Phase 3 (AI-provisional labels)"
+  },
+  {
+   "metric": "listing.no_rag.hallucination_rate",
+   "previous": 0.02,
+   "now": 0.02,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.rag.hallucination_rate",
+   "previous": 0.7,
+   "now": 0.7,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.no_rag_fix.hallucination_rate",
+   "previous": 0.0,
+   "now": 0.0,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.rag_fix.hallucination_rate",
+   "previous": 0.4,
+   "now": 0.4,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.no_rag.banned_rate",
+   "previous": 0.14,
+   "now": 0.14,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.rag.banned_rate",
+   "previous": 0.7,
+   "now": 0.7,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.no_rag.style_compliance",
+   "previous": 0.0,
+   "now": 0.0,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.rag.style_compliance",
+   "previous": 0.02,
+   "now": 0.02,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.rag_fix.style_compliance",
+   "previous": 0.16,
+   "now": 0.16,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.no_rag.judge_clarity",
+   "previous": 3.32,
+   "now": 3.32,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.rag.judge_clarity",
+   "previous": 2.86,
+   "now": 2.86,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.no_rag.judge_accuracy",
+   "previous": 3.7,
+   "now": 3.7,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.rag.judge_accuracy",
+   "previous": 4.26,
+   "now": 4.26,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.rag.retrieval_hit_rate",
+   "previous": 0.96,
+   "now": 0.96,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 4"
+  },
+  {
+   "metric": "listing.no_rag.latency_mean_s",
+   "previous": 12.8,
+   "now": 12.841827510015573,
+   "diff": 0.0418275100155725,
+   "status": "timing",
+   "source": "progress.md Phase 4 (original generation time kept in the LLM cache)"
+  },
+  {
+   "metric": "listing.rag.latency_mean_s",
+   "previous": 43.8,
+   "now": 43.83555043601198,
+   "diff": 0.035550436011980935,
+   "status": "timing",
+   "source": "progress.md Phase 4 (original generation time kept in the LLM cache)"
+  },
+  {
+   "metric": "qa.retrieval.bm25.recall5",
+   "previous": 0.978,
+   "now": 0.9777777777777777,
+   "diff": -0.00022222222222223476,
+   "status": "match",
+   "source": "progress.md Phase 5"
+  },
+  {
+   "metric": "qa.retrieval.vector.recall5",
+   "previous": 0.889,
+   "now": 0.8888888888888888,
+   "diff": -0.00011111111111117289,
+   "status": "match",
+   "source": "progress.md Phase 5"
+  },
+  {
+   "metric": "qa.retrieval.hybrid_rerank.recall5",
+   "previous": 1.0,
+   "now": 1.0,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 5"
+  },
+  {
+   "metric": "qa.retrieval.hybrid_rerank.mrr",
+   "previous": 0.893,
+   "now": 0.8929629629629631,
+   "diff": -3.703703703694661e-05,
+   "status": "match",
+   "source": "progress.md Phase 5"
+  },
+  {
+   "metric": "qa.correct_refusal_rate",
+   "previous": 0.933,
+   "now": 0.9333333333333333,
+   "diff": 0.0003333333333332966,
+   "status": "match",
+   "source": "progress.md Phase 5"
+  },
+  {
+   "metric": "qa.false_refusal_rate",
+   "previous": 0.311,
+   "now": 0.3111111111111111,
+   "diff": 0.00011111111111111738,
+   "status": "match",
+   "source": "progress.md Phase 5"
+  },
+  {
+   "metric": "qa.citation_relevance",
+   "previous": 0.848,
+   "now": 0.8484848484848485,
+   "diff": 0.0004848484848485324,
+   "status": "match",
+   "source": "progress.md Phase 5"
+  },
+  {
+   "metric": "qa.citation_validity",
+   "previous": 1.0,
+   "now": 1.0,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 5 (0 of 99 invalid)"
+  },
+  {
+   "metric": "qa.faithful_answers",
+   "previous": 0.406,
+   "now": 0.40625,
+   "diff": 0.00024999999999997247,
+   "status": "match",
+   "source": "progress.md Phase 5 (LLM judge, lower bound)"
+  },
+  {
+   "metric": "qa.claim_support_rate",
+   "previous": 0.567,
+   "now": 0.5671641791044776,
+   "diff": 0.00016417910447763528,
+   "status": "match",
+   "source": "progress.md Phase 5"
+  },
+  {
+   "metric": "qa.handcheck_agreement",
+   "previous": 0.6,
+   "now": 0.6,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 5 (owner hand-check, n=15)"
+  },
+  {
+   "metric": "qa.latency_answered_s",
+   "previous": 38.5,
+   "now": 38.517894353124575,
+   "diff": 0.01789435312457499,
+   "status": "timing",
+   "source": "progress.md Phase 5 (original generation time kept in the LLM cache)"
+  },
+  {
+   "metric": "quality.blurry.recall",
+   "previous": 0.999,
+   "now": 0.999,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.blurry.precision",
+   "previous": 0.423,
+   "now": 0.42348452734209413,
+   "diff": 0.00048452734209414317,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.too_dark.recall",
+   "previous": 1.0,
+   "now": 1.0,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.too_dark.precision",
+   "previous": 0.899,
+   "now": 0.8992805755395683,
+   "diff": 0.00028057553956828407,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.overexposed.recall",
+   "previous": 0.115,
+   "now": 0.115,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.cluttered_background.recall",
+   "previous": 0.452,
+   "now": 0.452,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.cluttered_background.precision",
+   "previous": 0.746,
+   "now": 0.7458745874587459,
+   "diff": -0.00012541254125408852,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.text_or_watermark.recall",
+   "previous": 0.604,
+   "now": 0.604,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.text_or_watermark.precision",
+   "previous": 0.387,
+   "now": 0.3871794871794872,
+   "diff": 0.00017948717948718107,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.low_resolution.recall",
+   "previous": 1.0,
+   "now": 1.0,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.bad_aspect_ratio.recall",
+   "previous": 1.0,
+   "now": 1.0,
+   "diff": 0.0,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "consistency.overall.precision",
+   "previous": 0.472,
+   "now": 0.47194719471947194,
+   "diff": -5.280528052803435e-05,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "consistency.overall.recall",
+   "previous": 0.477,
+   "now": 0.4766666666666667,
+   "diff": -0.0003333333333332966,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "consistency.baseColour.f1",
+   "previous": 0.23,
+   "now": 0.22950819672131145,
+   "diff": -0.0004918032786885573,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "consistency.articleType.f1",
+   "previous": 0.53,
+   "now": 0.5333333333333333,
+   "diff": 0.0033333333333332993,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "consistency.gender.f1",
+   "previous": 0.63,
+   "now": 0.6285714285714286,
+   "diff": -0.0014285714285714457,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.batch.pct_with_any_issue",
+   "previous": 8.3,
+   "now": 8.313614134721565,
+   "diff": 0.013614134721564142,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  },
+  {
+   "metric": "quality.batch.pct_needs_attention",
+   "previous": 4.1,
+   "now": 4.117368670137245,
+   "diff": 0.017368670137245523,
+   "status": "match",
+   "source": "progress.md Phase 6"
+  }
+ ],
+ "impact": {
+  "inputs": [
+   {
+    "input": "Time to write one listing by hand",
+    "value": 12.0,
+    "unit": "min",
+    "status": "ASSUMPTION",
+    "basis": "configs/eval.yaml (placeholder)"
+   },
+   {
+    "input": "Time to review and fix one generated draft",
+    "value": 3.0,
+    "unit": "min",
+    "status": "ASSUMPTION",
+    "basis": "configs/eval.yaml (placeholder)"
+   },
+   {
+    "input": "Ops spot check of one listing",
+    "value": 0.5,
+    "unit": "min",
+    "status": "ASSUMPTION",
+    "basis": "configs/eval.yaml (placeholder)"
+   },
+   {
+    "input": "Ops review of one flagged listing",
+    "value": 2.0,
+    "unit": "min",
+    "status": "ASSUMPTION",
+    "basis": "configs/eval.yaml (placeholder)"
+   },
+   {
+    "input": "Listings per month (illustrative marketplace)",
+    "value": 10000.0,
+    "unit": "listings",
+    "status": "ASSUMPTION",
+    "basis": "configs/eval.yaml (placeholder)"
+   },
+   {
+    "input": "Labour cost per hour (illustrative)",
+    "value": 10.0,
+    "unit": "currency units",
+    "status": "ASSUMPTION",
+    "basis": "configs/eval.yaml (placeholder)"
+   }
+  ],
+  "rows": [
+   {
+    "quantity": "Machine time from photo to draft listing (CPU)",
+    "value": "16 s (no-RAG) to 66 s (RAG with rewrite)",
+    "status": "MEASURED",
+    "how": "end-to-end run, uncached LLM (system section)"
+   },
+   {
+    "quantity": "Hands-on minutes saved per listing",
+    "value": "9.0 min (12.0 manual - 3.0 review)",
+    "status": "ILLUSTRATIVE (depends on assumptions)",
+    "how": "manual time minus review time; machine time is waiting, not hands-on, time"
+   },
+   {
+    "quantity": "Hands-on hours saved per month",
+    "value": "1,500 h at 10,000 listings",
+    "status": "ILLUSTRATIVE (depends on assumptions)",
+    "how": "minutes saved x listings per month (volume is an assumption)"
+   },
+   {
+    "quantity": "Labour cost saved per month",
+    "value": "15,000 currency units at 10 per hour",
+    "status": "ILLUSTRATIVE (depends on assumptions)",
+    "how": "hours saved x hourly cost (both assumptions)"
+   },
+   {
+    "quantity": "Share of listings the quality checker flags / sends to review",
+    "value": "8.3% any flag, 4.1% score below 85",
+    "status": "MEASURED",
+    "how": "batch report, 6,339 test listings (includes false alarms; misses unknown)"
+   },
+   {
+    "quantity": "Ops review hours per month: look at flagged only vs spot check all",
+    "value": "28 h vs 83 h",
+    "status": "ILLUSTRATIVE (depends on assumptions)",
+    "how": "volume x rate x minutes per review (volume and minutes are assumptions)"
+   },
+   {
+    "quantity": "RAG drafts with an unsupported fact",
+    "value": "70%",
+    "status": "MEASURED",
+    "how": "Phase 4 guardrails, 50 products; a person must still review drafts"
+   },
+   {
+    "quantity": "no-RAG + rewrite drafts with an unsupported fact",
+    "value": "0%",
+    "status": "MEASURED",
+    "how": "Phase 4 guardrails, 50 products; a person must still review drafts"
+   },
+   {
+    "quantity": "Shopper questions: answered with citations / refused when no evidence",
+    "value": "69% of answerable answered, 93% of unanswerable refused",
+    "status": "MEASURED",
+    "how": "Phase 5, 60 questions"
+   }
+  ],
+  "not_estimated": [
+   "Change in returns: no returns data exists in this project.",
+   "Change in conversion or search revenue: needs an A/B test on a real marketplace.",
+   "Shopper time saved by Q&A: needs real question traffic, not the 60 test questions.",
+   "Seller satisfaction: no seller was asked."
+  ],
+  "timings_supplied": false
+ },
+ "generated": "2026-11-13 19:32"
+}

@@ -1,0 +1,76 @@
+metric,previous,now,diff,status,source
+vision.masterCategory.macro_f1,0.99,0.989910328723717,-8.967127628300986e-05,match,progress.md Phase 2
+vision.subCategory.macro_f1,0.922,0.9215945039340235,-0.0004054960659765072,match,progress.md Phase 2
+vision.articleType.macro_f1,0.806,0.8059561456350045,-4.3854364995543627e-05,match,progress.md Phase 2
+vision.baseColour.macro_f1,0.582,0.5820852262891077,8.522628910778707e-05,match,progress.md Phase 2
+vision.gender.macro_f1,0.747,0.747358894226721,0.0003588942267209738,match,progress.md Phase 2
+vision.season.macro_f1,0.714,0.7140920728797586,9.207287975865341e-05,match,progress.md Phase 2
+vision.usage.macro_f1,0.639,0.6391223689557912,0.00012236895579120777,match,progress.md Phase 2
+vision.mean.macro_f1,0.771,0.7714456486634462,0.00044564866344620757,match,progress.md Phase 2
+vision.articleType.accuracy,0.857,0.8566019876952201,-0.00039801230477987115,match,progress.md Phase 2
+vision.baseColour.accuracy,0.675,0.6750276068780565,2.7606878056474216e-05,match,progress.md Phase 2
+vision.logreg.mean.macro_f1,0.725,0.725360821593945,0.00036082159394501545,match,progress.md Phase 2
+vision.clip_zero_shot.mean.macro_f1,0.569,0.5692193976807948,0.00021939768079481947,match,progress.md Phase 2
+vision.baseColour.coverage,0.4,0.39832781195772204,-0.0016721880422779778,match,progress.md Phase 2 open issues (40%)
+vision.season.coverage,0.29,0.2912391475927388,0.0012391475927387985,match,progress.md Phase 2 open issues (29%)
+vision.latency_mean_ms,18.7,13.920043000006217,-4.779956999993782,timing,progress.md Phase 2
+vision.latency_p95_ms,22.2,18.16146499995739,-4.038535000042611,timing,progress.md Phase 2
+search.clip.recall@5,0.823,0.8231,0.00010000000000010001,match,progress.md Phase 3
+search.clip.recall@10,0.89,0.8897,-0.00029999999999996696,match,progress.md Phase 3
+search.clip.precision@10,0.418,0.4182,0.00020000000000003348,match,progress.md Phase 3
+search.clip.map@10,0.309,0.3092,0.00019999999999997797,match,progress.md Phase 3
+search.clf_features.recall@10,0.854,0.8536,-0.00039999999999995595,match,progress.md Phase 3
+search.frozen.recall@10,0.796,0.796,0.0,match,progress.md Phase 3
+search.text.recall@10,0.887,0.8867,-0.00029999999999996696,match,progress.md Phase 3
+search.text.map@10,0.372,0.3718,-0.00019999999999997797,match,progress.md Phase 3
+search.vector_search_ms,8.2,23.02,14.82,DRIFT,progress.md Phase 3
+search.clip_encode_image_ms,60.0,182.8,122.80000000000001,DRIFT,progress.md Phase 3
+duplicates.threshold,0.975,0.975,0.0,match,progress.md Phase 3 (AI-provisional labels)
+duplicates.precision,1.0,1.0,0.0,match,progress.md Phase 3 (AI-provisional labels)
+duplicates.recall,0.22,0.2192,-0.0007999999999999952,match,progress.md Phase 3 (AI-provisional labels)
+listing.no_rag.hallucination_rate,0.02,0.02,0.0,match,progress.md Phase 4
+listing.rag.hallucination_rate,0.7,0.7,0.0,match,progress.md Phase 4
+listing.no_rag_fix.hallucination_rate,0.0,0.0,0.0,match,progress.md Phase 4
+listing.rag_fix.hallucination_rate,0.4,0.4,0.0,match,progress.md Phase 4
+listing.no_rag.banned_rate,0.14,0.14,0.0,match,progress.md Phase 4
+listing.rag.banned_rate,0.7,0.7,0.0,match,progress.md Phase 4
+listing.no_rag.style_compliance,0.0,0.0,0.0,match,progress.md Phase 4
+listing.rag.style_compliance,0.02,0.02,0.0,match,progress.md Phase 4
+listing.rag_fix.style_compliance,0.16,0.16,0.0,match,progress.md Phase 4
+listing.no_rag.judge_clarity,3.32,3.32,0.0,match,progress.md Phase 4
+listing.rag.judge_clarity,2.86,2.86,0.0,match,progress.md Phase 4
+listing.no_rag.judge_accuracy,3.7,3.7,0.0,match,progress.md Phase 4
+listing.rag.judge_accuracy,4.26,4.26,0.0,match,progress.md Phase 4
+listing.rag.retrieval_hit_rate,0.96,0.96,0.0,match,progress.md Phase 4
+listing.no_rag.latency_mean_s,12.8,12.841827510015573,0.0418275100155725,timing,progress.md Phase 4 (original generation time kept in the LLM cache)
+listing.rag.latency_mean_s,43.8,43.83555043601198,0.035550436011980935,timing,progress.md Phase 4 (original generation time kept in the LLM cache)
+qa.retrieval.bm25.recall5,0.978,0.9777777777777777,-0.00022222222222223476,match,progress.md Phase 5
+qa.retrieval.vector.recall5,0.889,0.8888888888888888,-0.00011111111111117289,match,progress.md Phase 5
+qa.retrieval.hybrid_rerank.recall5,1.0,1.0,0.0,match,progress.md Phase 5
+qa.retrieval.hybrid_rerank.mrr,0.893,0.8929629629629631,-3.703703703694661e-05,match,progress.md Phase 5
+qa.correct_refusal_rate,0.933,0.9333333333333333,0.0003333333333332966,match,progress.md Phase 5
+qa.false_refusal_rate,0.311,0.3111111111111111,0.00011111111111111738,match,progress.md Phase 5
+qa.citation_relevance,0.848,0.8484848484848485,0.0004848484848485324,match,progress.md Phase 5
+qa.citation_validity,1.0,1.0,0.0,match,progress.md Phase 5 (0 of 99 invalid)
+qa.faithful_answers,0.406,0.40625,0.00024999999999997247,match,"progress.md Phase 5 (LLM judge, lower bound)"
+qa.claim_support_rate,0.567,0.5671641791044776,0.00016417910447763528,match,progress.md Phase 5
+qa.handcheck_agreement,0.6,0.6,0.0,match,"progress.md Phase 5 (owner hand-check, n=15)"
+qa.latency_answered_s,38.5,38.517894353124575,0.01789435312457499,timing,progress.md Phase 5 (original generation time kept in the LLM cache)
+quality.blurry.recall,0.999,0.999,0.0,match,progress.md Phase 6
+quality.blurry.precision,0.423,0.42348452734209413,0.00048452734209414317,match,progress.md Phase 6
+quality.too_dark.recall,1.0,1.0,0.0,match,progress.md Phase 6
+quality.too_dark.precision,0.899,0.8992805755395683,0.00028057553956828407,match,progress.md Phase 6
+quality.overexposed.recall,0.115,0.115,0.0,match,progress.md Phase 6
+quality.cluttered_background.recall,0.452,0.452,0.0,match,progress.md Phase 6
+quality.cluttered_background.precision,0.746,0.7458745874587459,-0.00012541254125408852,match,progress.md Phase 6
+quality.text_or_watermark.recall,0.604,0.604,0.0,match,progress.md Phase 6
+quality.text_or_watermark.precision,0.387,0.3871794871794872,0.00017948717948718107,match,progress.md Phase 6
+quality.low_resolution.recall,1.0,1.0,0.0,match,progress.md Phase 6
+quality.bad_aspect_ratio.recall,1.0,1.0,0.0,match,progress.md Phase 6
+consistency.overall.precision,0.472,0.47194719471947194,-5.280528052803435e-05,match,progress.md Phase 6
+consistency.overall.recall,0.477,0.4766666666666667,-0.0003333333333332966,match,progress.md Phase 6
+consistency.baseColour.f1,0.23,0.22950819672131145,-0.0004918032786885573,match,progress.md Phase 6
+consistency.articleType.f1,0.53,0.5333333333333333,0.0033333333333332993,match,progress.md Phase 6
+consistency.gender.f1,0.63,0.6285714285714286,-0.0014285714285714457,match,progress.md Phase 6
+quality.batch.pct_with_any_issue,8.3,8.313614134721565,0.013614134721564142,match,progress.md Phase 6
+quality.batch.pct_needs_attention,4.1,4.117368670137245,0.017368670137245523,match,progress.md Phase 6
