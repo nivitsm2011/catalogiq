@@ -1,0 +1,64 @@
+# CatalogIQ API image: CPU only, multi-stage, non-root.
+#
+# Build (from the project root):  docker build -f docker/Dockerfile.api -t catalogiq-api .
+# Data, trained models and reports are NOT baked in: mount them (see docker-compose.yml).
+
+# ------------------------------------------------------------------ stage 1: build the virtualenv
+FROM python:3.11-slim AS builder
+
+ENV PIP_NO_CACHE_DIR=1 PIP_DISABLE_PIP_VERSION_CHECK=1
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# CPU-only PyTorch first: the default Linux wheel drags in about 2 GB of CUDA libraries.
+# The "+cpu" local version sorts above the PyPI one, so the CPU index wins.
+RUN pip install torch==2.14.1 torchvision==0.29.1 \
+    --extra-index-url https://download.pytorch.org/whl/cpu
+
+COPY docker/requirements-api.txt /tmp/requirements-api.txt
+RUN pip install -r /tmp/requirements-api.txt
+
+# Drop what the API never uses: bytecode caches and test suites inside site-packages.
+RUN find /opt/venv -type d \( -name "__pycache__" -o -name "tests" -o -name "test" \) -prune -exec rm -rf {} + \
+    && find /opt/venv -name "*.pyc" -delete
+
+# ------------------------------------------------------------------ stage 2: runtime
+FROM python:3.11-slim AS runtime
+
+LABEL org.opencontainers.image.title="catalogiq-api" \
+      org.opencontainers.image.description="CatalogIQ FastAPI backend (CPU)"
+
+# libgomp: OpenMP runtime used by faiss and torch.  tini: forwards signals so Ctrl+C stops the server.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends libgomp1 tini \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN groupadd --gid 10001 catalogiq \
+    && useradd --uid 10001 --gid 10001 --create-home --shell /usr/sbin/nologin catalogiq
+
+COPY --from=builder /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH" \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONPATH=/app/src:/app \
+    HF_HOME=/app/models/cache/huggingface \
+    TORCH_HOME=/app/models/cache/torch
+
+WORKDIR /app
+COPY --chown=catalogiq:catalogiq src ./src
+COPY --chown=catalogiq:catalogiq api ./api
+COPY --chown=catalogiq:catalogiq configs ./configs
+
+# Mount points (created so the non-root user owns them even when nothing is mounted).
+RUN mkdir -p data models logs reports && chown -R catalogiq:catalogiq /app
+VOLUME ["/app/data", "/app/models"]
+
+USER catalogiq
+EXPOSE 8000
+
+# Healthy only once every model is loaded (about 2 minutes on CPU), hence the long start period.
+HEALTHCHECK --interval=30s --timeout=10s --start-period=240s --retries=5 \
+    CMD python -c "import json,urllib.request as u; r=json.load(u.urlopen('http://127.0.0.1:8000/health', timeout=8)); raise SystemExit(0 if r['status']=='ok' else 1)"
+
+ENTRYPOINT ["tini", "--"]
+CMD ["python", "-m", "uvicorn", "api.main:app", "--host", "0.0.0.0", "--port", "8000"]

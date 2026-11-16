@@ -144,6 +144,22 @@ def require_api() -> bool:
     return False
 
 
+def error_box(message: str) -> None:
+    """Show an API error; when the local language model is down, explain what still works."""
+    from catalogiq.llm.client import is_unavailable_message
+
+    if not is_unavailable_message(message):
+        st.error(message)
+        return
+    st.warning(message)
+    st.markdown(
+        "**Fallback:** the attribute classifier, visual search, outfits and quality checks do not "
+        "need the language model. Turn on **Demo mode** in the sidebar to use the 10 sample "
+        "products, whose listings and answers are saved."
+    )
+    st.code("ollama serve", language="bash")
+
+
 def hero(title: str, subtitle: str, eyebrow: str = "CatalogIQ") -> None:
     """Gradient header with the page title."""
     st.markdown(

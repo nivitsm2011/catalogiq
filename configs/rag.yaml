@@ -173,13 +173,10 @@ rag:
   evaluation:
     n_products: 50
     split: test
-    min_classifier_conf_for_brand: 0.0
     handcheck_n: 10
-    retrieval_ks: [3, 5]
     seller_note_brand: true     # brand taken from the catalog product name as the "seller note"
 
   generation:
     # Attributes (Phase 2 targets) given to the writer, in this order.
     prompt_attributes: [gender, articleType, baseColour, usage, season]
-    seller_note_keys: [brand, material, size_range, price]
     max_title_retry_text: 300

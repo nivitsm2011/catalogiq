@@ -7,7 +7,6 @@ vision:
   image_index: data/interim/images_index.parquet
   label_maps: data/interim/label_maps.json
   batch_size: 128
-  num_threads: 0             # 0 = let torch decide
 
   backbone:
     name: mobilenet_v3_large

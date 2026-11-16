@@ -14,6 +14,7 @@ from PIL import Image
 from api.state import AppState
 from api.validation import ApiError
 from catalogiq.config import get_config, get_search_config, resolve_path
+from catalogiq.llm.client import is_unavailable_message
 
 MODES = {
     "no_rag": (False, False),
@@ -68,13 +69,26 @@ def item_card(
     }
 
 
+# ----------------------------------------------------------------------------- per-photo shortcuts
+def _classifier_probs(state: AppState, small: np.ndarray) -> dict[str, np.ndarray]:
+    """Classifier probabilities of one photo, computed once per photo (``AppState.photo_memo``)."""
+    from catalogiq.quality.consistency import classifier_probabilities
+
+    return state.photo_memo(
+        "clf", small, lambda: classifier_probabilities([small], state.predictor)
+    )  # type: ignore[no-any-return]
+
+
+def _clip_embedding(state: AppState, small: np.ndarray) -> np.ndarray:
+    """CLIP embedding of one photo, computed once per photo."""
+    return state.photo_memo("clip", small, lambda: state.encoder.encode_image(small))  # type: ignore[no-any-return]
+
+
 # ---------------------------------------------------------------------------------- attributes
 def predict_attributes(state: AppState, image: Image.Image) -> dict[str, Any]:
     """Predict every attribute with calibrated confidence and the runner-up values."""
-    from catalogiq.quality.consistency import classifier_probabilities
-
     start = time.perf_counter()
-    probs = classifier_probabilities([np.asarray(shrink(image))], state.predictor)
+    probs = _classifier_probs(state, np.asarray(shrink(image)))
     out: dict[str, Any] = {}
     for target in state.predictor.targets:
         p = probs[target][0]
@@ -132,6 +146,12 @@ def friendly_style(code: str) -> str:
     return code
 
 
+def _raise_if_llm_down(error: str | None) -> None:
+    """Turn the friendly 'Ollama is not running / model not installed' message into a 503."""
+    if is_unavailable_message(error):
+        raise ApiError(503, "llm_unavailable", str(error))
+
+
 def generate_listing(
     state: AppState, attributes: dict[str, dict[str, Any]], notes: dict[str, str], mode: str
 ) -> dict[str, Any]:
@@ -158,6 +178,7 @@ def generate_listing(
     with state.llm_lock:
         result = state.generator.generate(attrs, notes, use_rag, fix)
     elapsed = time.perf_counter() - start
+    _raise_if_llm_down(result.error)
     rep = result.report
     return {
         "listing": result.listing.model_dump() if result.listing else None,
@@ -215,7 +236,8 @@ def search_image(
     """Visually similar catalog items for a photo."""
     start = time.perf_counter()
     extra = 1 if exclude_id is not None else 0
-    res = state.engine.search_by_image(shrink(image), k + extra, filters or None)
+    small = np.asarray(shrink(image).convert("RGB"))
+    res = state.engine.search_vector(_clip_embedding(state, small), k + extra, filters or None)
     if exclude_id is not None:
         res = res[res["id"] != exclude_id]
     res = res.head(k)
@@ -274,7 +296,6 @@ def quality_check(
     from catalogiq.quality.clip_checks import text_margin
     from catalogiq.quality.completeness import completeness
     from catalogiq.quality.consistency import (
-        classifier_probabilities,
         clip_probabilities,
         flag_mismatch,
         load_consistency_thresholds,
@@ -285,12 +306,12 @@ def quality_check(
 
     start = time.perf_counter()
     arr = np.asarray(image)
-    small = np.asarray(shrink(image))
-    emb = state.encoder.encode_image(small)
+    small = np.asarray(shrink(image).convert("RGB"))
+    emb = _clip_embedding(state, small)
     margin = float(text_margin(emb, state.text_prompts)[0])
     check = check_image(arr, load_thresholds(), text_margin=margin)
     cth = load_consistency_thresholds()
-    probs = classifier_probabilities([small], state.predictor)
+    probs = _classifier_probs(state, small)
     mismatches = []
     for a in CONSISTENCY_ATTRIBUTES:
         value = stated.get(a)
@@ -361,6 +382,7 @@ def ask_reviews(state: AppState, item_id: str, question: str) -> dict[str, Any]:
     start = time.perf_counter()
     with state.llm_lock:
         res = state.qa.answer(item_id, question)
+    _raise_if_llm_down(res.error)
     out = res.output
     texts = state.review_text
     citations = []
@@ -610,6 +632,12 @@ def catalog_image_path(item_id: int) -> Path:
     return path
 
 
+def _warm_llm(llm: Any) -> None:
+    """Load the language model into memory with a one-word prompt that bypasses the reply cache."""
+    inner = getattr(llm, "inner", llm)
+    inner.chat([{"role": "user", "content": "Reply with the single word: ready"}], temperature=0.0)
+
+
 def warm_up(state: AppState) -> None:
     """Touch the lazily built parts (retriever, review texts, duplicate pairs, quality report).
 
@@ -619,6 +647,9 @@ def warm_up(state: AppState) -> None:
 
     log = get_logger("api.warmup")
     steps = (
+        ("classifier", lambda: _classifier_probs(state, np.zeros((80, 60, 3), dtype=np.uint8))),
+        ("CLIP encoder", lambda: state.encoder.encode_image(np.zeros((80, 60, 3), dtype=np.uint8))),
+        ("language model", lambda: _warm_llm(state.llm)),
         ("retriever", lambda: state.generator.retriever.search("shirt", k=1, group=None)),
         ("review texts", lambda: state.review_text),
         ("quality report", lambda: _quality_report(state)),

@@ -39,13 +39,24 @@ endpoints answer `503 starting_up`). Lazy parts (retriever, review texts, duplic
 
 | Status | Codes |
 |---|---|
-| 400 | `missing_file`, `empty_file`, `ambiguous_input` |
+| 400 | `missing_file`, `empty_file`, `ambiguous_input`, `bad_content_length` |
 | 404 | `unknown_item`, `unknown_product`, `no_scorecard`, `no_quality_report` |
-| 413 | `file_too_large`, `image_too_large` |
+| 413 | `file_too_large`, `image_too_large`, `request_too_large` (whole request above 5.5 MB) |
 | 415 | `unsupported_media_type` |
 | 422 | `invalid_image`, `image_too_small`, `validation_error` (lists the fields), `missing_attribute`, `unknown_attribute`, `unknown_filter`, `unknown_filter_value`, `invalid_attributes` |
-| 503 | `starting_up` |
+| 429 | `rate_limited` (with a `Retry-After` header) |
+| 502 | `llm_error` (the language model failed in an unexpected way) |
+| 503 | `starting_up`, `llm_unavailable` (Ollama is not running or the model is not installed; the message says how to fix it) |
 | 500 | `internal_error` (details only in the server log) |
+
+## Limits (Phase 9, `configs/api.yaml`)
+
+- **Request size:** a request whose `Content-Length` is above 5.5 MB is refused with `413 request_too_large` before the body is read.
+- **Rate limit:** an in-process sliding window per client address: 120 requests per minute for every endpoint, 20 per minute for the endpoints that call the
+  local LLM (`/generate-listing`, `/ask-reviews`, `/reviews`). `/health`, `/metrics`, `/docs` and catalog photos are exempt. Switch it off with
+  `api.limits.rate_limit.enabled: false`. It is per process and in memory: a single-user safeguard, not a replacement for a gateway.
+- **Ollama down:** `POST /generate-listing` and `POST /ask-reviews/{id}` answer `503 llm_unavailable` with instructions. Cached replies (the demo products) still work because they never reach Ollama.
+- **Missing files:** at startup the server checks the files listed under `api.required_files` and exits with one line per missing file and the command that creates it.
 
 ## Latency (this laptop, CPU, measured against the running server)
 

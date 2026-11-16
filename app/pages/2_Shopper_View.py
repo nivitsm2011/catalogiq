@@ -284,7 +284,7 @@ with tab_reviews:
             continue
         with st.chat_message("assistant", avatar="✨"):
             if msg.get("error"):
-                st.error(msg["error"])
+                ui.error_box(msg["error"])
                 continue
             a = msg["ans"]
             body = re.sub(

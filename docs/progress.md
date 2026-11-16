@@ -264,7 +264,7 @@
 - Phase 6 commit `e153db0` is not yet pushed to GitHub.
 
 
-## Phase 8 - FastAPI backend and Streamlit app (complete; commit not yet pushed)
+## Phase 8 - FastAPI backend and Streamlit app (complete; commit `8fca932`, pushed)
 
 **Done**
 - **API** (`api/`, docs in `docs/api.md`, interactive docs at `/docs`): `POST /predict-attributes`, `/generate-listing`, `/search/image`, `GET /search/text`,
@@ -292,4 +292,28 @@ a new no-RAG listing about 15-30 s, a new answer about 40 s; startup 89-114 s.
 - The built-in browser pane of the desktop app was hidden during testing, so the click-through ran in headless Edge (DevTools protocol) instead; the camera widget was not tested with real hardware.
 - Streamlit and the API are single-user local servers: no authentication, no concurrency tuning, decisions in the duplicate queue are saved to a local JSON file.
 - Phases 6, 7 and 8 are committed locally but not pushed to GitHub.
+
+
+## Phase 9 - Hardening: tests, Docker, CI, robustness, performance
+
+**Done**
+- **Tests:** 129 -> 222 tests. Coverage of `src/catalogiq` + `api` rose from 62% to **75.5%**, measured in a clean checkout with no data, models or network
+  (`pytest --cov`, fails below 70%). New fixtures in `tests/fixtures/` (18 KB). New unit tests for data cleaning, the review pipeline, prediction, aspect tagging, style guide,
+  evaluation harness, config, utils and tracking; an end-to-end photo -> attributes -> listing -> quality test with a real tiny classifier and a mocked LLM; API tests for ops,
+  scorecard, duplicates, limits and failures. Details: `docs/testing.md`.
+- **CI:** `.github/workflows/ci.yml` runs ruff, `black --check` and pytest with coverage on every push (CPU PyTorch, no downloads except packages); badge in the README.
+  **Not yet seen running on GitHub** (it runs on the first push); the same steps passed locally.
+- **Docker:** `docker/Dockerfile.api`, `docker/Dockerfile.app` (multi-stage, slim, non-root, health checks), `docker-compose.yml` (api + app + ollama, volumes for data and models),
+  `docs/docker.md` with commands and a disk-usage warning. **Written but not built: Docker is not installed on this laptop, so no image size was measured.**
+- **Robustness:** Ollama not running or model missing -> `503 llm_unavailable` with instructions and a fallback panel in the app; startup check listing missing files with the fix;
+  5.5 MB request cap, 429 rate limit (120 per minute, 20 for LLM endpoints), upload checks kept; all configured in `configs/api.yaml`.
+- **Performance:** per-photo cache for CLIP and classifier results, startup warm-up, Ollama `keep_alive`. First photo flow after start 2.14 s -> 1.31 s; quality check 0.22 s -> 0.02 s;
+  a new listing still takes about 36 s (LLM). Details and caveats: `reports/phase9/performance.md`.
+- **Clean-up:** removed unused config keys and two unused functions; `docs/configuration.md` documents every config file, key group and environment variable.
+
+**Open issues / risks**
+- Docker images and the compose file are untested. CI has not run on GitHub yet; Linux differences (paths, process names) are possible.
+- Not unit-tested on purpose: training and plotting scripts, the real CLIP encoder and the full-data evaluation components (the scorecard covers them).
+- Performance numbers come from small samples on a laptop on battery. The language model is still the bottleneck for a new listing.
+- The rate limiter is per process and in memory.
 

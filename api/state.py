@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import threading
 import time
+from collections import OrderedDict
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Any
 
@@ -13,6 +16,7 @@ import pandas as pd
 import yaml
 
 from catalogiq.config import (
+    get_api_config,
     get_config,
     get_qa_config,
     get_quality_config,
@@ -22,6 +26,7 @@ from catalogiq.logging_utils import get_logger
 
 logger = get_logger("api.state")
 DEMO_N = 10
+PHOTO_CACHE_SIZE = 32  # photos whose embedding / probabilities are kept (a seller flow reuses one)
 
 
 @dataclass
@@ -47,9 +52,11 @@ class AppState:
     started: float = field(default_factory=time.time)
     llm_lock: threading.Lock = field(default_factory=threading.Lock)
     models: dict[str, bool] = field(default_factory=dict)
-    version: str = "0.8.0"
+    version: str = field(default_factory=lambda: get_api_config()["version"])
     _lazy: dict[str, Any] = field(default_factory=dict)
     _lazy_lock: threading.Lock = field(default_factory=threading.Lock)
+    _photo_cache: OrderedDict[tuple[str, str], Any] = field(default_factory=OrderedDict)
+    _photo_lock: threading.Lock = field(default_factory=threading.Lock)
 
     def lazy(self, name: str, build: Any) -> Any:
         """Build a heavy object on first use (thread-safe) and keep it."""
@@ -59,6 +66,29 @@ class AppState:
                 self._lazy[name] = build()
                 logger.info("built %s in %.1fs", name, time.perf_counter() - start)
             return self._lazy[name]
+
+    def photo_memo(self, kind: str, photo: np.ndarray, compute: Callable[[], Any]) -> Any:
+        """Cache a per-photo result (CLIP embedding, classifier probabilities) by photo content.
+
+        One seller flow sends the same photo to several endpoints (attributes, similar listings,
+        quality check); each needs the same CLIP or classifier pass, so it is computed once.
+        Keeps the last ``PHOTO_CACHE_SIZE`` photos. The photo is hashed after it was shrunk for
+        the models, so the key costs a few milliseconds at most.
+        """
+        arr = np.ascontiguousarray(photo)
+        key = (kind, hashlib.blake2b(arr.tobytes(), digest_size=16).hexdigest() + str(arr.shape))
+        with self._photo_lock:
+            if key in self._photo_cache:
+                self._photo_cache.move_to_end(key)
+                return self._photo_cache[key]
+        value = (
+            compute()
+        )  # computed outside the lock: two requests may compute it twice, never wrong
+        with self._photo_lock:
+            self._photo_cache[key] = value
+            while len(self._photo_cache) > PHOTO_CACHE_SIZE:
+                self._photo_cache.popitem(last=False)
+        return value
 
     @property
     def review_text(self) -> pd.DataFrame:

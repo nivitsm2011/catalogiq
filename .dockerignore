@@ -1,0 +1,26 @@
+# Keep the build context small: code and configs only. Data, models and logs are mounted at run time.
+.git
+.github
+.venv
+.vscode
+.idea
+__pycache__
+*.pyc
+.pytest_cache
+.ruff_cache
+.mypy_cache
+.coverage
+coverage.xml
+htmlcov
+data
+models
+mlruns
+mlartifacts
+logs
+notebooks
+tests
+reports/figures
+reports/phase*
+docs/screenshots
+*.log
+*.pkl

@@ -24,3 +24,9 @@ __pycache__/
 build/
 dist/
 logs/
+
+# Coverage and test output
+coverage.xml
+.coverage
+reports/*.err
+reports/phase9_*.log

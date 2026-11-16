@@ -8,7 +8,6 @@ qa:
     aspect_sample: reports/phase5/aspect_sample.csv
     aspect_labels: reports/phase5/aspect_labels.csv
     aspect_results: reports/phase5/aspect_comparison.json
-    aspect_tags: data/processed/review_aspects.parquet
     questions: configs/qa_test_questions.yaml
     eval_dir: reports/phase5
     prompts_qa: configs/prompts/qa.yaml
@@ -47,7 +46,6 @@ qa:
       quality_durability: ['\bquality\b', '\bdurab', '\b(sturdy|flimsy|cheap|cheaply|junk|crap)\b', '\b(broke|broken|break|fell apart|falling apart|tore|torn|rip|ripped|ripping|snapped|cracked|rusted?|tarnish\w*|peel\w*)\b', '\b(stitch\w*|seam\w*|zipper|hem)\b', '\b(last|lasted|lasts|lasting|holds? up|held up|wore out|worn out|well.made|poorly made|defect\w*)\b', 'after (a|one|two|three|few|several|\d+) (wash|wear|use|day|week|month|year)']
       comfort: ['\bcomfort\w*', '\bcomfy\b', '\b(cozy|cosy|soft|itch\w*|scratch\w*|irritat\w*|pinch\w*|rub\w*|blister\w*|uncomfortable|breathable|cushion\w*|lightweight|heavy|sweaty|sweat\w*)\b', '\b(hurts?|painful|digs? in|supportive|support)\b']
       delivery_packaging: ['\b(ship\w*|deliver\w*|arriv\w*|packag\w*|packed|wrapped)\b', '\bbox\b', '\bcame (in|with|late|early|quickly|fast)\b', '\b(late|fast|quick|quickly|on time|prompt|promptly)\b', '\b(seller|customer service|refund|return(ed)?|replacement|exchange)\b']
-    min_zero_shot_margin: 0.0
 
   zero_shot:
     nli_model: MoritzLaurer/deberta-v3-xsmall-zeroshot-v1.1-all-33   # 142 MB, Hugging Face
@@ -80,7 +78,6 @@ qa:
     min_mentions: 5             # an aspect is summarised only if at least this many reviews mention it
     positive_min_rating: 4      # sentiment = star rating: >= 4 positive, <= 2 negative, 3 mixed
     negative_max_rating: 2
-    top_quotes: 2
 
   qa:
     max_new_tokens: 450
@@ -89,7 +86,6 @@ qa:
     max_chunk_chars_in_prompt: 500
 
   evaluation:
-    dev_products: 10            # questions of these products tune the evidence threshold
     handcheck_n: 15
     cv_folds: 5                 # product-grouped folds for the evidence-gate estimate
     judge_temperature: 0.0

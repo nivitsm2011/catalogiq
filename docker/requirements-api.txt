@@ -1,0 +1,20 @@
+# Runtime packages of the API image (versions match requirements.txt).
+# PyTorch is installed separately from the CPU wheel index in docker/Dockerfile.api.
+pandas==3.0.6
+numpy==2.4.6
+pillow==12.3.0
+opencv-python-headless==5.0.0.93
+open-clip-torch==3.3.0
+faiss-cpu==1.15.1
+sentence-transformers==6.1.0
+chromadb==1.5.9
+ollama==0.6.3
+httpx==0.28.1
+requests==2.34.2
+fastapi==0.142.2
+uvicorn==0.54.0
+python-multipart==0.0.32
+pydantic==2.13.5
+pyyaml==6.0.3
+tqdm==4.70.1
+pyarrow==25.0.1

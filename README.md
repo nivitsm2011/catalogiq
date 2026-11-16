@@ -1,9 +1,11 @@
 # CatalogIQ
 
+[![CI](https://github.com/nivitsm2011/catalogiq/actions/workflows/ci.yml/badge.svg)](https://github.com/nivitsm2011/catalogiq/actions/workflows/ci.yml)
+
 An AI copilot for e-commerce marketplaces: it helps small sellers create better listings, helps shoppers
 get grounded answers, and helps catalog teams monitor quality. Runs fully locally on CPU.
 
-> Status: Phase 8 complete (FastAPI backend and Streamlit app). Full README coming as features land.
+> Status: Phase 9 complete (tests, Docker, CI, hardening). Full README coming as features land.
 
 See [CLAUDE.md](CLAUDE.md) for the project brief, [docs/progress.md](docs/progress.md) for status and
 [docs/decisions.md](docs/decisions.md) for design decisions.
@@ -155,3 +157,14 @@ API reference: [docs/api.md](docs/api.md). Screenshots: [docs/screenshots/](docs
 | Seller Studio | Shopper View | Catalog Ops |
 |---|---|---|
 | ![Seller Studio](docs/screenshots/02_seller_studio_shirt.png) | ![Shopper View](docs/screenshots/04_shopper_search_and_outfit.png) | ![Catalog Ops](docs/screenshots/06_catalog_ops.png) |
+
+## Tests, CI and Docker (Phase 9)
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest --cov=src/catalogiq --cov=api     # 222 tests, about 75% coverage, no models or data needed
+```
+
+- **Tests and coverage:** [docs/testing.md](docs/testing.md). CI (badge above) runs ruff, black and the tests on every push.
+- **Docker:** `docker compose up` runs the API, the app and Ollama; see [docs/docker.md](docs/docker.md) first (disk usage, one-time model download). The files are written but not yet built.
+- **Robustness:** friendly errors when Ollama is down or model files are missing, request-size and rate limits ([docs/api.md](docs/api.md)).
+- **Performance:** [reports/phase9/performance.md](reports/phase9/performance.md). **Configuration:** [docs/configuration.md](docs/configuration.md).

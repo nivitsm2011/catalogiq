@@ -7,11 +7,14 @@ import io
 from fastapi import UploadFile
 from PIL import Image, UnidentifiedImageError
 
-MAX_BYTES = 5 * 1024 * 1024  # 5 MB
+from catalogiq.config import get_api_config
+
+_UPLOAD = get_api_config()["upload"]
+MAX_BYTES = int(_UPLOAD["max_bytes"])  # 5 MB
 ALLOWED_TYPES = {"image/jpeg", "image/png", "image/webp"}
 ALLOWED_FORMATS = {"JPEG", "PNG", "WEBP"}
-MIN_SIDE = 16
-MAX_PIXELS = 40_000_000
+MIN_SIDE = int(_UPLOAD["min_side"])
+MAX_PIXELS = int(_UPLOAD["max_pixels"])
 
 
 class ApiError(Exception):

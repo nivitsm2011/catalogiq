@@ -28,3 +28,14 @@ extend-exclude = "\\.venv|notebooks"
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q"
+
+[tool.coverage.run]
+source = ["src/catalogiq", "api"]
+branch = false
+
+[tool.coverage.report]
+# CI fails below this. Measured on a clean checkout (no data, no models, no network): see docs/testing.md.
+fail_under = 70
+show_missing = true
+skip_covered = true
+exclude_also = ["if __name__ == .__main__.:", "raise NotImplementedError"]

@@ -69,15 +69,10 @@ images:
   mean: [0.485, 0.456, 0.406]
   std: [0.229, 0.224, 0.225]
 
-split:
-  test_size: 0.15
-  val_size: 0.15
-
 models:
   clip:
     name: ViT-B-32
     pretrained: laion2b_s34b_b79k
-  text_embedder: sentence-transformers/all-MiniLM-L6-v2
   llm:
     provider: ollama
     model: llama3.2:3b
@@ -85,17 +80,7 @@ models:
     host: http://localhost:11434
     temperature: 0.2
     timeout_s: 120
-
-retrieval:
-  top_k: 5
-  vector_store_dir: data/processed/chroma
-  faiss_index_path: models/faiss_index.bin
-  duplicate_similarity_threshold: 0.95
-
-quality:
-  blur_threshold: 100.0
-  brightness_min: 40
-  brightness_max: 220
+    keep_alive: 30m          # Ollama keeps the model in memory this long after the last call (default 5m)
 
 logging:
   level: INFO

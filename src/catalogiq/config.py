@@ -5,6 +5,7 @@ All paths, seeds and model names live in ``configs/*.yaml``; code reads them her
 
 from __future__ import annotations
 
+import os
 from functools import cache, lru_cache
 from pathlib import Path
 from typing import Any
@@ -29,10 +30,21 @@ def load_config(path: str | Path | None = None) -> dict[str, Any]:
         return yaml.safe_load(handle)
 
 
+LLM_HOST_ENV = "CATALOGIQ_LLM_HOST"
+
+
 @lru_cache(maxsize=1)
 def get_config() -> dict[str, Any]:
-    """Return the cached default configuration."""
-    return load_config()
+    """Return the cached default configuration.
+
+    The environment variable ``CATALOGIQ_LLM_HOST`` overrides ``models.llm.host`` (the Docker
+    compose file points it at the ``ollama`` container); nothing else is read from the environment.
+    """
+    cfg = load_config()
+    host = os.environ.get(LLM_HOST_ENV)
+    if host:
+        cfg["models"]["llm"]["host"] = host
+    return cfg
 
 
 def resolve_path(relative: str | Path) -> Path:
@@ -75,3 +87,9 @@ def get_quality_config() -> dict[str, Any]:
 def get_eval_config() -> dict[str, Any]:
     """Return the ``eval`` section of ``configs/eval.yaml`` (Phase 7 settings)."""
     return load_config(PROJECT_ROOT / "configs" / "eval.yaml")["eval"]
+
+
+@cache
+def get_api_config() -> dict[str, Any]:
+    """Return the ``api`` section of ``configs/api.yaml`` (limits, upload rules, startup files)."""
+    return load_config(PROJECT_ROOT / "configs" / "api.yaml")["api"]

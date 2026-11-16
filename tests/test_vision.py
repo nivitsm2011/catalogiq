@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import json
-
 import numpy as np
 import pytest
 import torch
@@ -17,7 +15,6 @@ from catalogiq.vision.calibration import (
 )
 from catalogiq.vision.data import IGNORE_INDEX, augment, class_weights
 from catalogiq.vision.evaluate import expected_calibration_error, score_target
-from catalogiq.vision.model import ExportWrapper, MultiHeadNet
 from catalogiq.vision.predict import AttributePredictor, measure_latency
 
 
@@ -75,21 +72,6 @@ def test_score_target_ignores_missing_labels() -> None:
     probs = np.array([[0.9, 0.1], [0.2, 0.8], [0.6, 0.4]])
     y = np.array([0, 1, IGNORE_INDEX])
     assert score_target(y, probs)["accuracy"] == 1.0
-
-
-@pytest.fixture()
-def tiny_model_dir(tmp_path):
-    """Export a randomly initialised model in the same layout the real exporter writes."""
-    v = get_vision_config()
-    labels = {"articleType": ["Shirts", "Tshirts", "Watches"], "gender": ["Men", "Women"]}
-    net = MultiHeadNet({t: len(c) for t, c in labels.items()}, pretrained=False).eval()
-    h, w = v["input_hw"]
-    scripted = torch.jit.trace(ExportWrapper(net), torch.randn(1, 3, h, w))
-    scripted.save(str(tmp_path / v["inference"]["torchscript_file"]))
-    (tmp_path / v["inference"]["labels_file"]).write_text(json.dumps(labels), encoding="utf-8")
-    thresholds = {t: {"temperature": 1.0, "threshold": 0.99} for t in labels}
-    (tmp_path / v["inference"]["thresholds_file"]).write_text(json.dumps(thresholds), "utf-8")
-    return tmp_path
 
 
 def test_predict_returns_label_confidence_review_flag(tiny_model_dir) -> None:

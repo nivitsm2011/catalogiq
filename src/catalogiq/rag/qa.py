@@ -23,7 +23,7 @@ from pydantic import BaseModel, Field, ValidationError
 from catalogiq.config import get_qa_config, resolve_path
 from catalogiq.llm.client import LLMClient, LLMError
 from catalogiq.logging_utils import get_logger
-from catalogiq.rag.aspects import aspect_names, rule_matches
+from catalogiq.rag.aspects import rule_matches
 from catalogiq.rag.bm25 import BM25
 from catalogiq.rag.knowledge_base import embed_texts
 from catalogiq.rag.retrieval import rrf_fuse
@@ -316,8 +316,3 @@ class ReviewQA:
                     {"role": "user", "content": _prompts()["repair"].format(error=error)},
                 ]
         return None, raw, error
-
-
-def all_aspects() -> list[str]:
-    """Aspect names plus ``general`` (what ``QAAnswer.aspect`` can hold)."""
-    return [*aspect_names(), "general"]

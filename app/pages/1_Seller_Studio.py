@@ -261,7 +261,7 @@ with right:
         except client.ApiError as exc:
             S.studio_error = exc.message
     if S.get("studio_error"):
-        st.error(S.studio_error)
+        ui.error_box(S.studio_error)
 
 # ------------------------------------------------------------------------------------ results
 res = S.get("studio_listing")

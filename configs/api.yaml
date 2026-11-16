@@ -1,0 +1,36 @@
+# Settings of the FastAPI backend (api/). Read through catalogiq.config.get_api_config().
+api:
+  version: "0.9.0"
+  upload:
+    max_bytes: 5242880          # 5 MB per photo
+    max_pixels: 40000000        # reject photos above 40 megapixels (decompression bombs)
+    min_side: 16                # pixels; smaller images cannot be a product photo
+  limits:
+    # Whole-request size cap, checked from the Content-Length header before the body is read.
+    # A little above the photo limit so a 5 MB photo plus form fields still passes.
+    max_body_bytes: 5767168     # 5.5 MB
+    # In-process rate limit per client address (sliding window). Single-user local servers rarely hit it;
+    # it protects a shared demo from a runaway script. Set enabled: false to switch it off.
+    rate_limit:
+      enabled: true
+      window_s: 60
+      max_requests: 120         # every endpoint except the exempt ones
+      heavy_max_requests: 20    # endpoints that call the local LLM (15-60 s each on CPU)
+      heavy_paths: ["/generate-listing", "/ask-reviews", "/reviews"]
+      exempt_paths: ["/health", "/metrics", "/docs", "/openapi.json", "/redoc", "/catalog/image"]
+  # Files the server needs at startup, with the command that creates each one (see api/preflight.py).
+  required_files:
+    - path: models/attribute_classifier/model_ts.pt
+      how: "Train and export the classifier: python -m scripts.train_classifier, then python -m scripts.export_model"
+    - path: models/attribute_classifier/labels.json
+      how: "Train and export the classifier: python -m scripts.train_classifier, then python -m scripts.export_model"
+    - path: data/processed/search_catalog.parquet
+      how: "Embed the catalog: python -m scripts.embed_catalog"
+    - path: data/processed/clip_image_emb.npy
+      how: "Embed the catalog: python -m scripts.embed_catalog"
+    - path: data/processed/chroma
+      how: "Build the listing knowledge base: python -m scripts.build_knowledge_base"
+    - path: data/processed/review_chunks.parquet
+      how: "Build the review index: python -m scripts.build_review_index"
+    - path: data/processed/amazon_items.parquet
+      how: "Sample the review data: python -m scripts.build_reviews"

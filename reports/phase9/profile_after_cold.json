@@ -1,0 +1,55 @@
+{
+ "label": "after_cold",
+ "url": "http://127.0.0.1:8000",
+ "cold_first_flow_s": {
+  "predict_attributes": 0.36274289999710163,
+  "search_image": 0.21646349999355152,
+  "generate_listing": 0.583845699999074,
+  "quality_check": 0.14199139999982435,
+  "total": 1.3050434999895515
+ },
+ "warm_cached_listing": {
+  "predict_attributes": {
+   "mean": 0.0293069000011504,
+   "median": 0.03549159999965923
+  },
+  "search_image": {
+   "mean": 0.19868556666673007,
+   "median": 0.2169078000006266
+  },
+  "generate_listing": {
+   "mean": 1.186969899996863,
+   "median": 1.2665965999985929
+  },
+  "quality_check": {
+   "mean": 0.029173299997637514,
+   "median": 0.01784090000001015
+  },
+  "total": {
+   "mean": 1.4441356666623808,
+   "median": 1.5421973999982583
+  }
+ },
+ "new_listing_uncached": {
+  "predict_attributes": {
+   "mean": 0.0103506000014022,
+   "median": 0.0103506000014022
+  },
+  "search_image": {
+   "mean": 0.04321959999651881,
+   "median": 0.04321959999651881
+  },
+  "generate_listing": {
+   "mean": 36.120251950003876,
+   "median": 36.120251950003876
+  },
+  "quality_check": {
+   "mean": 0.021427800002129516,
+   "median": 0.021427800002129516
+  },
+  "total": {
+   "mean": 36.19524995000393,
+   "median": 36.19524995000393
+  }
+ }
+}

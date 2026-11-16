@@ -26,6 +26,39 @@ class LLMError(RuntimeError):
     """Raised when the model backend fails (not running, timeout, bad response)."""
 
 
+class LLMUnavailable(LLMError):
+    """The model server cannot be reached (Ollama is not running)."""
+
+    PREFIX = "The local language model (Ollama) is not reachable"
+
+    def __init__(self, host: str) -> None:
+        super().__init__(
+            f"{self.PREFIX} at {host}. Start it (open the Ollama app or run `ollama serve`) "
+            "and try again. Photos, search and quality checks still work; so do demo products, "
+            "because their replies are cached."
+        )
+
+
+class LLMModelMissing(LLMError):
+    """The server runs but the configured model is not installed."""
+
+    PREFIX = "The language model"
+
+    def __init__(self, model: str) -> None:
+        super().__init__(
+            f"{self.PREFIX} '{model}' is not installed. Install it with: ollama pull {model} "
+            "(about 2 GB). Demo products still work because their replies are cached."
+        )
+
+
+def is_unavailable_message(text: str | None) -> bool:
+    """True when ``text`` is the message of an ``LLMUnavailable`` or ``LLMModelMissing``."""
+    return bool(text) and (
+        text.startswith(LLMUnavailable.PREFIX)
+        or (text.startswith(LLMModelMissing.PREFIX) and "is not installed" in text)
+    )
+
+
 @dataclass
 class LLMResponse:
     """One model reply."""
@@ -61,14 +94,24 @@ class OllamaClient(LLMClient):
         timeout_s: Per-request timeout in seconds.
         temperature: Default sampling temperature.
         seed: Sampling seed (makes runs repeatable).
+        keep_alive: How long Ollama keeps the model loaded after the last call (e.g. ``"30m"``);
+            reloading a 3B model after the default 5 minutes costs several seconds per listing.
     """
 
     def __init__(
-        self, model: str, host: str, timeout_s: float, temperature: float, seed: int
+        self,
+        model: str,
+        host: str,
+        timeout_s: float,
+        temperature: float,
+        seed: int,
+        keep_alive: str | None = None,
     ) -> None:
         import ollama
 
         self.model = model
+        self.host = host
+        self.keep_alive = keep_alive
         self.temperature = temperature
         self.seed = seed
         self._client = ollama.Client(host=host, timeout=timeout_s)
@@ -89,15 +132,34 @@ class OllamaClient(LLMClient):
         start = time.perf_counter()
         try:
             res = self._client.chat(
-                model=self.model, messages=messages, format=schema, options=options
+                model=self.model,
+                messages=messages,
+                format=schema,
+                options=options,
+                keep_alive=self.keep_alive,
             )
         except Exception as exc:  # noqa: BLE001 - connection, timeout and model errors alike
-            raise LLMError(f"Ollama call failed: {exc}") from exc
+            raise self._classify(exc) from exc
         return LLMResponse(
             text=res.message.content or "",
             latency_s=time.perf_counter() - start,
             output_tokens=getattr(res, "eval_count", None),
         )
+
+    def _classify(self, exc: Exception) -> LLMError:
+        """Turn a raw client exception into an error with a message a user can act on."""
+        import httpx
+
+        if isinstance(exc, ConnectionError | httpx.ConnectError | httpx.ConnectTimeout):
+            return LLMUnavailable(self.host)
+        if getattr(exc, "status_code", None) == 404:
+            return LLMModelMissing(self.model)
+        if isinstance(exc, httpx.TimeoutException):
+            return LLMError(
+                f"The language model did not answer in time ({exc.__class__.__name__}). "
+                "It is slow on CPU; try again, or raise models.llm.timeout_s in configs/base.yaml."
+            )
+        return LLMError(f"Ollama call failed: {exc}")
 
 
 class CachedClient(LLMClient):
@@ -150,6 +212,7 @@ def _make_ollama() -> LLMClient:
         timeout_s=cfg["timeout_s"],
         temperature=cfg["temperature"],
         seed=get_rag_config()["llm"]["seed"],
+        keep_alive=cfg.get("keep_alive"),
     )
 
 

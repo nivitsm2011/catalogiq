@@ -1,0 +1,30 @@
+# Packages the test suite and linters need (CI). Versions match requirements.txt.
+# PyTorch is installed separately from the CPU wheel index (see .github/workflows/ci.yml).
+# Left out: jupyter, kaggle, streamlit, uvicorn, plotting libraries (no test imports them).
+pandas==3.0.6
+numpy==2.4.6
+scikit-learn==1.9.1
+pillow==12.3.0
+opencv-python-headless==5.0.0.93
+open-clip-torch==3.3.0
+faiss-cpu==1.15.1
+sentence-transformers==6.1.0
+chromadb==1.5.9
+datasets==5.0.1
+ollama==0.6.3
+mlflow==3.16.1
+fastapi==0.142.2
+python-multipart==0.0.32
+httpx==0.28.1
+pydantic==2.13.5
+pyyaml==6.0.3
+python-dotenv==1.2.4
+tqdm==4.70.1
+pytest==9.1.1
+pytest-cov==7.1.0
+ruff==0.16.10
+black==26.5.1
+imagehash==4.3.2
+pyarrow==25.0.1
+scipy==1.17.1
+psutil==7.2.2

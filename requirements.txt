@@ -17,6 +17,8 @@ ollama==0.6.3
 mlflow==3.16.1
 fastapi==0.142.2
 uvicorn==0.54.0
+python-multipart==0.0.32
+httpx==0.28.1
 pydantic==2.13.5
 streamlit==1.65.0
 streamlit-lottie==0.0.5
@@ -24,6 +26,7 @@ pyyaml==6.0.3
 python-dotenv==1.2.4
 tqdm==4.70.1
 pytest==9.1.1
+pytest-cov==7.1.0
 ruff==0.16.10
 black==26.5.1
 jupyter==1.1.1
@@ -32,3 +35,4 @@ kaggle==2.2.4
 imagehash==4.3.2
 pyarrow==25.0.1
 scipy==1.17.1
+psutil==7.2.2

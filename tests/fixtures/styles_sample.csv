@@ -1,0 +1,9 @@
+id,gender,masterCategory,subCategory,articleType,baseColour,season,year,usage,productDisplayName
+1001,Men,Apparel,Topwear,Shirts,Blue,Summer,2012,Casual,Arrow Blue Slim Shirt
+1002,Men,Apparel,Topwear,Shirts,Navy Blue,Summer,2012,Formal,Shirt, slim fit, cotton
+1003,Women,Apparel,Topwear,Tops,Red,Summer,2013,Casual,Red Summer Top
+1004,Women,Apparel,Topwear,Tops,Maroon,Winter,2013,Casual,Maroon Knit Top
+1005,Men,Footwear,Shoes,Casual Shoes,Black,Fall,2014,Casual,Black Canvas Sneakers
+1006,Men,Footwear,Shoes,Casual Shoes,Black,Fall,2014,Casual,Black Canvas Sneakers Pro
+1007,Unisex,Accessories,Watches,Watches,Silver,Winter,2015,Casual,Silver Analog Watch
+1008,Men,Apparel,Topwear

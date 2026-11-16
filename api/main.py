@@ -21,7 +21,9 @@ from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from api import services
+from api.limits import make_limit_middleware
 from api.metrics import RequestMetrics
+from api.preflight import check_required_files
 from api.schemas import (
     AskResponse,
     AspectSummaryResponse,
@@ -40,7 +42,8 @@ from api.schemas import (
 )
 from api.state import AppState
 from api.validation import ApiError, read_image
-from catalogiq.config import get_config, resolve_path
+from catalogiq.config import get_api_config, get_config, resolve_path
+from catalogiq.llm.client import LLMError, LLMUnavailable, is_unavailable_message
 from catalogiq.logging_utils import get_logger
 
 logger = get_logger("api")
@@ -71,11 +74,16 @@ def llm_reachable() -> bool:
         return False
 
 
-def create_app(state: AppState | None = None) -> FastAPI:
-    """Build the app. Pass a ready ``AppState`` (tests use fakes) or let startup load the real one."""
+def create_app(state: AppState | None = None, api_config: dict[str, Any] | None = None) -> FastAPI:
+    """Build the app. Pass a ready ``AppState`` (tests use fakes) or let startup load the real one.
+
+    ``api_config`` replaces ``configs/api.yaml`` (tests use it to set tiny limits).
+    """
 
     @asynccontextmanager
     async def lifespan(app: FastAPI):  # type: ignore[no-untyped-def]
+        if state is None:
+            check_required_files()  # a clear list of missing files instead of a stack trace
         app.state.catalogiq = state if state is not None else await run_in_threadpool(AppState.load)
         logger.info("startup complete: models loaded")
         if state is None:  # the real server: warm the lazy parts without delaying readiness
@@ -86,7 +94,7 @@ def create_app(state: AppState | None = None) -> FastAPI:
 
     app = FastAPI(
         title="CatalogIQ API",
-        version="0.8.0",
+        version=get_api_config()["version"],
         description=(
             "AI copilot for e-commerce catalogs. Photos up to 5 MB (JPEG, PNG, WebP). "
             "Everything runs locally on CPU; listing generation and review answers call a local LLM "
@@ -99,6 +107,10 @@ def create_app(state: AppState | None = None) -> FastAPI:
     app.state.metrics = metrics
 
     # ---------------------------------------------------------------- middleware + errors
+    app.middleware("http")(
+        make_limit_middleware(api_config)
+    )  # inner: rejected requests are still logged
+
     @app.middleware("http")
     async def log_requests(request: Request, call_next):  # type: ignore[no-untyped-def]
         start = time.perf_counter()
@@ -113,6 +125,11 @@ def create_app(state: AppState | None = None) -> FastAPI:
             name = f"{request.method} {route.path if route else request.url.path}"
             metrics.record(name, status, ms)
             logger.info("%s %s -> %d in %.0f ms", request.method, request.url.path, status, ms)
+
+    @app.exception_handler(LLMError)
+    async def llm_error(_: Request, exc: LLMError) -> JSONResponse:
+        down = isinstance(exc, LLMUnavailable) or is_unavailable_message(str(exc))
+        return _error(503 if down else 502, "llm_unavailable" if down else "llm_error", str(exc))
 
     @app.exception_handler(ApiError)
     async def api_error(_: Request, exc: ApiError) -> JSONResponse:
@@ -172,7 +189,7 @@ def create_app(state: AppState | None = None) -> FastAPI:
                 models={},
                 llm_reachable=False,
                 llm_model=get_config()["models"]["llm"]["model"],
-                version="0.8.0",
+                version=get_api_config()["version"],
                 catalog_size=0,
             )
         reachable = await run_in_threadpool(llm_reachable)

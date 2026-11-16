@@ -31,19 +31,3 @@ def most_confident_wrong(
             "confidence": conf[idx].round(4),
         }
     )
-
-
-def confusion_pairs(
-    y: np.ndarray, probs: np.ndarray, classes: list[str], top: int = 15
-) -> pd.DataFrame:
-    """Most frequent (true, predicted) mistakes, to spot visually similar classes."""
-    mask = y != IGNORE_INDEX
-    pred = probs.argmax(axis=1)
-    wrong = mask & (pred != y)
-    pairs = pd.Series(
-        [(classes[t], classes[p]) for t, p in zip(y[wrong], pred[wrong], strict=True)]
-    ).value_counts()
-    out = pairs.head(top).reset_index()
-    out.columns = ["pair", "count"]
-    out[["true", "predicted"]] = pd.DataFrame(out["pair"].tolist(), index=out.index)
-    return out[["true", "predicted", "count"]]

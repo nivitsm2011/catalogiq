@@ -1,0 +1,72 @@
+# CatalogIQ: API + Streamlit app + Ollama, all on CPU.
+#
+#   docker compose build                               # builds the two images (see docs/docker.md for sizes)
+#   docker compose --profile setup run --rm ollama-pull   # ONE TIME: downloads llama3.2:3b (about 2 GB)
+#   docker compose up                                  # api on :8000, app on :8501
+#
+# Data, trained models and reports stay on your disk and are mounted into the containers.
+
+name: catalogiq
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 15s
+
+  # One-time helper (only runs with --profile setup): downloads the language model into the volume.
+  ollama-pull:
+    image: ollama/ollama:latest
+    profiles: ["setup"]
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["ollama", "pull", "llama3.2:3b"]
+
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    image: catalogiq-api:latest
+    restart: unless-stopped
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      CATALOGIQ_LLM_HOST: http://ollama:11434
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data            # processed data, indexes, caches, saved duplicate decisions (read-write)
+      - ./models:/app/models        # trained classifier and downloaded CLIP weights (read-write: weights cache)
+      - ./reports:/app/reports:ro   # scorecard and tuned thresholds (read-only)
+
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.app
+    image: catalogiq-app:latest
+    restart: unless-stopped
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      CATALOGIQ_API_URL: http://api:8000
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./reports:/app/reports:ro   # the Model Card page reads the scorecard
+
+volumes:
+  ollama_models:
